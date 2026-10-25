@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="780" viewBox="0 0 600 520"><defs>
+ <linearGradient id="dark" x1="0" x2="1" y2=".5"><stop stop-color="#51565b"/><stop offset=".45" stop-color="#292d31"/><stop offset="1" stop-color="#111315"/></linearGradient>
+ <linearGradient id="edge" x1="0" x2="1" y2=".3"><stop stop-color="#222528"/><stop offset=".4" stop-color="#74797d"/><stop offset=".65" stop-color="#292c30"/><stop offset="1" stop-color="#141619"/></linearGradient>
+ <linearGradient id="white" x1="0" x2=".8" y2="1"><stop stop-color="#fff"/><stop offset=".65" stop-color="#eeefec"/><stop offset="1" stop-color="#bdbfbd"/></linearGradient>
+ <linearGradient id="cream" x1="0" x2="1" y2=".5"><stop stop-color="#e4d9c4"/><stop offset=".5" stop-color="#d2c4ac"/><stop offset="1" stop-color="#b7a68c"/></linearGradient>
+ <linearGradient id="clay" x1="0" x2="1"><stop stop-color="#be9477"/><stop offset=".45" stop-color="#a27a5e"/><stop offset="1" stop-color="#79553d"/></linearGradient>
+ <linearGradient id="brass"><stop stop-color="#8c7c5c"/><stop offset=".5" stop-color="#d5c297"/><stop offset="1" stop-color="#9a8762"/></linearGradient>
+ <radialGradient id="lens"><stop stop-color="#101d28"/><stop offset=".7" stop-color="#30485a"/><stop offset="1" stop-color="#151b22"/></radialGradient>
+ <pattern id="mesh" width="5" height="5" patternUnits="userSpaceOnUse"><rect width="5" height="5" fill="#292e32"/><circle cx="2" cy="2" r="1" fill="#121719"/></pattern>
+ <filter id="shadow"><feGaussianBlur stdDeviation="11"/></filter>
+ </defs><rect width="600" height="520" fill="#dedfe5"/><ellipse cx="300" cy="450" rx="139" ry="14" fill="#20252c" opacity=".13" filter="url(#shadow)"/><rect x="190" y="166" width="220" height="254" rx="70" fill="url(#dark)"/><rect x="197" y="183" width="206" height="217" rx="63" fill="url(#mesh)"/><ellipse cx="300" cy="182" rx="91" ry="32" fill="#202327"/><path d="M281 181H294M287 175V187M310 181H323" stroke="#97999d" stroke-width="2"/><rect x="281" y="302" width="38" height="24" rx="4" fill="#c6cbb8"/><text x="300" y="319" text-anchor="middle" fill="#202327" font-size="13" font-family="sans-serif">o.</text></svg>

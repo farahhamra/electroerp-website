@@ -1,0 +1,5 @@
+{
+  "mode": "mock",
+  "configUrl": "stores/electronics.json",
+  "catalogUrl": "catalogs/electronics.json"
+}

@@ -1,0 +1,117 @@
+{
+  "version": 1,
+  "locale": "en-US",
+  "currency": "USD",
+  "currencyDecimals": 2,
+  "announcement": "A little something extra. Complimentary delivery on orders $150+",
+  "navigation": [
+    {
+      "label": "Shop all",
+      "href": "/catalog"
+    },
+    {
+      "label": "New arrivals",
+      "href": "/catalog?collection=new"
+    },
+    {
+      "label": "Our story",
+      "href": "/story"
+    }
+  ],
+  "footer": {
+    "text": "Thoughtful design. Everyday possibility.",
+    "links": [
+      {
+        "label": "Our story",
+        "href": "/story"
+      },
+      {
+        "label": "Shipping & returns",
+        "href": "/shipping"
+      },
+      {
+        "label": "Get in touch",
+        "href": "/contact"
+      }
+    ]
+  },
+  "benefits": [
+    {
+      "title": "Considered by design",
+      "description": "Every detail has a reason."
+    },
+    {
+      "title": "Delivered with care",
+      "description": "Complimentary delivery on orders $150+."
+    },
+    {
+      "title": "Here to help",
+      "description": "A more personal shopping experience."
+    }
+  ],
+  "checkout": {
+    "countries": ["United States", "Lebanon", "United Arab Emirates", "United Kingdom"],
+    "shippingFee": 1000,
+    "freeShippingThreshold": 15000,
+    "notice": "Demo shipping rates and destinations. No payment or real order will be processed."
+  },
+  "sections": [
+    {
+      "id": "hero",
+      "type": "hero",
+      "eyebrow": "SOUND, REIMAGINED",
+      "title": "Less noise.\nMore feeling.",
+      "description": "Meet Orbit One. Immersive sound, considered design, and a little more space for you.",
+      "image": "images/headphones-hero.svg",
+      "imageAlt": "Sculpted graphite over-ear headphones",
+      "cta": {
+        "label": "Meet Orbit One",
+        "href": "/products/orbit-one"
+      }
+    },
+    {
+      "id": "featured",
+      "type": "products",
+      "eyebrow": "THE GOOD STUFF",
+      "title": "Everyday, upgraded.",
+      "collectionId": "featured",
+      "limit": 4
+    },
+    {
+      "id": "categories",
+      "type": "categories",
+      "eyebrow": "FIND YOUR EVERYDAY",
+      "title": "A world of possibilities."
+    },
+    {
+      "id": "banner",
+      "type": "banner",
+      "eyebrow": "SMALL SIZE. BIG ENERGY.",
+      "title": "Good sound.\nAnywhere you go.",
+      "description": "Your favorite moments deserve their own soundtrack. Take them with you.",
+      "image": "images/speaker.svg",
+      "cta": {
+        "label": "Discover portable audio",
+        "href": "/catalog?category=audio"
+      }
+    }
+  ],
+  "storeId": "orbit-demo",
+  "template": "electronics",
+  "brand": {
+    "name": "ORBIT",
+    "tagline": "Technology, thoughtfully.",
+    "description": "Considered technology. Extraordinary everyday."
+  },
+  "theme": {
+    "background": "#FAFAF7",
+    "foreground": "#202321",
+    "accent": "#263FEC",
+    "accentText": "#FFFFFF",
+    "surface": "#F0F0EB",
+    "muted": "#656963",
+    "headingFont": "DM Sans",
+    "bodyFont": "DM Sans",
+    "radius": 4
+  }
+}

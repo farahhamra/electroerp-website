@@ -1,0 +1,174 @@
+{
+  "categories": [
+    {
+      "id": "furniture",
+      "name": "Furniture",
+      "description": "A place to slow down.",
+      "image": "images/chair.svg"
+    },
+    {
+      "id": "lighting",
+      "name": "Lighting",
+      "description": "Set a softer mood.",
+      "image": "images/lamp.svg"
+    },
+    {
+      "id": "objects",
+      "name": "Objects",
+      "description": "Little things, lasting joy.",
+      "image": "images/vase.svg"
+    }
+  ],
+  "products": [
+    {
+      "id": "field-lounge",
+      "slug": "field-lounge",
+      "name": "The Sunday Lounge Chair",
+      "brand": "Form & Field",
+      "model": "FF-CH1",
+      "categoryId": "furniture",
+      "categoryName": "Furniture",
+      "collectionIds": ["featured", "new"],
+      "description": "Bring a little intention to your everyday spaces. Natural textures, a quiet silhouette, and enduring materials create a piece that feels right at home.",
+      "details": [
+        "Designed for everyday living",
+        "Natural finishes; each piece is unique",
+        "Carefully packaged for delivery"
+      ],
+      "images": ["images/chair.svg"],
+      "variants": [
+        {
+          "id": "field-lounge-0",
+          "sku": "FF-CH1-1",
+          "options": {
+            "Color": "Graphite"
+          },
+          "price": 47900,
+          "stock": 12
+        },
+        {
+          "id": "field-lounge-1",
+          "sku": "FF-CH1-2",
+          "options": {
+            "Color": "Stone"
+          },
+          "price": 47900,
+          "stock": 6
+        }
+      ],
+      "badge": "Signature"
+    },
+    {
+      "id": "field-light",
+      "slug": "field-light",
+      "name": "The Dune Table Lamp",
+      "brand": "Form & Field",
+      "model": "FF-LA1",
+      "categoryId": "lighting",
+      "categoryName": "Lighting",
+      "collectionIds": ["featured", "new"],
+      "description": "Bring a little intention to your everyday spaces. Natural textures, a quiet silhouette, and enduring materials create a piece that feels right at home.",
+      "details": [
+        "Designed for everyday living",
+        "Natural finishes; each piece is unique",
+        "Carefully packaged for delivery"
+      ],
+      "images": ["images/lamp.svg"],
+      "variants": [
+        {
+          "id": "field-light-0",
+          "sku": "FF-LA1-1",
+          "options": {
+            "Color": "Graphite"
+          },
+          "price": 14900,
+          "stock": 12
+        },
+        {
+          "id": "field-light-1",
+          "sku": "FF-LA1-2",
+          "options": {
+            "Color": "Stone"
+          },
+          "price": 14900,
+          "stock": 6
+        }
+      ],
+      "badge": "New arrival"
+    },
+    {
+      "id": "field-vase",
+      "slug": "field-vase",
+      "name": "The Terra Vase",
+      "brand": "Form & Field",
+      "model": "FF-VA1",
+      "categoryId": "objects",
+      "categoryName": "Objects",
+      "collectionIds": ["featured"],
+      "description": "Bring a little intention to your everyday spaces. Natural textures, a quiet silhouette, and enduring materials create a piece that feels right at home.",
+      "details": [
+        "Designed for everyday living",
+        "Natural finishes; each piece is unique",
+        "Carefully packaged for delivery"
+      ],
+      "images": ["images/vase.svg"],
+      "variants": [
+        {
+          "id": "field-vase-0",
+          "sku": "FF-VA1-1",
+          "options": {
+            "Color": "Graphite"
+          },
+          "price": 5900,
+          "stock": 12
+        },
+        {
+          "id": "field-vase-1",
+          "sku": "FF-VA1-2",
+          "options": {
+            "Color": "Stone"
+          },
+          "price": 5900,
+          "stock": 6
+        }
+      ]
+    },
+    {
+      "id": "field-lamp",
+      "slug": "field-lamp",
+      "name": "The Evening Lamp",
+      "brand": "Form & Field",
+      "model": "FF-LA2",
+      "categoryId": "lighting",
+      "categoryName": "Lighting",
+      "collectionIds": ["featured"],
+      "description": "Bring a little intention to your everyday spaces. Natural textures, a quiet silhouette, and enduring materials create a piece that feels right at home.",
+      "details": [
+        "Designed for everyday living",
+        "Natural finishes; each piece is unique",
+        "Carefully packaged for delivery"
+      ],
+      "images": ["images/lamp.svg"],
+      "variants": [
+        {
+          "id": "field-lamp-0",
+          "sku": "FF-LA2-1",
+          "options": {
+            "Color": "Graphite"
+          },
+          "price": 17900,
+          "stock": 12
+        },
+        {
+          "id": "field-lamp-1",
+          "sku": "FF-LA2-2",
+          "options": {
+            "Color": "Stone"
+          },
+          "price": 17900,
+          "stock": 6
+        }
+      ]
+    }
+  ]
+}

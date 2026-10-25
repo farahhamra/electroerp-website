@@ -1,0 +1,323 @@
+{
+  "categories": [
+    {
+      "id": "audio",
+      "name": "Audio",
+      "description": "Find your frequency.",
+      "image": "images/headphones.svg"
+    },
+    {
+      "id": "wearables",
+      "name": "Wearables",
+      "description": "A little more connected.",
+      "image": "images/watch.svg"
+    },
+    {
+      "id": "workspace",
+      "name": "Workspace",
+      "description": "Make room for focus.",
+      "image": "images/keyboard.svg"
+    },
+    {
+      "id": "cameras",
+      "name": "Cameras",
+      "description": "See things differently.",
+      "image": "images/camera.svg"
+    }
+  ],
+  "products": [
+    {
+      "id": "orbit-one",
+      "slug": "orbit-one",
+      "name": "Orbit One Headphones",
+      "brand": "Orbit",
+      "model": "ORB-H1",
+      "categoryId": "audio",
+      "categoryName": "Audio",
+      "collectionIds": ["featured", "new"],
+      "description": "Thoughtfully engineered for the way you live. Refined materials, intuitive controls, and exceptional performance come together in an everyday essential.",
+      "details": [
+        "Intuitive controls and effortless pairing",
+        "Premium materials, built for everyday use",
+        "Includes charging cable and quick-start guide"
+      ],
+      "images": ["images/headphones.svg"],
+      "variants": [
+        {
+          "id": "orbit-one-0",
+          "sku": "ORB-H1-1",
+          "options": {
+            "Color": "Graphite"
+          },
+          "price": 24900,
+          "stock": 12
+        },
+        {
+          "id": "orbit-one-1",
+          "sku": "ORB-H1-2",
+          "options": {
+            "Color": "Stone"
+          },
+          "price": 24900,
+          "stock": 6
+        }
+      ],
+      "badge": "Bestseller"
+    },
+    {
+      "id": "orbit-air",
+      "slug": "orbit-air",
+      "name": "Orbit Air Earbuds",
+      "brand": "Orbit",
+      "model": "ORB-A2",
+      "categoryId": "audio",
+      "categoryName": "Audio",
+      "collectionIds": ["featured", "new"],
+      "description": "Thoughtfully engineered for the way you live. Refined materials, intuitive controls, and exceptional performance come together in an everyday essential.",
+      "details": [
+        "Intuitive controls and effortless pairing",
+        "Premium materials, built for everyday use",
+        "Includes charging cable and quick-start guide"
+      ],
+      "images": ["images/earbuds.svg"],
+      "variants": [
+        {
+          "id": "orbit-air-0",
+          "sku": "ORB-A2-1",
+          "options": {
+            "Color": "Cloud"
+          },
+          "price": 12900,
+          "stock": 18
+        },
+        {
+          "id": "orbit-air-1",
+          "sku": "ORB-A2-2",
+          "options": {
+            "Color": "Graphite"
+          },
+          "price": 12900,
+          "stock": 0
+        }
+      ],
+      "badge": "New arrival"
+    },
+    {
+      "id": "orbit-mini",
+      "slug": "orbit-mini",
+      "name": "Orbit Mini Speaker",
+      "brand": "Orbit",
+      "model": "ORB-S3",
+      "categoryId": "audio",
+      "categoryName": "Audio",
+      "collectionIds": ["featured"],
+      "description": "Thoughtfully engineered for the way you live. Refined materials, intuitive controls, and exceptional performance come together in an everyday essential.",
+      "details": [
+        "Intuitive controls and effortless pairing",
+        "Premium materials, built for everyday use",
+        "Includes charging cable and quick-start guide"
+      ],
+      "images": ["images/speaker.svg"],
+      "variants": [
+        {
+          "id": "orbit-mini-0",
+          "sku": "ORB-S3-1",
+          "options": {
+            "Color": "Graphite"
+          },
+          "price": 8900,
+          "stock": 12
+        },
+        {
+          "id": "orbit-mini-1",
+          "sku": "ORB-S3-2",
+          "options": {
+            "Color": "Stone"
+          },
+          "price": 8900,
+          "stock": 6
+        }
+      ]
+    },
+    {
+      "id": "orbit-time",
+      "slug": "orbit-time",
+      "name": "Orbit Time Watch",
+      "brand": "Orbit",
+      "model": "ORB-W1",
+      "categoryId": "wearables",
+      "categoryName": "Wearables",
+      "collectionIds": ["featured", "new"],
+      "description": "Thoughtfully engineered for the way you live. Refined materials, intuitive controls, and exceptional performance come together in an everyday essential.",
+      "details": [
+        "Intuitive controls and effortless pairing",
+        "Premium materials, built for everyday use",
+        "Includes charging cable and quick-start guide"
+      ],
+      "images": ["images/watch.svg"],
+      "variants": [
+        {
+          "id": "orbit-time-0",
+          "sku": "ORB-W1-1",
+          "options": {
+            "Color": "Graphite"
+          },
+          "price": 19900,
+          "stock": 12,
+          "compareAtPrice": 23880
+        },
+        {
+          "id": "orbit-time-1",
+          "sku": "ORB-W1-2",
+          "options": {
+            "Color": "Stone"
+          },
+          "price": 19900,
+          "stock": 6,
+          "compareAtPrice": 23880
+        }
+      ],
+      "badge": "Special price"
+    },
+    {
+      "id": "orbit-frame",
+      "slug": "orbit-frame",
+      "name": "Orbit Frame Camera",
+      "brand": "Orbit",
+      "model": "ORB-C1",
+      "categoryId": "cameras",
+      "categoryName": "Cameras",
+      "collectionIds": ["featured"],
+      "description": "Thoughtfully engineered for the way you live. Refined materials, intuitive controls, and exceptional performance come together in an everyday essential.",
+      "details": [
+        "Intuitive controls and effortless pairing",
+        "Premium materials, built for everyday use",
+        "Includes charging cable and quick-start guide"
+      ],
+      "images": ["images/camera.svg"],
+      "variants": [
+        {
+          "id": "orbit-frame-0",
+          "sku": "ORB-C1-1",
+          "options": {
+            "Color": "Graphite"
+          },
+          "price": 74900,
+          "stock": 12
+        },
+        {
+          "id": "orbit-frame-1",
+          "sku": "ORB-C1-2",
+          "options": {
+            "Color": "Stone"
+          },
+          "price": 74900,
+          "stock": 6
+        }
+      ]
+    },
+    {
+      "id": "orbit-keys",
+      "slug": "orbit-keys",
+      "name": "Orbit Keys Wireless",
+      "brand": "Orbit",
+      "model": "ORB-K1",
+      "categoryId": "workspace",
+      "categoryName": "Workspace",
+      "collectionIds": ["featured", "new"],
+      "description": "Thoughtfully engineered for the way you live. Refined materials, intuitive controls, and exceptional performance come together in an everyday essential.",
+      "details": [
+        "Intuitive controls and effortless pairing",
+        "Premium materials, built for everyday use",
+        "Includes charging cable and quick-start guide"
+      ],
+      "images": ["images/keyboard.svg"],
+      "variants": [
+        {
+          "id": "orbit-keys-0",
+          "sku": "ORB-K1-1",
+          "options": {
+            "Color": "Graphite"
+          },
+          "price": 11900,
+          "stock": 12
+        },
+        {
+          "id": "orbit-keys-1",
+          "sku": "ORB-K1-2",
+          "options": {
+            "Color": "Stone"
+          },
+          "price": 11900,
+          "stock": 6
+        }
+      ],
+      "badge": "New arrival"
+    },
+    {
+      "id": "orbit-studio",
+      "slug": "orbit-studio",
+      "name": "Orbit Studio Headphones",
+      "brand": "Orbit",
+      "model": "ORB-H2",
+      "categoryId": "audio",
+      "categoryName": "Audio",
+      "collectionIds": ["featured"],
+      "description": "Thoughtfully engineered for the way you live. Refined materials, intuitive controls, and exceptional performance come together in an everyday essential.",
+      "details": [
+        "Intuitive controls and effortless pairing",
+        "Premium materials, built for everyday use",
+        "Includes charging cable and quick-start guide"
+      ],
+      "images": ["images/headphones.svg"],
+      "variants": [
+        {
+          "id": "orbit-studio-0",
+          "sku": "ORB-H2-1",
+          "options": {
+            "Color": "Graphite"
+          },
+          "price": 32900,
+          "stock": 0
+        }
+      ]
+    },
+    {
+      "id": "orbit-sound",
+      "slug": "orbit-sound",
+      "name": "Orbit Sound Speaker",
+      "brand": "Orbit",
+      "model": "ORB-S4",
+      "categoryId": "audio",
+      "categoryName": "Audio",
+      "collectionIds": ["featured"],
+      "description": "Thoughtfully engineered for the way you live. Refined materials, intuitive controls, and exceptional performance come together in an everyday essential.",
+      "details": [
+        "Intuitive controls and effortless pairing",
+        "Premium materials, built for everyday use",
+        "Includes charging cable and quick-start guide"
+      ],
+      "images": ["images/speaker.svg"],
+      "variants": [
+        {
+          "id": "orbit-sound-0",
+          "sku": "ORB-S4-1",
+          "options": {
+            "Color": "Midnight"
+          },
+          "price": 15900,
+          "stock": 5
+        },
+        {
+          "id": "orbit-sound-1",
+          "sku": "ORB-S4-2",
+          "options": {
+            "Color": "Stone"
+          },
+          "price": 16900,
+          "stock": 8
+        }
+      ]
+    }
+  ]
+}

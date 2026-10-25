@@ -1,0 +1,117 @@
+{
+  "version": 1,
+  "locale": "en-US",
+  "currency": "USD",
+  "currencyDecimals": 2,
+  "announcement": "A little something extra. Complimentary delivery on orders $150+",
+  "navigation": [
+    {
+      "label": "Shop all",
+      "href": "/catalog"
+    },
+    {
+      "label": "New arrivals",
+      "href": "/catalog?collection=new"
+    },
+    {
+      "label": "Our story",
+      "href": "/story"
+    }
+  ],
+  "footer": {
+    "text": "Thoughtful design. Everyday possibility.",
+    "links": [
+      {
+        "label": "Our story",
+        "href": "/story"
+      },
+      {
+        "label": "Shipping & returns",
+        "href": "/shipping"
+      },
+      {
+        "label": "Get in touch",
+        "href": "/contact"
+      }
+    ]
+  },
+  "benefits": [
+    {
+      "title": "Considered by design",
+      "description": "Every detail has a reason."
+    },
+    {
+      "title": "Delivered with care",
+      "description": "Complimentary delivery on orders $150+."
+    },
+    {
+      "title": "Here to help",
+      "description": "A more personal shopping experience."
+    }
+  ],
+  "checkout": {
+    "countries": ["United States", "Lebanon", "United Arab Emirates", "United Kingdom"],
+    "shippingFee": 1000,
+    "freeShippingThreshold": 15000,
+    "notice": "Demo shipping rates and destinations. No payment or real order will be processed."
+  },
+  "sections": [
+    {
+      "id": "hero",
+      "type": "hero",
+      "eyebrow": "THE ART OF SLOW LIVING",
+      "title": "Come home\nto considered.",
+      "description": "Natural textures. Lasting forms. Discover pieces that make a space feel like your own.",
+      "image": "images/chair.svg",
+      "imageAlt": "An inviting warm linen lounge chair",
+      "cta": {
+        "label": "Find your favorite corner",
+        "href": "/catalog"
+      }
+    },
+    {
+      "id": "featured",
+      "type": "products",
+      "eyebrow": "THE GOOD STUFF",
+      "title": "The considered edit.",
+      "collectionId": "featured",
+      "limit": 4
+    },
+    {
+      "id": "categories",
+      "type": "categories",
+      "eyebrow": "FIND YOUR EVERYDAY",
+      "title": "Find what feels like you."
+    },
+    {
+      "id": "banner",
+      "type": "banner",
+      "eyebrow": "A SOFTER GLOW",
+      "title": "Make room\nfor a little warmth.",
+      "description": "Beautiful lighting for quiet mornings and unhurried evenings.",
+      "image": "images/lamp.svg",
+      "cta": {
+        "label": "Explore lighting",
+        "href": "/catalog?category=lighting"
+      }
+    }
+  ],
+  "storeId": "form-field-demo",
+  "template": "home",
+  "brand": {
+    "name": "FORM & FIELD",
+    "tagline": "Room to be yourself.",
+    "description": "Thoughtful objects for the art of everyday living."
+  },
+  "theme": {
+    "background": "#F8F5ED",
+    "foreground": "#30372C",
+    "accent": "#46513C",
+    "accentText": "#FFFFFF",
+    "surface": "#E9E6DC",
+    "muted": "#646A5C",
+    "headingFont": "Cormorant Garamond",
+    "bodyFont": "DM Sans",
+    "radius": 12
+  }
+}

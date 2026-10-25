@@ -1,0 +1,250 @@
+{
+  "categories": [
+    {
+      "id": "clothing",
+      "name": "Clothing",
+      "description": "The everyday, elevated.",
+      "image": "images/jacket.svg"
+    },
+    {
+      "id": "bags",
+      "name": "Bags",
+      "description": "Carry only what matters.",
+      "image": "images/bag.svg"
+    },
+    {
+      "id": "footwear",
+      "name": "Footwear",
+      "description": "Find your own pace.",
+      "image": "images/shoes.svg"
+    }
+  ],
+  "products": [
+    {
+      "id": "studio-coat",
+      "slug": "studio-coat",
+      "name": "The Everyday Coat",
+      "brand": "Studio Form",
+      "model": "ST-CO1",
+      "categoryId": "clothing",
+      "categoryName": "Clothing",
+      "collectionIds": ["featured", "new"],
+      "description": "An effortless wardrobe essential, considered in every detail. A relaxed silhouette and beautiful texture make this a piece to return to, season after season.",
+      "details": [
+        "Considered proportions and a comfortable fit",
+        "Responsibly selected materials",
+        "Care instructions included with every piece"
+      ],
+      "images": ["images/jacket.svg"],
+      "variants": [
+        {
+          "id": "studio-coat-0",
+          "sku": "ST-CO1-S",
+          "price": 18900,
+          "stock": 8,
+          "options": {
+            "Size": "S",
+            "Color": "Natural"
+          }
+        },
+        {
+          "id": "studio-coat-1",
+          "sku": "ST-CO1-M",
+          "price": 18900,
+          "stock": 8,
+          "options": {
+            "Size": "M",
+            "Color": "Natural"
+          }
+        },
+        {
+          "id": "studio-coat-2",
+          "sku": "ST-CO1-L",
+          "price": 18900,
+          "stock": 8,
+          "options": {
+            "Size": "L",
+            "Color": "Natural"
+          }
+        },
+        {
+          "id": "studio-coat-3",
+          "sku": "ST-CO1-XL",
+          "price": 18900,
+          "stock": 0,
+          "options": {
+            "Size": "XL",
+            "Color": "Natural"
+          }
+        }
+      ],
+      "badge": "Signature"
+    },
+    {
+      "id": "studio-tote",
+      "slug": "studio-tote",
+      "name": "The City Tote",
+      "brand": "Studio Form",
+      "model": "ST-BA1",
+      "categoryId": "bags",
+      "categoryName": "Bags",
+      "collectionIds": ["featured", "new"],
+      "description": "An effortless wardrobe essential, considered in every detail. A relaxed silhouette and beautiful texture make this a piece to return to, season after season.",
+      "details": [
+        "Considered proportions and a comfortable fit",
+        "Responsibly selected materials",
+        "Care instructions included with every piece"
+      ],
+      "images": ["images/bag.svg"],
+      "variants": [
+        {
+          "id": "studio-tote-0",
+          "sku": "ST-BA1-1",
+          "options": {
+            "Color": "Graphite"
+          },
+          "price": 11900,
+          "stock": 12
+        },
+        {
+          "id": "studio-tote-1",
+          "sku": "ST-BA1-2",
+          "options": {
+            "Color": "Stone"
+          },
+          "price": 11900,
+          "stock": 6
+        }
+      ],
+      "badge": "New arrival"
+    },
+    {
+      "id": "studio-tee",
+      "slug": "studio-tee",
+      "name": "The Essential Tee",
+      "brand": "Studio Form",
+      "model": "ST-TS1",
+      "categoryId": "clothing",
+      "categoryName": "Clothing",
+      "collectionIds": ["featured"],
+      "description": "An effortless wardrobe essential, considered in every detail. A relaxed silhouette and beautiful texture make this a piece to return to, season after season.",
+      "details": [
+        "Considered proportions and a comfortable fit",
+        "Responsibly selected materials",
+        "Care instructions included with every piece"
+      ],
+      "images": ["images/shirt.svg"],
+      "variants": [
+        {
+          "id": "studio-tee-0",
+          "sku": "ST-TS1-S",
+          "price": 4900,
+          "stock": 8,
+          "options": {
+            "Size": "S",
+            "Color": "Natural"
+          }
+        },
+        {
+          "id": "studio-tee-1",
+          "sku": "ST-TS1-M",
+          "price": 4900,
+          "stock": 8,
+          "options": {
+            "Size": "M",
+            "Color": "Natural"
+          }
+        },
+        {
+          "id": "studio-tee-2",
+          "sku": "ST-TS1-L",
+          "price": 4900,
+          "stock": 8,
+          "options": {
+            "Size": "L",
+            "Color": "Natural"
+          }
+        },
+        {
+          "id": "studio-tee-3",
+          "sku": "ST-TS1-XL",
+          "price": 4900,
+          "stock": 0,
+          "options": {
+            "Size": "XL",
+            "Color": "Natural"
+          }
+        }
+      ]
+    },
+    {
+      "id": "studio-sneaker",
+      "slug": "studio-sneaker",
+      "name": "The Weekend Sneaker",
+      "brand": "Studio Form",
+      "model": "ST-SN1",
+      "categoryId": "footwear",
+      "categoryName": "Footwear",
+      "collectionIds": ["featured"],
+      "description": "An effortless wardrobe essential, considered in every detail. A relaxed silhouette and beautiful texture make this a piece to return to, season after season.",
+      "details": [
+        "Considered proportions and a comfortable fit",
+        "Responsibly selected materials",
+        "Care instructions included with every piece"
+      ],
+      "images": ["images/shoes.svg"],
+      "variants": [
+        {
+          "id": "studio-sneaker-0",
+          "sku": "ST-SN1-38",
+          "price": 13900,
+          "stock": 8,
+          "options": {
+            "Size": "38",
+            "Color": "Natural"
+          }
+        },
+        {
+          "id": "studio-sneaker-1",
+          "sku": "ST-SN1-39",
+          "price": 13900,
+          "stock": 8,
+          "options": {
+            "Size": "39",
+            "Color": "Natural"
+          }
+        },
+        {
+          "id": "studio-sneaker-2",
+          "sku": "ST-SN1-40",
+          "price": 13900,
+          "stock": 8,
+          "options": {
+            "Size": "40",
+            "Color": "Natural"
+          }
+        },
+        {
+          "id": "studio-sneaker-3",
+          "sku": "ST-SN1-41",
+          "price": 13900,
+          "stock": 0,
+          "options": {
+            "Size": "41",
+            "Color": "Natural"
+          }
+        },
+        {
+          "id": "studio-sneaker-4",
+          "sku": "ST-SN1-42",
+          "price": 13900,
+          "stock": 0,
+          "options": {
+            "Size": "42",
+            "Color": "Natural"
+          }
+        }
+      ]
+    }
+  ]
+}
