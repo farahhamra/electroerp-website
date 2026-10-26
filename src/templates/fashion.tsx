@@ -10,6 +10,9 @@ import {
   FooterLegal,
   CollectionLink,
   useSectionProducts,
+  useSectionCategories,
+  FooterDirectory,
+  FooterCta,
 } from './shared'
 import type {
   BannerSection,
@@ -25,7 +28,12 @@ function Header(props: HeaderProps) {
   return (
     <header className="site-header fashion-header">
       <div className="fashion-masthead page-width">
-        <span className="fashion-masthead-note">{config.announcement || config.brand.tagline}</span>
+        {config.presentation.header.showAnnouncement && (
+          <span className="fashion-masthead-note">
+            {config.announcement ||
+              (config.presentation.header.showTagline ? config.brand.tagline : '')}
+          </span>
+        )}
         <Brand />
         <HeaderActions {...props} />
       </div>
@@ -48,7 +56,7 @@ function Hero({ section }: { section: HeroSection }) {
           fetchPriority="high"
         />
         <span className="fashion-cover-index" aria-hidden="true">
-          01
+          {section.edition ?? '01'}
         </span>
       </div>
       <div className="fashion-cover-copy">
@@ -58,9 +66,15 @@ function Hero({ section }: { section: HeroSection }) {
           {section.cta.label}
           <ArrowUpRight size={20} />
         </StoreLink>
+        {section.secondaryCta && (
+          <StoreLink className="text-link secondary-cta" href={section.secondaryCta.href}>
+            {section.secondaryCta.label}
+            <ArrowUpRight size={18} />
+          </StoreLink>
+        )}
       </div>
       <div className="fashion-cover-caption">
-        <span>THE CONSIDERED COLLECTION</span>
+        <span>{section.caption ?? 'THE CONSIDERED COLLECTION'}</span>
         <p>{section.description}</p>
         <ArrowRight size={24} aria-hidden="true" />
       </div>
@@ -69,18 +83,20 @@ function Hero({ section }: { section: HeroSection }) {
 }
 function Products({ section }: { section: ProductsSection }) {
   const products = useSectionProducts(section)
+  if (!products.length) return null
   return (
     <section className="fashion-edit page-width">
       <div className="fashion-edit-intro">
         <span className="eyebrow">{section.eyebrow}</span>
         <h2>{section.title}</h2>
+        {section.description && <p className="section-description">{section.description}</p>}
         <CollectionLink section={section} />
       </div>
       <div className="fashion-edit-products">
         {products.map((product, index) => (
           <div className="fashion-edit-item" key={product.id}>
             <span className="fashion-look-number">LOOK / {String(index + 1).padStart(2, '0')}</span>
-            <ProductCard product={product} />
+            <ProductCard product={product} options={section.card} />
           </div>
         ))}
       </div>
@@ -88,12 +104,14 @@ function Products({ section }: { section: ProductsSection }) {
   )
 }
 function Categories({ section }: { section: CategoriesSection }) {
-  const { categories } = useStore()
+  const categories = useSectionCategories(section)
+  if (!categories.length) return null
   return (
     <section className="fashion-collections page-width">
       <div className="fashion-collections-title">
         <span className="eyebrow">{section.eyebrow}</span>
         <h2>{section.title}</h2>
+        {section.description && <p className="section-description">{section.description}</p>}
       </div>
       <div className="fashion-collection-grid">
         {categories.map((category, i) => (
@@ -125,7 +143,7 @@ function Banner({ section }: { section: BannerSection }) {
       </div>
       {section.image && (
         <div className="fashion-story-image">
-          <img src={section.image} alt="" loading="lazy" width="600" height="520" />
+          <img src={section.image} alt={section.imageAlt} loading="lazy" width="600" height="520" />
         </div>
       )}
       <div className="fashion-story-caption">
@@ -134,6 +152,12 @@ function Banner({ section }: { section: BannerSection }) {
           {section.cta.label}
           <ArrowUpRight size={18} />
         </StoreLink>
+        {section.secondaryCta && (
+          <StoreLink className="text-link secondary-cta" href={section.secondaryCta.href}>
+            {section.secondaryCta.label}
+            <ArrowUpRight size={18} />
+          </StoreLink>
+        )}
       </div>
     </section>
   )
@@ -155,23 +179,30 @@ function Benefits() {
 function Footer() {
   const { config } = useStore()
   return (
-    <footer className="site-footer fashion-footer">
+    <footer
+      className="site-footer fashion-footer"
+      data-custom-columns={config.footer.columns.length > 0}
+      data-show-categories={config.presentation.footer.showCategories}
+    >
       <div className="page-width">
         <div className="fashion-footer-top">
           <div>
-            <span className="eyebrow">THE STUDIO</span>
+            <span className="eyebrow">{config.footer.eyebrow ?? 'THE STUDIO'}</span>
             <h2>{config.footer.text}</h2>
-            <Link className="text-link" to="/story">
-              Our point of view
-              <ArrowUpRight size={18} />
-            </Link>
+            <FooterCta label="Our point of view" href="/story" />
           </div>
-          <FooterLinks />
-          <p>{config.brand.description}</p>
+          {config.footer.columns.length ? (
+            <FooterDirectory categoriesTitle="COLLECTIONS" linksTitle="THE DETAILS" />
+          ) : (
+            <FooterLinks />
+          )}
+          {config.presentation.footer.showDescription && <p>{config.brand.description}</p>}
         </div>
-        <div className="fashion-footer-wordmark">
-          <Brand />
-        </div>
+        {config.presentation.footer.showWordmark && (
+          <div className="fashion-footer-wordmark">
+            <Brand />
+          </div>
+        )}
         <FooterLegal />
       </div>
     </footer>

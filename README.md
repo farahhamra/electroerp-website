@@ -76,3 +76,9 @@ The demo checkout never collects payment or transmits customer data. It returns 
 Animations respect reduced-motion preferences. Search has debouncing, cancellation, keyboard selection, focus restoration, and live result announcements. Layouts use responsive grids; product pages and checkout routes load on demand.
 
 Sorting, brand filters, and checkout countries use the reusable accessible `Dropdown` component; navigation collections use `NavigationDropdown`. Both support keyboard interaction and inherit the current theme.
+
+## Customization
+
+See [the customization guide](docs/customization.md) for independent header/footer templates, section layouts, spacing, curated products/categories, product-card controls, catalog filters and new text/FAQ/benefits sections. Existing JSON remains supported. Three complete examples live in `public/stores/examples/`; their matching bootstrap files are in `public/examples/`.
+
+JSON editor autocomplete comes from `public/store-config.schema.json`, generated from the runtime contract with `npm run schema:export`.

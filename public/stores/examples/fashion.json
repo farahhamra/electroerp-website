@@ -1,0 +1,271 @@
+{
+  "$schema": "../../store-config.schema.json",
+  "version": 1,
+  "locale": "en-US",
+  "currency": "USD",
+  "currencyDecimals": 2,
+  "announcement": "A little something extra. Complimentary delivery on orders $150+",
+  "navigation": [
+    {
+      "label": "Collections",
+      "href": "/catalog",
+      "children": [
+        {
+          "label": "Clothing",
+          "href": "/catalog?category=clothing"
+        },
+        {
+          "label": "Bags",
+          "href": "/catalog?category=bags"
+        },
+        {
+          "label": "Footwear",
+          "href": "/catalog?category=footwear"
+        }
+      ]
+    },
+    {
+      "label": "New arrivals",
+      "href": "/catalog?collection=new"
+    },
+    {
+      "label": "Our story",
+      "href": "/story"
+    }
+  ],
+  "footer": {
+    "text": "Considered pieces. Uncomplicated living.",
+    "links": [
+      {
+        "label": "Our story",
+        "href": "/story"
+      },
+      {
+        "label": "Shipping & returns",
+        "href": "/shipping"
+      },
+      {
+        "label": "Get in touch",
+        "href": "/contact"
+      }
+    ],
+    "socialLinks": [
+      {
+        "label": "Brand journal",
+        "href": "/story"
+      }
+    ],
+    "columns": [
+      {
+        "title": "Discover",
+        "links": [
+          {
+            "label": "All products",
+            "href": "/catalog"
+          },
+          {
+            "label": "Our story",
+            "href": "/story"
+          }
+        ]
+      },
+      {
+        "title": "We can help",
+        "links": [
+          {
+            "label": "Contact the team",
+            "href": "/contact"
+          },
+          {
+            "label": "Delivery details",
+            "href": "/shipping"
+          }
+        ]
+      }
+    ],
+    "cta": {
+      "label": "Discover the collection",
+      "href": "/catalog"
+    }
+  },
+  "benefits": [
+    {
+      "title": "Considered by design",
+      "description": "Every detail has a reason."
+    },
+    {
+      "title": "Delivered with care",
+      "description": "Complimentary delivery on orders $150+."
+    },
+    {
+      "title": "Here to help",
+      "description": "A more personal shopping experience."
+    }
+  ],
+  "checkout": {
+    "countries": ["United States", "Lebanon", "United Arab Emirates", "United Kingdom"],
+    "shippingFee": 1000,
+    "freeShippingThreshold": 15000,
+    "notice": "Demo shipping rates and destinations. No payment or real order will be processed."
+  },
+  "sections": [
+    {
+      "id": "hero",
+      "type": "hero",
+      "eyebrow": "THE EVERYDAY COLLECTION",
+      "title": "A quieter\nkind of statement.",
+      "description": "An edit of enduring essentials. Made to move with you, season after season.",
+      "image": "images/jacket.svg",
+      "imageAlt": "A sculptural sand-colored coat",
+      "cta": {
+        "label": "Discover the collection",
+        "href": "/catalog"
+      },
+      "layout": "centered",
+      "imageSide": "right",
+      "secondaryCta": {
+        "label": "Explore everything",
+        "href": "/catalog"
+      },
+      "style": {
+        "tone": "surface",
+        "spacing": "comfortable"
+      }
+    },
+    {
+      "id": "categories",
+      "type": "categories",
+      "eyebrow": "FIND YOUR EVERYDAY",
+      "title": "Find what feels like you.",
+      "layout": "grid",
+      "categoryIds": ["clothing", "bags", "footwear"],
+      "style": {
+        "spacing": "compact"
+      },
+      "columns": 3
+    },
+    {
+      "id": "featured",
+      "type": "products",
+      "eyebrow": "THE GOOD STUFF",
+      "title": "The considered edit.",
+      "limit": 6,
+      "layout": "grid",
+      "productIds": ["studio-coat", "studio-tote", "studio-tee", "studio-sneaker"],
+      "columns": 2,
+      "description": "A small selection from our demo collection.",
+      "card": {
+        "imageRatio": "portrait",
+        "quickAdd": false
+      },
+      "cta": {
+        "label": "Browse all pieces",
+        "href": "/catalog"
+      },
+      "mobileColumns": 1
+    },
+    {
+      "id": "our-approach",
+      "type": "text",
+      "layout": "split",
+      "eyebrow": "THE IDEA",
+      "title": "Made for your everyday.",
+      "paragraphs": [
+        "Less, but better. Pieces made for your everyday.",
+        "Explore the shapes, materials and details that bring this fictional collection together."
+      ],
+      "cta": {
+        "label": "Read our story",
+        "href": "/story"
+      },
+      "style": {
+        "tone": "surface",
+        "spacing": "airy"
+      }
+    },
+    {
+      "id": "our-promises",
+      "type": "benefits",
+      "style": {
+        "spacing": "compact"
+      }
+    },
+    {
+      "id": "good-to-know",
+      "type": "faq",
+      "title": "A few helpful details.",
+      "items": [
+        {
+          "question": "Can I place a real order here?",
+          "answer": "This is a fictional demonstration storefront. No payment is collected and no order is sent."
+        },
+        {
+          "question": "Can I explore different product options?",
+          "answer": "Open a product to choose from its available variants. Your demo bag is saved in this browser."
+        }
+      ]
+    },
+    {
+      "id": "banner",
+      "type": "banner",
+      "eyebrow": "CARRY IT WELL",
+      "title": "For wherever\nthe day takes you.",
+      "description": "The City Tote. Beautifully simple. Always by your side.",
+      "image": "images/bag.svg",
+      "cta": {
+        "label": "Explore accessories",
+        "href": "/catalog?category=bags"
+      },
+      "enabled": false
+    }
+  ],
+  "storeId": "studio-form-demo",
+  "template": "fashion",
+  "brand": {
+    "name": "STUDIO FORM",
+    "tagline": "A considered wardrobe.",
+    "description": "Less, but better. Pieces made for your everyday."
+  },
+  "theme": {
+    "background": "#F9F7F3",
+    "foreground": "#282620",
+    "accent": "#453E35",
+    "accentText": "#FFFFFF",
+    "surface": "#EDE9E1",
+    "muted": "#6C665C",
+    "headingFont": "Cormorant Garamond",
+    "bodyFont": "DM Sans",
+    "radius": 0,
+    "contentWidth": 1200,
+    "bodySize": 16,
+    "buttonShape": "square",
+    "buttonStyle": "outline"
+  },
+  "presentation": {
+    "header": {
+      "sticky": true,
+      "density": "compact",
+      "showAnnouncement": false
+    },
+    "footer": {
+      "showLocale": false
+    },
+    "catalog": {
+      "layout": "sidebar",
+      "columns": 2,
+      "mobileColumns": 1,
+      "defaultSort": "price-low",
+      "filters": {
+        "brand": false
+      }
+    },
+    "productCard": {
+      "imageRatio": "square",
+      "imageFit": "contain",
+      "showCategory": false,
+      "showBrand": true,
+      "showOptions": false
+    },
+    "benefitsPosition": "hidden"
+  }
+}

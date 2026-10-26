@@ -8,7 +8,7 @@
 4. React context owns catalog state, memoized search, cart state, and totals. Feature routes are lazy-loaded.
 5. Checkout submits product IDs, variant IDs, quantities, customer details, and an idempotency key through the provider interface.
 
-`src/core/schema.ts` is the authoritative runtime contract. Unsupported configuration produces a retry state instead of a partially broken page. Unsupported template IDs show an explicit unavailable state.
+`src/core/schema.ts` and `src/core/presentation.ts` are the authoritative runtime contract. Unsupported configuration produces a retry state instead of a partially broken page. Unregistered template IDs, including header/footer/section overrides, produce the recoverable load error.
 
 ## Templates
 
@@ -68,3 +68,11 @@ API mode can serve a small initial catalog and use server search for the larger 
 Only the bag is persisted. Its localStorage key is `electroerp:cart:<storeId>`, and it contains product IDs, variant IDs, and quantities. Different demo stores do not share carts. Blocked or corrupted localStorage does not prevent browsing. Customer information stays in component memory in mock mode and is submitted only in API mode. Confirmation details are session-local and do not survive a full reload.
 
 All configuration and browser environment variables are public. Do not embed ERP secrets, privileged keys, or service credentials in JSON or `VITE_*` variables. Authentication, order validation, and payment handling belong to the organization's external services.
+
+## Presentation overrides
+
+The [customization guide](customization.md) describes the full JSON interface and precedence. Header and footer slots can select separate template modules; native homepage sections can also choose another template. An explicit section layout loads `ConfigurableSections.tsx` on demand. The section frame scopes tone, width, spacing and media controls. Plain text, FAQ and placed benefits extend the section union.
+
+`src/core/sections.ts` resolves product/category curation without modifying the catalog. Product cards merge sparse section options over store defaults. Catalog controls change layout and available filters while retaining URL-based state. `customization.css` applies explicit merchant overrides after native template styles; omitted options preserve those styles.
+
+`scripts/export-config-schema.mjs` exports the input JSON Schema from Zod for editor autocomplete. Schema and selection unit tests plus desktop/mobile browser scenarios cover configuration inheritance, layout composition, keyboard disclosure controls and hidden-filter recovery.

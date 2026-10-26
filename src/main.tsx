@@ -4,11 +4,12 @@ import { HashRouter, Route, Routes } from 'react-router-dom'
 import './styles.css'
 import './components/dropdown.css'
 import './templates/templates.css'
+import './templates/customization.css'
 import { createProvider } from './providers/data'
 import { StoreProvider } from './context/StoreContext'
 import type { DataProvider, StoreData } from './core/schema'
 import { Layout } from './components/Layout'
-import { HomePage } from './templates/registry'
+import { HomePage, templates } from './templates/registry'
 import { EmptyState } from './components/Shared'
 
 const Catalog = lazy(() => import('./pages/Catalog'))
@@ -27,6 +28,14 @@ function App() {
         const provider = await createProvider(controller.signal)
         const data = await provider.loadStore(controller.signal)
         if (controller.signal.aborted) return
+        const selectedTemplates = [
+          data.config.template,
+          data.config.presentation.header.template,
+          data.config.presentation.footer.template,
+          ...data.config.sections.map((section) => section.template),
+        ]
+        if (selectedTemplates.some((id) => id && !Object.hasOwn(templates, id)))
+          throw new Error('Unregistered template in storefront configuration.')
         const theme = data.config.theme
         const root = document.documentElement
         for (const [key, value] of Object.entries({
@@ -39,8 +48,15 @@ function App() {
           'heading-font': `"${theme.headingFont}", serif`,
           'body-font': `"${theme.bodyFont}", sans-serif`,
           radius: `${theme.radius}px`,
+          'content-width': `${theme.contentWidth}px`,
+          'body-size': `${theme.bodySize}px`,
+          'logo-width': `${data.config.brand.logoWidth}px`,
+          ...(theme.headingWeight ? { 'heading-weight': String(theme.headingWeight) } : {}),
         }))
           root.style.setProperty(`--${key}`, value)
+        if (theme.headingWeight) root.dataset.headingWeight = String(theme.headingWeight)
+        else delete root.dataset.headingWeight
+        root.dataset.motion = theme.motion
         root.lang = data.config.locale
         document.title = `${data.config.brand.name} — ${data.config.brand.tagline}`
         document

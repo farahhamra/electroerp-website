@@ -11,7 +11,10 @@ export function Layout() {
   const [menuOpen, setMenuOpen] = useState(false)
   const location = useLocation()
   const previousPath = useRef(location.pathname)
-  const template = templates[config.template] || templates.electronics
+  const header =
+    templates[config.presentation.header.template ?? config.template] || templates.electronics
+  const footer =
+    templates[config.presentation.footer.template ?? config.template] || templates.electronics
   useEffect(() => {
     setMenuOpen(false)
     if (previousPath.current !== location.pathname) {
@@ -36,11 +39,17 @@ export function Layout() {
     return () => document.removeEventListener('keydown', close)
   }, [menuOpen])
   return (
-    <div className={`storefront template-${config.template}`}>
+    <div
+      className={`storefront template-${config.template}`}
+      data-header-density={config.presentation.header.density}
+      data-header-sticky={config.presentation.header.sticky}
+      data-button-shape={config.theme.buttonShape}
+      data-button-style={config.theme.buttonStyle}
+    >
       <a className="skip-link" href="#main">
         Skip to content
       </a>
-      <template.Header
+      <header.Header
         onSearch={() => {
           setMenuOpen(false)
           setSearchOpen(true)
@@ -51,7 +60,7 @@ export function Layout() {
       <main id="main" tabIndex={-1}>
         <Outlet />
       </main>
-      <template.Footer />
+      <footer.Footer />
       <SearchDialog open={searchOpen} onClose={() => setSearchOpen(false)} />
       <div className={`toast ${notice ? 'visible' : ''}`} role="status">
         {notice && (

@@ -11,3 +11,9 @@ Use warm off-white backgrounds, dark ink text, restrained accents, generous spac
 Shared components use CSS variables for color, type, surface, and radius. Custom palettes must retain readable contrast. Each template owns its header, footer, homepage sections, catalog layout, and card treatment. Field labels, focus indicators, status announcements, and interaction primitives remain shared. Custom dropdowns use Radix select/menu primitives with themed popup surfaces and keyboard support. Native search dialogs preserve modal focus handling. Motion uses short opacity/transform transitions and respects reduced-motion preferences.
 
 Images reserve space to prevent layout shifts. Below-fold images are lazy-loaded, hero assets have high fetch priority, and fonts are self-hosted. Page widths and grids adapt across desktop, tablet, and mobile. The shopping experience includes clear loading, empty, unavailable, validation, failure, and demo-confirmation states.
+
+## Merchant presentation controls
+
+Template identity is the default. Explicit JSON settings can switch header/footer slots, native section templates, or use reusable split/centered media, grids, rails and category lists. Width, spacing and section tones use constrained values and paired semantic tokens. Product-card cropping and visible metadata can vary by store or section; sold-out information remains available.
+
+New content blocks use plain text and native keyboard-accessible FAQ disclosures. Product rails keep native touch, keyboard and scrollbar interaction. A configured reduced-motion mode supplements OS preferences. Custom controls retain 44px touch targets and the existing focus behavior. The new options follow the UI/UX skill's built-in accessibility/layout priorities; no new database search result is claimed.

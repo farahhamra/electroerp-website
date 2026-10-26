@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useMemo, type CSSProperties } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { SlidersHorizontal, X } from 'lucide-react'
 import { useStore } from '../context/StoreContext'
@@ -13,7 +13,9 @@ export default function Catalog() {
   const search = useProductSearch(query)
   const category = params.get('category') || ''
   const brand = params.get('brand') || ''
-  const sort = params.get('sort') || 'featured'
+  const catalog = config.presentation.catalog
+  const sort = params.get('sort') || catalog.defaultSort
+  const showFilters = Object.values(catalog.filters).some(Boolean)
   const collection = params.get('collection') || ''
   const inStock = params.get('stock') === 'true'
   const maxPrice = params.get('price') || ''
@@ -65,32 +67,51 @@ export default function Catalog() {
   const title = query
     ? `Results for “${query}”`
     : categories.find((c) => c.id === category)?.name ||
-      (collection === 'new' ? 'New perspectives.' : 'Find your everyday.')
+      (collection === 'new' ? 'New perspectives.' : catalog.title)
   return (
-    <div className="page-width catalog-page">
+    <div
+      className="page-width catalog-page"
+      data-catalog-layout={catalog.layout}
+      data-catalog-columns={catalog.columns}
+      data-has-filters={showFilters}
+      style={
+        {
+          '--catalog-columns': catalog.columns,
+          '--catalog-tablet-columns': Math.min(catalog.columns ?? 2, 2),
+          '--catalog-mobile-columns': catalog.mobileColumns,
+        } as CSSProperties
+      }
+    >
       <div className="page-intro">
-        <span className="eyebrow">THE COLLECTION</span>
+        <span className="eyebrow">{catalog.eyebrow}</span>
         <h1>{title}</h1>
-        <p>A considered selection. A better kind of everyday.</p>
+        <p>{catalog.description}</p>
       </div>
-      <div className="category-tabs" aria-label="Product categories">
-        <button className={!category ? 'selected' : ''} onClick={() => update('category', '')}>
-          All products
-        </button>
-        {categories.map((c) => (
-          <button
-            key={c.id}
-            className={category === c.id ? 'selected' : ''}
-            onClick={() => update('category', c.id)}
-          >
-            {c.name}
+      {catalog.showCategoryTabs && (
+        <div className="category-tabs" aria-label="Product categories">
+          <button className={!category ? 'selected' : ''} onClick={() => update('category', '')}>
+            All products
           </button>
-        ))}
-      </div>
+          {categories.map((c) => (
+            <button
+              key={c.id}
+              className={category === c.id ? 'selected' : ''}
+              onClick={() => update('category', c.id)}
+            >
+              {c.name}
+            </button>
+          ))}
+        </div>
+      )}
       <div className="catalog-toolbar">
         <span role="status">
           {query && search.loading ? 'Searching…' : `${filtered.length} products`}
         </span>
+        {!showFilters && params.size > 0 && (
+          <button className="text-link" onClick={() => setParams({})}>
+            Clear filters <X size={15} />
+          </button>
+        )}
         <div className="catalog-sort">
           <label htmlFor="catalog-sort">Sort by</label>
           <Dropdown
@@ -108,64 +129,74 @@ export default function Catalog() {
         </div>
       </div>
       <div className="catalog-layout">
-        <aside>
-          <details className="filter-panel" open>
-            <summary>
-              <SlidersHorizontal size={17} />
-              Refine your selection
-            </summary>
-            <div className="filter-fields">
-              <label>
-                Search collection
-                <input
-                  type="search"
-                  value={query}
-                  onChange={(e) => update('q', e.target.value)}
-                  placeholder="Name, brand, model…"
-                />
-              </label>
-              <div className="filter-dropdown">
-                <label htmlFor="catalog-brand">Brand</label>
-                <Dropdown
-                  id="catalog-brand"
-                  value={brand}
-                  onValueChange={(value) => update('brand', value)}
-                  options={[
-                    { value: '', label: 'All brands' },
-                    ...[...new Set(products.map((p) => p.brand))].map((value) => ({
-                      value,
-                      label: value,
-                    })),
-                  ]}
-                />
+        {showFilters && (
+          <aside>
+            <details className="filter-panel" open>
+              <summary>
+                <SlidersHorizontal size={17} />
+                Refine your selection
+              </summary>
+              <div className="filter-fields">
+                {catalog.filters.search && (
+                  <label>
+                    Search collection
+                    <input
+                      type="search"
+                      value={query}
+                      onChange={(e) => update('q', e.target.value)}
+                      placeholder="Name, brand, model…"
+                    />
+                  </label>
+                )}
+                {catalog.filters.brand && (
+                  <div className="filter-dropdown">
+                    <label htmlFor="catalog-brand">Brand</label>
+                    <Dropdown
+                      id="catalog-brand"
+                      value={brand}
+                      onValueChange={(value) => update('brand', value)}
+                      options={[
+                        { value: '', label: 'All brands' },
+                        ...[...new Set(products.map((p) => p.brand))].map((value) => ({
+                          value,
+                          label: value,
+                        })),
+                      ]}
+                    />
+                  </div>
+                )}
+                {catalog.filters.price && (
+                  <label>
+                    Maximum price ({config.currency})
+                    <input
+                      type="number"
+                      min="0"
+                      step="1"
+                      value={maxPrice}
+                      onChange={(e) => update('price', e.target.value)}
+                      placeholder="Any price"
+                    />
+                  </label>
+                )}
+                {catalog.filters.availability && (
+                  <label className="checkbox-label">
+                    <input
+                      type="checkbox"
+                      checked={inStock}
+                      onChange={(e) => update('stock', e.target.checked ? 'true' : '')}
+                    />
+                    In stock only
+                  </label>
+                )}
+                {params.size > 0 && (
+                  <button className="text-link" onClick={() => setParams({})}>
+                    Clear filters <X size={15} />
+                  </button>
+                )}
               </div>
-              <label>
-                Maximum price ({config.currency})
-                <input
-                  type="number"
-                  min="0"
-                  step="1"
-                  value={maxPrice}
-                  onChange={(e) => update('price', e.target.value)}
-                  placeholder="Any price"
-                />
-              </label>
-              <label className="checkbox-label">
-                <input
-                  type="checkbox"
-                  checked={inStock}
-                  onChange={(e) => update('stock', e.target.checked ? 'true' : '')}
-                />
-                In stock only
-              </label>
-              {params.size > 0 && (
-                <button className="text-link" onClick={() => setParams({})}>
-                  Clear filters <X size={15} />
-                </button>
-              )}
-            </div>
-          </details>
-        </aside>
+            </details>
+          </aside>
+        )}
         <div>
           {query && search.error ? (
             <div className="inline-error" role="alert">

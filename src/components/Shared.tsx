@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { ArrowUpRight, Plus } from 'lucide-react'
 import { useStore } from '../context/StoreContext'
 import { formatMoney } from '../core/cart'
+import type { z } from 'zod'
+import type { cardOptionsSchema } from '../core/presentation'
 import type { Product } from '../core/schema'
 
 export function StoreLink({
@@ -28,50 +30,65 @@ export function Money({ amount }: { amount: number }) {
   const { config } = useStore()
   return <>{formatMoney(amount, config)}</>
 }
-export function ProductCard({ product }: { product: Product }) {
-  const { addToCart } = useStore()
+export function ProductCard({
+  product,
+  options,
+}: {
+  product: Product
+  options?: Partial<z.infer<typeof cardOptionsSchema>>
+}) {
+  const { addToCart, config } = useStore()
+  const card = { ...config.presentation.productCard, ...options }
   const available = product.variants.find((v) => v.stock > 0)
   const price = Math.min(...product.variants.map((v) => v.price))
   const requiresSelection = product.variants.some((v) => 'Size' in v.options)
   return (
-    <article className="product-card">
+    <article
+      className="product-card"
+      data-image-ratio={card.imageRatio}
+      data-image-fit={card.imageFit}
+    >
       <div className="product-image-wrap">
         <Link to={`/products/${product.slug}`} tabIndex={-1} aria-hidden="true">
           <img src={product.images[0]} alt="" loading="lazy" width="600" height="520" />
         </Link>
-        {(product.badge || !available) && (
+        {((card.showBadge && product.badge) || !available) && (
           <span className="product-badge">{!available ? 'Sold out' : product.badge}</span>
         )}
-        {requiresSelection ? (
-          <Link
-            className="quick-add"
-            to={`/products/${product.slug}`}
-            aria-label={`Choose options for ${product.name}`}
-          >
-            <ArrowUpRight size={18} />
-          </Link>
-        ) : (
-          <button
-            className="quick-add"
-            disabled={!available}
-            aria-label={`Add ${product.name} to bag`}
-            onClick={() => available && addToCart(product.id, available.id)}
-          >
-            <Plus size={19} />
-          </button>
-        )}
+        {card.quickAdd &&
+          (requiresSelection ? (
+            <Link
+              className="quick-add"
+              to={`/products/${product.slug}`}
+              aria-label={`Choose options for ${product.name}`}
+            >
+              <ArrowUpRight size={18} />
+            </Link>
+          ) : (
+            <button
+              className="quick-add"
+              disabled={!available}
+              aria-label={`Add ${product.name} to bag`}
+              onClick={() => available && addToCart(product.id, available.id)}
+            >
+              <Plus size={19} />
+            </button>
+          ))}
       </div>
       <div className="product-info">
         <div>
-          <p className="product-category">{product.categoryName}</p>
+          {card.showCategory && <p className="product-category">{product.categoryName}</p>}
+          {card.showBrand && <p className="product-brand">{product.brand}</p>}
           <Link className="product-name" to={`/products/${product.slug}`}>
             {product.name}
           </Link>
-          <p className="product-options">
-            {product.variants.length > 1
-              ? `${product.variants.length} options`
-              : 'Considered in every detail'}
-          </p>
+          {card.showOptions && (
+            <p className="product-options">
+              {product.variants.length > 1
+                ? `${product.variants.length} options`
+                : 'Considered in every detail'}
+            </p>
+          )}
         </div>
         <span className="product-price">
           <Money amount={price} />

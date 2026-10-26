@@ -13,10 +13,12 @@ import {
   Brand,
   Navigation,
   HeaderActions,
-  FooterLinks,
   FooterLegal,
   CollectionLink,
   useSectionProducts,
+  useSectionCategories,
+  FooterDirectory,
+  FooterCta,
 } from './shared'
 import type {
   BannerSection,
@@ -31,29 +33,35 @@ function Header(props: HeaderProps) {
   const { config } = useStore()
   return (
     <header className="site-header tech-header">
-      <div className="tech-utility">
-        <div className="page-width">
-          <span>{config.announcement || config.brand.tagline}</span>
-          <span>
-            {config.currency} / {config.locale.split('-')[0].toUpperCase()}
-          </span>
+      {config.presentation.header.showAnnouncement && (
+        <div className="tech-utility">
+          <div className="page-width">
+            <span>{config.announcement || config.brand.tagline}</span>
+            <span>
+              {config.currency} / {config.locale.split('-')[0].toUpperCase()}
+            </span>
+          </div>
         </div>
-      </div>
+      )}
       <div className="tech-header-main page-width">
-        <Brand />
-        <button className="tech-search-button" onClick={props.onSearch} aria-label="Open search">
-          <Search size={19} />
-          <span>Find your next upgrade</span>
-          <span className="search-button-hint">Explore</span>
-        </button>
+        <Brand symbol />
+        {config.presentation.header.showSearch && (
+          <button className="tech-search-button" onClick={props.onSearch} aria-label="Open search">
+            <Search size={19} />
+            <span>{config.presentation.header.searchLabel}</span>
+            <span className="search-button-hint">Explore</span>
+          </button>
+        )}
         <HeaderActions {...props} showSearch={false} />
       </div>
       <div className="tech-navigation page-width">
         <Navigation />
-        <span className="tech-nav-note">
-          <span className="small-dot" />
-          {config.brand.tagline}
-        </span>
+        {config.presentation.header.showTagline && (
+          <span className="tech-nav-note">
+            <span className="small-dot" />
+            {config.brand.tagline}
+          </span>
+        )}
       </div>
       {props.menuOpen && <Navigation mobile />}
     </header>
@@ -74,9 +82,15 @@ function Hero({ section }: { section: HeroSection }) {
           {section.cta.label}
           <ArrowUpRight size={18} />
         </StoreLink>
+        {section.secondaryCta && (
+          <StoreLink className="text-link secondary-cta" href={section.secondaryCta.href}>
+            {section.secondaryCta.label}
+            <ArrowUpRight size={18} />
+          </StoreLink>
+        )}
         <div className="hero-footnote">
           <span className="line" />
-          DESIGNED AROUND YOU. ALWAYS.
+          {section.footnote ?? 'DESIGNED AROUND YOU. ALWAYS.'}
         </div>
       </div>
       <div className="hero-art">
@@ -89,12 +103,13 @@ function Hero({ section }: { section: HeroSection }) {
           fetchPriority="high"
         />
         <span className="hero-art-label">
-          <span className="small-dot" />A NEW KIND OF EVERYDAY
+          <span className="small-dot" />
+          {section.imageLabel ?? 'A NEW KIND OF EVERYDAY'}
         </span>
         <span className="hero-edition">
           THE {config.brand.name} EDIT
           <br />
-          <strong>VOL. 01</strong>
+          <strong>{section.edition ?? 'VOL. 01'}</strong>
         </span>
       </div>
     </section>
@@ -102,30 +117,34 @@ function Hero({ section }: { section: HeroSection }) {
 }
 function Products({ section }: { section: ProductsSection }) {
   const products = useSectionProducts(section)
+  if (!products.length) return null
   return (
     <section className="section page-width tech-products">
       <div className="section-heading">
         <div>
           <span className="eyebrow">{section.eyebrow}</span>
           <h2>{section.title}</h2>
+          {section.description && <p className="section-description">{section.description}</p>}
         </div>
         <CollectionLink section={section} />
       </div>
       <div className="product-grid">
         {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard key={product.id} product={product} options={section.card} />
         ))}
       </div>
     </section>
   )
 }
 function Categories({ section }: { section: CategoriesSection }) {
-  const { categories } = useStore()
+  const categories = useSectionCategories(section)
+  if (!categories.length) return null
   return (
     <section className="tech-categories page-width">
       <div>
         <span className="eyebrow">{section.eyebrow}</span>
         <h2>{section.title}</h2>
+        {section.description && <p className="section-description">{section.description}</p>}
       </div>
       <div className="tech-category-grid">
         {categories.map((category, i) => (
@@ -154,8 +173,16 @@ function Banner({ section }: { section: BannerSection }) {
           {section.cta.label}
           <ArrowRight size={18} />
         </StoreLink>
+        {section.secondaryCta && (
+          <StoreLink className="text-link secondary-cta" href={section.secondaryCta.href}>
+            {section.secondaryCta.label}
+            <ArrowUpRight size={18} />
+          </StoreLink>
+        )}
       </div>
-      {section.image && <img src={section.image} alt="" loading="lazy" width="600" height="520" />}
+      {section.image && (
+        <img src={section.image} alt={section.imageAlt} loading="lazy" width="600" height="520" />
+      )}
     </section>
   )
 }
@@ -180,34 +207,22 @@ function Benefits() {
   )
 }
 function Footer() {
-  const { config, categories } = useStore()
+  const { config } = useStore()
   return (
-    <footer className="site-footer tech-footer">
+    <footer
+      className="site-footer tech-footer"
+      data-custom-columns={config.footer.columns.length > 0}
+      data-show-categories={config.presentation.footer.showCategories}
+    >
       <div className="page-width">
         <div className="tech-footer-grid">
           <div className="tech-footer-brand">
-            <Brand />
+            <Brand symbol />
             <h2>{config.brand.tagline}</h2>
-            <p>{config.brand.description}</p>
-            <Link className="text-link" to="/catalog">
-              Find your next upgrade
-              <ArrowRight size={17} />
-            </Link>
+            {config.presentation.footer.showDescription && <p>{config.brand.description}</p>}
+            <FooterCta label="Find your next upgrade" href="/catalog" />
           </div>
-          <div>
-            <span className="eyebrow">EXPLORE</span>
-            <nav aria-label="Footer categories">
-              {categories.map((c) => (
-                <Link key={c.id} to={`/catalog?category=${c.id}`}>
-                  {c.name}
-                </Link>
-              ))}
-            </nav>
-          </div>
-          <div>
-            <span className="eyebrow">HERE FOR YOU</span>
-            <FooterLinks />
-          </div>
+          <FooterDirectory categoriesTitle="EXPLORE" linksTitle="HERE FOR YOU" />
         </div>
         <div className="tech-footer-statement">
           <span className="small-dot" />
