@@ -6,8 +6,22 @@
   "announcement": "A little something extra. Complimentary delivery on orders $150+",
   "navigation": [
     {
-      "label": "Shop all",
-      "href": "/catalog"
+      "label": "Collections",
+      "href": "/catalog",
+      "children": [
+        {
+          "label": "Clothing",
+          "href": "/catalog?category=clothing"
+        },
+        {
+          "label": "Bags",
+          "href": "/catalog?category=bags"
+        },
+        {
+          "label": "Footwear",
+          "href": "/catalog?category=footwear"
+        }
+      ]
     },
     {
       "label": "New arrivals",
@@ -19,7 +33,7 @@
     }
   ],
   "footer": {
-    "text": "Thoughtful design. Everyday possibility.",
+    "text": "Considered pieces. Uncomplicated living.",
     "links": [
       {
         "label": "Our story",
@@ -70,18 +84,18 @@
       }
     },
     {
+      "id": "categories",
+      "type": "categories",
+      "eyebrow": "FIND YOUR EVERYDAY",
+      "title": "Find what feels like you."
+    },
+    {
       "id": "featured",
       "type": "products",
       "eyebrow": "THE GOOD STUFF",
       "title": "The considered edit.",
       "collectionId": "featured",
       "limit": 4
-    },
-    {
-      "id": "categories",
-      "type": "categories",
-      "eyebrow": "FIND YOUR EVERYDAY",
-      "title": "Find what feels like you."
     },
     {
       "id": "banner",

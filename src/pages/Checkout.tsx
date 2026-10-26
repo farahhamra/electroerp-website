@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, Check, ShieldCheck } from 'lucide-react'
 import { useStore } from '../context/StoreContext'
 import { EmptyState } from '../components/Shared'
 import { OrderSummary } from './Cart'
+import { Dropdown } from '../components/Dropdown'
 import type { Customer, OrderResult } from '../core/schema'
 
 export default function Checkout() {
@@ -164,23 +165,20 @@ export default function Checkout() {
               ))}
               <div>
                 <label htmlFor="customer-country">Country / region</label>
-                <select
+                <Dropdown
                   id="customer-country"
                   name="country"
-                  autoComplete="country-name"
                   required
+                  disabled={busy}
                   value={customer.country}
-                  aria-invalid={!!errors.country}
-                  aria-describedby={errors.country ? 'error-country' : undefined}
-                  onChange={(e) =>
-                    setCustomer((previous) => ({ ...previous, country: e.target.value }))
+                  invalid={!!errors.country}
+                  describedBy={errors.country ? 'error-country' : undefined}
+                  onValueChange={(value) =>
+                    setCustomer((previous) => ({ ...previous, country: value }))
                   }
-                >
-                  <option value="">Select destination</option>
-                  {config.checkout.countries.map((c) => (
-                    <option key={c}>{c}</option>
-                  ))}
-                </select>
+                  placeholder="Select destination"
+                  options={config.checkout.countries.map((value) => ({ value, label: value }))}
+                />
                 {errors.country && (
                   <span className="field-error" id="error-country">
                     {errors.country}

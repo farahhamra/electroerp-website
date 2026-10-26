@@ -2,7 +2,7 @@
 
 One engine. Multiple templates. Unlimited storefront identities.
 
-A frontend-only React + Vite + TypeScript storefront for ElectroERP. Includes three fictional premium brands: **ORBIT** (electronics), **STUDIO FORM** (fashion), and **FORM & FIELD** (home/living). Styling uses Tailwind CSS v4 with shared semantic CSS tokens. Fuse.js powers local product search.
+A frontend-only React + Vite + TypeScript storefront for ElectroERP. Includes three complete template compositions with independent headers, footers, and homepage sections, demonstrated by three fictional premium brands: **ORBIT** (electronics), **STUDIO FORM** (fashion), and **FORM & FIELD** (home/living). Styling uses Tailwind CSS v4 with shared semantic CSS tokens. Fuse.js powers local product search.
 
 ## Develop
 
@@ -42,7 +42,7 @@ Edit **`public/storefront.json`**:
 
 Use matching `electronics`, `fashion`, or `home` files. Reload the page after changing the JSON. The deployed `dist/storefront.json`, `dist/stores/*.json`, and `dist/catalogs/*.json` can also be replaced at runtime without rebuilding JavaScript. There is no store editor, ERP administration screen, or template selector exposed to customers.
 
-Brand, colors, typefaces, radius, navigation, footer, optional announcement, homepage section order, promotional artwork, collections, currency, and sample delivery rules come from JSON. Section types are `hero`, `products`, `categories`, and `banner`; remove or reorder entries as needed. Fonts must be available to the browser; the bundled choices are DM Sans and Cormorant Garamond. See [configuration and architecture](docs/architecture.md).
+Brand, colors, typefaces, radius, navigation, footer, optional announcement, homepage section order, promotional artwork, collections, currency, and sample delivery rules come from JSON. Section types are `hero`, `products`, `categories`, and `banner`; each template renders them differently. Remove or reorder entries as needed. Navigation entries support optional `children` for themed dropdown menus. Fonts must be available to the browser; the bundled choices are DM Sans and Cormorant Garamond. See [configuration and architecture](docs/architecture.md).
 
 ## Build and serve
 
@@ -62,15 +62,17 @@ The demo checkout never collects payment or transmits customer data. It returns 
 
 ## Project map
 
-| Path                               | Purpose                                                      |
-| ---------------------------------- | ------------------------------------------------------------ |
-| `src/core`                         | Validated models, search ranking, cart and money rules       |
-| `src/providers`                    | Mock and configurable HTTP data providers                    |
-| `src/context`                      | Store state, product cache and persistent bag                |
-| `src/components`                   | Shared navigation, search dialog, product cards              |
-| `src/templates`                    | Template registry and configuration-driven homepage sections |
-| `src/pages`                        | Catalog, product, bag, checkout, informational routes        |
-| `public/stores`, `public/catalogs` | Runtime store configuration and mock data                    |
-| `tests`                            | Desktop/mobile functional browser tests                      |
+| Path                               | Purpose                                                                      |
+| ---------------------------------- | ---------------------------------------------------------------------------- |
+| `src/core`                         | Validated models, search ranking, cart and money rules                       |
+| `src/providers`                    | Mock and configurable HTTP data providers                                    |
+| `src/context`                      | Store state, product cache and persistent bag                                |
+| `src/components`                   | Shared navigation, search dialog, product cards                              |
+| `src/templates`                    | Lazy template registry, independent navigation/footers and homepage sections |
+| `src/pages`                        | Catalog, product, bag, checkout, informational routes                        |
+| `public/stores`, `public/catalogs` | Runtime store configuration and mock data                                    |
+| `tests`                            | Desktop/mobile functional browser tests                                      |
 
 Animations respect reduced-motion preferences. Search has debouncing, cancellation, keyboard selection, focus restoration, and live result announcements. Layouts use responsive grids; product pages and checkout routes load on demand.
+
+Sorting, brand filters, and checkout countries use the reusable accessible `Dropdown` component; navigation collections use `NavigationDropdown`. Both support keyboard interaction and inherit the current theme.

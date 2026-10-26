@@ -4,7 +4,7 @@
 
 1. `main.tsx` loads `storefront.json` (or the public `VITE_BOOTSTRAP_URL`).
 2. `createProvider` selects mock or HTTP mode and loads validated configuration and catalog JSON.
-3. Store theme fields become CSS custom properties. The template registry selects a hero layout, while shared sections are rendered in JSON order.
+3. Store theme fields become CSS custom properties. The template registry loads the selected template module. It supplies its own header, footer, hero, product section, categories, promotional section, and benefits. Sections still render in JSON order.
 4. React context owns catalog state, memoized search, cart state, and totals. Feature routes are lazy-loaded.
 5. Checkout submits product IDs, variant IDs, quantities, customer details, and an idempotency key through the provider interface.
 
@@ -12,15 +12,38 @@
 
 ## Templates
 
-The three initial templates have distinct composition and tokens:
+The template is a complete composition, separate from the configurable color palette:
 
-| ID            | Demo identity | Layout                                                                |
-| ------------- | ------------- | --------------------------------------------------------------------- |
-| `electronics` | ORBIT         | Sans-serif split hero, product artwork and a restrained cobalt accent |
-| `fashion`     | STUDIO FORM   | Image-first editorial hero, serif display type, warm neutral palette  |
-| `home`        | FORM & FIELD  | Arch-shaped artwork, spacious serif layout, earthy green palette      |
+| ID            | Navigation                                                 | Homepage and catalog                                                                                                    | Footer                                                                  |
+| ------------- | ---------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `electronics` | Utility bar, wide search control, second navigation row    | Product-led hero, compact product grid, indexed category tiles, sidebar filtering                                       | Dark service directory with category and support columns                |
+| `fashion`     | Centered masthead, understated collection navigation       | Magazine cover, staggered portrait collections, editorial product edit, full-width catalog with horizontal filters      | Studio statement, compact links, oversized wordmark                     |
+| `home`        | Botanical wordmark, inline navigation, rounded bag control | Centered welcome and room vignette, numbered room index, journal feature, curated favorites, right-hand catalog filters | Large invitation, circular call to action, room and service directories |
 
-Add a hero component in `src/templates/registry.tsx`, register its ID, add `.template-ID` styles where needed, then supply a configuration with `template: "ID"`. Components receive the same validated data; product and checkout flows remain shared. Additional section types should be added to the discriminated schema and homepage renderer together.
+Implement the `StorefrontTemplate` interface in `src/templates/types.ts` to add a template. Register a lazy module loader in `src/templates/registry.tsx`, add its styles, and reference its ID in store JSON. Each module owns all seven presentation slots. Shared primitives handle links, bags, search, and product interactions without forcing a common header/footer composition. The active template is downloaded on demand. Additional section types should be added to the discriminated schema and renderer together.
+
+`src/templates/templates.css` defines template-specific catalog, card, and product-detail layouts using the same semantic theme tokens. Checkout and cart behavior remain shared. The demo JSON files have different section orders, and merchants can still reorder or omit sections.
+
+### Navigation and dropdowns
+
+Navigation entries optionally accept one level of `children`:
+
+```json
+{
+  "label": "Collections",
+  "href": "/catalog",
+  "children": [
+    { "label": "Clothing", "href": "/catalog?category=clothing" },
+    { "label": "Bags", "href": "/catalog?category=bags" }
+  ]
+}
+```
+
+A parent with children renders a `NavigationDropdown` with a View all link and its configured children. A parent without children stays a normal link. Desktop and mobile navigation use the same configuration.
+
+`src/components/Dropdown.tsx` is the shared controlled select used for sorting, brands, and checkout country. It accepts an ID, value, options, change callback, placeholder, and form accessibility properties. The empty-string option supports resetting filters; a placeholder can represent an unselected required field. `NavigationDropdown.tsx` applies the same surface treatment to actual navigation links.
+
+Both use Radix primitives for focus management, keyboard navigation, typeahead, Escape, outside dismissal, and collision-aware portals. Popup surfaces inherit the current store's CSS variables even when rendered outside the template DOM. Country errors use `aria-invalid` and `aria-describedby`; validation focuses the trigger. No visible native select menu remains. The dropdown implementation loads with catalog/checkout, independently of the navigation menu.
 
 The example assets are original SVG illustrations, not photographs of real products. Replace `images` and optional variant `image` URLs with business photography when available. Provide useful alt descriptions for hero images. Product image alt text is generated from product names and selected options; decorative category and banner images have empty alt text.
 

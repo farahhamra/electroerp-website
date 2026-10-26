@@ -4,6 +4,7 @@ import { SlidersHorizontal, X } from 'lucide-react'
 import { useStore } from '../context/StoreContext'
 import { useProductSearch } from '../hooks/useProductSearch'
 import { ProductCard } from '../components/Shared'
+import { Dropdown } from '../components/Dropdown'
 
 export default function Catalog() {
   const { products, categories, config } = useStore()
@@ -90,19 +91,21 @@ export default function Catalog() {
         <span role="status">
           {query && search.loading ? 'Searching…' : `${filtered.length} products`}
         </span>
-        <label>
-          Sort by{' '}
-          <select
+        <div className="catalog-sort">
+          <label htmlFor="catalog-sort">Sort by</label>
+          <Dropdown
+            id="catalog-sort"
+            label="Sort products"
             value={sort}
-            onChange={(e) => update('sort', e.target.value)}
-            aria-label="Sort products"
-          >
-            <option value="featured">Featured</option>
-            <option value="price-low">Price: low to high</option>
-            <option value="price-high">Price: high to low</option>
-            <option value="name">Name: A–Z</option>
-          </select>
-        </label>
+            onValueChange={(value) => update('sort', value)}
+            options={[
+              { value: 'featured', label: 'Featured' },
+              { value: 'price-low', label: 'Price: low to high' },
+              { value: 'price-high', label: 'Price: high to low' },
+              { value: 'name', label: 'Name: A–Z' },
+            ]}
+          />
+        </div>
       </div>
       <div className="catalog-layout">
         <aside>
@@ -121,15 +124,21 @@ export default function Catalog() {
                   placeholder="Name, brand, model…"
                 />
               </label>
-              <label>
-                Brand
-                <select value={brand} onChange={(e) => update('brand', e.target.value)}>
-                  <option value="">All brands</option>
-                  {[...new Set(products.map((p) => p.brand))].map((b) => (
-                    <option key={b}>{b}</option>
-                  ))}
-                </select>
-              </label>
+              <div className="filter-dropdown">
+                <label htmlFor="catalog-brand">Brand</label>
+                <Dropdown
+                  id="catalog-brand"
+                  value={brand}
+                  onValueChange={(value) => update('brand', value)}
+                  options={[
+                    { value: '', label: 'All brands' },
+                    ...[...new Set(products.map((p) => p.brand))].map((value) => ({
+                      value,
+                      label: value,
+                    })),
+                  ]}
+                />
+              </div>
               <label>
                 Maximum price ({config.currency})
                 <input

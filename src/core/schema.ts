@@ -97,7 +97,7 @@ export const configSchema = z.object({
     radius: z.number().min(0).max(32),
   }),
   announcement: z.string().optional(),
-  navigation: z.array(linkSchema),
+  navigation: z.array(linkSchema.extend({ children: z.array(linkSchema).optional() })),
   footer: z.object({ text: z.string(), links: z.array(linkSchema) }),
   benefits: z.array(z.object({ title: z.string(), description: z.string() })),
   sections: z.array(sectionSchema),

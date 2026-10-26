@@ -6,8 +6,26 @@
   "announcement": "A little something extra. Complimentary delivery on orders $150+",
   "navigation": [
     {
-      "label": "Shop all",
-      "href": "/catalog"
+      "label": "Shop departments",
+      "href": "/catalog",
+      "children": [
+        {
+          "label": "Audio",
+          "href": "/catalog?category=audio"
+        },
+        {
+          "label": "Wearables",
+          "href": "/catalog?category=wearables"
+        },
+        {
+          "label": "Workspace",
+          "href": "/catalog?category=workspace"
+        },
+        {
+          "label": "Cameras",
+          "href": "/catalog?category=cameras"
+        }
+      ]
     },
     {
       "label": "New arrivals",
