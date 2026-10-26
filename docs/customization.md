@@ -11,8 +11,10 @@ The original three stores still work without the new fields. Settings are option
 | `public/stores/examples/electronics.json` | Compact sticky electronics header, fashion footer, image-first split hero, curated product rail, list categories, custom footer columns |
 | `public/stores/examples/fashion.json`     | Centered hero, two-column portrait product grid, single-column mobile catalog, sidebar filters, square outline buttons                  |
 | `public/stores/examples/home.json`        | Fashion header with home branding, electronics category section, product rail, sidebar catalog, pill buttons                            |
+| `public/stores/examples/beauty.json`      | Split hero, curated product rail, list categories, sidebar catalog, compact sticky capsule header                                       |
+| `public/stores/examples/outdoor.json`     | Centered hero, regular product grid, toolbar catalog, reduced category selection, outline buttons                                       |
 
-Each example includes text, benefits, and FAQ sections, a disabled promotion, inherited card options, and configurable footer links. The products and checkout remain fictional.
+The first three examples include text, benefits, and FAQ sections, a disabled promotion, inherited card options, and configurable footer links. Beauty and outdoor include alternative hero/product/category layouts, an FAQ, and catalog overrides. The products and checkout remain fictional.
 
 To run one locally:
 
@@ -53,7 +55,7 @@ Existing colors, fonts, radius, name, tagline, description and logo remain confi
 
 ## Header and footer
 
-Set `presentation.header.template` and `presentation.footer.template` independently to `electronics`, `fashion`, or `home`. Omit either to inherit the top-level `template`. The base template still determines catalog/product-page styling. New template IDs must be registered in `src/templates/registry.tsx`.
+Set `presentation.header.template` and `presentation.footer.template` independently to `electronics`, `fashion`, `home`, `beauty`, or `outdoor`. Omit either to inherit the top-level `template`. The base template still determines catalog/product-page styling. New template IDs must be registered in `src/templates/registry.tsx`.
 
 ```json
 {
@@ -78,7 +80,7 @@ Set `presentation.header.template` and `presentation.footer.template` independen
 }
 ```
 
-Defaults are a static, comfortable header with announcement/search/tagline visible, and all footer visibility flags enabled. `searchLabel` is the electronics wide-search copy. `showTagline` controls the electronics navigation note and the fashion note's fallback; the home header has no tagline slot. `showWordmark` controls fashion's large footer wordmark. Fashion's default footer has no category directory. These controls retain each template's distinct structure.
+Defaults are a static, comfortable header with announcement/search/tagline visible, and all footer visibility flags enabled. `searchLabel` is the electronics wide-search copy. `showTagline` controls the electronics navigation note and the fashion note's fallback; the outdoor header has its own tagline beneath the brand, and the home header has no tagline slot. `showWordmark` controls fashion's and outdoor's large footer wordmarks and beauty's footer brand panel. Fashion's default footer has no category directory. These controls retain each template's distinct structure.
 
 `navigation` continues to accept links with optional one-level `children`; dropdowns inherit theme and accessibility behavior. An empty navigation array omits links. Text is rendered as text, never executable HTML.
 
@@ -149,7 +151,7 @@ Optional controls:
 - `imageSide: "left" | "right"` sets image order in the reusable split layout, including mobile.
 - `imageFit: "template" | "contain" | "cover"` and `imagePosition: { x: 0–100, y: 0–100 }` control image crop. Missing coordinates default to 50. Omit these to keep the native crop.
 - Banner `imageAlt` defaults to empty for decorative imagery.
-- Hero `footnote`, `imageLabel`, `edition`, and `caption` replace the relevant native template annotations. Electronics uses footnote/imageLabel/edition; fashion uses edition/caption; home uses imageLabel/caption. Reusable heroes use footnote/caption.
+- Hero `footnote`, `imageLabel`, `edition`, and `caption` replace the relevant native template annotations. Beauty and outdoor use all four; beauty places them around its still life, while outdoor displays them as field notes beneath the panorama. Electronics uses footnote/imageLabel/edition; fashion uses edition/caption; home uses imageLabel/caption. Reusable heroes use footnote/caption.
 - Home's native hero accepts `companionCategoryIds` (up to two) for its side images; `[]` removes them. Omission selects two categories automatically.
 
 ### Products
@@ -250,3 +252,11 @@ Products requiring size selection still open the product page from the quick act
 Layouts are `template` (default), left `sidebar`, or horizontal `toolbar`. Columns are optional (1–4); omission keeps the native grid. Explicit columns cap at two on tablets. Mobile supports one or two. Disabling all filter controls removes the filter panel. Hidden controls do not erase deep-linked URL filters; the toolbar offers Clear filters when the entire panel is hidden. URL sort overrides `defaultSort`. Category/search headings still reflect the selected category/query.
 
 These are presentation controls, not product authorization or inventory filters. Curated sections and browsing operate on the loaded catalog. Large-catalog API search and product lookup remain available through the existing provider interface.
+
+## Beauty and outdoor native presets
+
+Use `presets/beauty.json` or `presets/outdoor.json` as `VITE_BOOTSTRAP_URL` to view the full native compositions. To switch an existing bootstrap, use `stores/beauty.json` with `catalogs/beauty.json`, or the matching outdoor pair. These presets are separate from the alternative layout examples.
+
+Both templates honor header announcement/search/sticky/density settings, optional brand symbols/logos, footer columns/social links/description/locale controls, section visibility and curation, media cropping, and sparse product-card overrides. Beauty's product shelf uses four desktop columns; outdoor's equipment grid uses three. Select a reusable `grid` or `rail` layout when you want explicit column controls. Both stack appropriately on smaller screens.
+
+The native beauty footer uses `footer.eyebrow` above its farewell, and outdoor uses it above its expedition statement. Set `categoriesTitle`, `linksTitle`, and `cta` to replace their directory labels and links. As with the existing templates, nonempty custom footer `columns` replace the default directory.

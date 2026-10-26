@@ -1,0 +1,218 @@
+{
+  "categories": [
+    {
+      "id": "trail",
+      "name": "On the trail",
+      "description": "Pack light. Make room for the long way home.",
+      "image": "images/outdoor/pack.svg"
+    },
+    {
+      "id": "camp",
+      "name": "At camp",
+      "description": "A little shelter at the end of the day.",
+      "image": "images/outdoor/tent.svg"
+    },
+    {
+      "id": "everyday",
+      "name": "Everyday carry",
+      "description": "Useful company, wherever the day takes you.",
+      "image": "images/outdoor/flask.svg"
+    }
+  ],
+  "products": [
+    {
+      "id": "ridge-24-pack",
+      "slug": "ridge-24-pack",
+      "name": "Ridge 24 Pack",
+      "brand": "Northline",
+      "model": "NL-P24",
+      "categoryId": "trail",
+      "categoryName": "On the trail",
+      "collectionIds": ["featured", "new"],
+      "description": "A streamlined daypack for the trails between here and somewhere new. All specifications describe a fictional demonstration product.",
+      "details": ["24 L sample capacity", "Organized front pocket", "Adjustable shoulder straps"],
+      "images": ["images/outdoor/pack.svg"],
+      "variants": [
+        {
+          "id": "pine",
+          "sku": "NL-P24-PINE",
+          "options": {
+            "Color": "Pine"
+          },
+          "price": 12900,
+          "stock": 16
+        },
+        {
+          "id": "clay",
+          "sku": "NL-P24-CLAY",
+          "options": {
+            "Color": "Clay"
+          },
+          "price": 12900,
+          "stock": 9
+        }
+      ],
+      "badge": "FIELD FAVORITE"
+    },
+    {
+      "id": "shelter-two-tent",
+      "slug": "shelter-two-tent",
+      "name": "Shelter Two Tent",
+      "brand": "Northline",
+      "model": "NL-T02",
+      "categoryId": "camp",
+      "categoryName": "At camp",
+      "collectionIds": ["featured", "new"],
+      "description": "A compact shelter concept with a warm-toned fly and a simple pitched silhouette. Demonstration equipment only.",
+      "details": [
+        "Two illustrative capacity options",
+        "Dome-style construction",
+        "No real performance certification"
+      ],
+      "images": ["images/outdoor/tent.svg"],
+      "variants": [
+        {
+          "id": "two",
+          "sku": "NL-T02-TWO",
+          "options": {
+            "Capacity": "2 person"
+          },
+          "price": 24900,
+          "stock": 7
+        },
+        {
+          "id": "three",
+          "sku": "NL-T02-THREE",
+          "options": {
+            "Capacity": "3 person"
+          },
+          "price": 29900,
+          "stock": 4
+        }
+      ]
+    },
+    {
+      "id": "terrain-shell",
+      "slug": "terrain-shell",
+      "name": "Terrain Shell",
+      "brand": "Northline",
+      "model": "NL-J03",
+      "categoryId": "trail",
+      "categoryName": "On the trail",
+      "collectionIds": ["featured", "new"],
+      "description": "A pared-back shell jacket concept for changing landscapes. Part of the fictional Northline field collection.",
+      "details": ["Three sample sizes", "Adjustable hood silhouette", "Two front pockets"],
+      "images": ["images/outdoor/jacket.svg"],
+      "variants": [
+        {
+          "id": "small",
+          "sku": "NL-J03-SMALL",
+          "options": {
+            "Size": "S",
+            "Color": "Pine"
+          },
+          "price": 15900,
+          "stock": 5
+        },
+        {
+          "id": "medium",
+          "sku": "NL-J03-MEDIUM",
+          "options": {
+            "Size": "M",
+            "Color": "Pine"
+          },
+          "price": 15900,
+          "stock": 12
+        },
+        {
+          "id": "large",
+          "sku": "NL-J03-LARGE",
+          "options": {
+            "Size": "L",
+            "Color": "Pine"
+          },
+          "price": 15900,
+          "stock": 0
+        }
+      ],
+      "badge": "NEW"
+    },
+    {
+      "id": "waypoint-flask",
+      "slug": "waypoint-flask",
+      "name": "Waypoint Flask",
+      "brand": "Northline",
+      "model": "NL-F75",
+      "categoryId": "everyday",
+      "categoryName": "Everyday carry",
+      "collectionIds": ["featured", "new"],
+      "description": "A simple, reusable-style flask with a carrying loop. An everyday companion from our illustrative collection.",
+      "details": ["750 ml sample capacity", "Metal bottle illustration", "Loop-top cap"],
+      "images": ["images/outdoor/flask.svg"],
+      "variants": [
+        {
+          "id": "steel",
+          "sku": "NL-F75-STEEL",
+          "options": {
+            "Color": "Steel"
+          },
+          "price": 3200,
+          "stock": 24
+        }
+      ]
+    },
+    {
+      "id": "basecamp-lantern",
+      "slug": "basecamp-lantern",
+      "name": "Basecamp Lantern",
+      "brand": "Northline",
+      "model": "NL-L01",
+      "categoryId": "camp",
+      "categoryName": "At camp",
+      "collectionIds": ["featured", "new"],
+      "description": "A portable light concept for the evening hours, with a carry handle and a simple control dial. Demo product only.",
+      "details": [
+        "Warm light concept",
+        "Carry handle",
+        "Illustrative equipment; no battery supplied"
+      ],
+      "images": ["images/outdoor/lantern.svg"],
+      "variants": [
+        {
+          "id": "pine",
+          "sku": "NL-L01-PINE",
+          "options": {
+            "Color": "Pine"
+          },
+          "price": 5900,
+          "stock": 10
+        }
+      ]
+    },
+    {
+      "id": "traverse-cap",
+      "slug": "traverse-cap",
+      "name": "Traverse Cap",
+      "brand": "Northline",
+      "model": "NL-C06",
+      "categoryId": "trail",
+      "categoryName": "On the trail",
+      "collectionIds": ["featured", "new"],
+      "description": "An uncomplicated six-panel cap concept with an understated mountain mark. A fictional everyday essential.",
+      "details": ["One sample size", "Six-panel construction", "Adjustable strap concept"],
+      "images": ["images/outdoor/cap.svg"],
+      "variants": [
+        {
+          "id": "pine",
+          "sku": "NL-C06-PINE",
+          "options": {
+            "Size": "One size",
+            "Color": "Pine"
+          },
+          "price": 2900,
+          "stock": 15
+        }
+      ]
+    }
+  ]
+}

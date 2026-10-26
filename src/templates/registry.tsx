@@ -24,6 +24,8 @@ export const templates: Record<string, StorefrontTemplate> = {
   ),
   fashion: lazyTemplate(() => import('./fashion').then((module) => module.fashionTemplate)),
   home: lazyTemplate(() => import('./home').then((module) => module.homeTemplate)),
+  beauty: lazyTemplate(() => import('./beauty').then((module) => module.beautyTemplate)),
+  outdoor: lazyTemplate(() => import('./outdoor').then((module) => module.outdoorTemplate)),
 }
 
 const MediaSection = lazy(() =>

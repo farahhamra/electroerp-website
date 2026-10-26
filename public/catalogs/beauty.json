@@ -1,0 +1,206 @@
+{
+  "categories": [
+    {
+      "id": "face",
+      "name": "For your face",
+      "description": "A gentle beginning and a softer finish.",
+      "image": "images/beauty/serum.svg"
+    },
+    {
+      "id": "body",
+      "name": "For your body",
+      "description": "Small pleasures, from head to toe.",
+      "image": "images/beauty/body-oil.svg"
+    },
+    {
+      "id": "rituals",
+      "name": "The ritual sets",
+      "description": "Thoughtful pairings for unhurried days.",
+      "image": "images/beauty/ritual-set.svg"
+    }
+  ],
+  "products": [
+    {
+      "id": "daily-dew-serum",
+      "slug": "daily-dew-serum",
+      "name": "Daily Dew Serum",
+      "brand": "Serein",
+      "model": "SR-D01",
+      "categoryId": "face",
+      "categoryName": "For your face",
+      "collectionIds": ["featured", "new"],
+      "description": "A light-textured face serum, imagined for a quiet moment at the start of your day. This is an illustrative demo product.",
+      "details": [
+        "Glass dropper bottle",
+        "Two sample sizes",
+        "Fictional formula; no real skincare product is supplied"
+      ],
+      "images": ["images/beauty/serum.svg"],
+      "variants": [
+        {
+          "id": "30ml",
+          "sku": "SR-D01-30ML",
+          "options": {
+            "Volume": "30 ml"
+          },
+          "price": 4800,
+          "stock": 18
+        },
+        {
+          "id": "50ml",
+          "sku": "SR-D01-50ML",
+          "options": {
+            "Volume": "50 ml"
+          },
+          "price": 6400,
+          "stock": 10
+        }
+      ],
+      "badge": "THE DAILY EDIT"
+    },
+    {
+      "id": "soft-cloud-cream",
+      "slug": "soft-cloud-cream",
+      "name": "Soft Cloud Cream",
+      "brand": "Serein",
+      "model": "SR-C02",
+      "categoryId": "face",
+      "categoryName": "For your face",
+      "collectionIds": ["featured", "new"],
+      "description": "A rich cream texture in a simple, reusable-style jar. Part of our fictional daily ritual collection.",
+      "details": ["50 ml sample size", "Sculpted cream-colored jar", "Illustrative packaging"],
+      "images": ["images/beauty/cream.svg"],
+      "variants": [
+        {
+          "id": "50ml",
+          "sku": "SR-C02-50ML",
+          "options": {
+            "Volume": "50 ml"
+          },
+          "price": 4200,
+          "stock": 14
+        }
+      ],
+      "badge": "NEW"
+    },
+    {
+      "id": "gentle-hours-cleanser",
+      "slug": "gentle-hours-cleanser",
+      "name": "Gentle Hours Cleanser",
+      "brand": "Serein",
+      "model": "SR-F03",
+      "categoryId": "face",
+      "categoryName": "For your face",
+      "collectionIds": ["featured", "new"],
+      "description": "A simple first step in the Serein face ritual, presented in a soft-touch tube. Demonstration product only.",
+      "details": ["150 ml sample size", "Cream-colored tube", "Fictional skincare collection"],
+      "images": ["images/beauty/cleanser.svg"],
+      "variants": [
+        {
+          "id": "150ml",
+          "sku": "SR-F03-150ML",
+          "options": {
+            "Volume": "150 ml"
+          },
+          "price": 2800,
+          "stock": 0
+        }
+      ]
+    },
+    {
+      "id": "golden-hour-oil",
+      "slug": "golden-hour-oil",
+      "name": "Golden Hour Body Oil",
+      "brand": "Serein",
+      "model": "SR-B04",
+      "categoryId": "body",
+      "categoryName": "For your body",
+      "collectionIds": ["featured", "new"],
+      "description": "An amber-bottle body oil for slow evenings and considered routines. Demonstration product only.",
+      "details": ["100 ml sample size", "Amber glass-style bottle", "Pump dispenser"],
+      "images": ["images/beauty/body-oil.svg"],
+      "variants": [
+        {
+          "id": "100ml",
+          "sku": "SR-B04-100ML",
+          "options": {
+            "Volume": "100 ml"
+          },
+          "price": 3800,
+          "stock": 20
+        }
+      ]
+    },
+    {
+      "id": "slow-morning-wash",
+      "slug": "slow-morning-wash",
+      "name": "Slow Morning Body Wash",
+      "brand": "Serein",
+      "model": "SR-B05",
+      "categoryId": "body",
+      "categoryName": "For your body",
+      "collectionIds": ["featured", "new"],
+      "description": "A pared-back body wash bottle designed to sit quietly on your shelf. Part of a fictional collection.",
+      "details": ["Two sample sizes", "Refill-inspired packaging", "Pump dispenser"],
+      "images": ["images/beauty/body-wash.svg"],
+      "variants": [
+        {
+          "id": "250ml",
+          "sku": "SR-B05-250ML",
+          "options": {
+            "Volume": "250 ml"
+          },
+          "price": 2600,
+          "stock": 16
+        },
+        {
+          "id": "500ml",
+          "sku": "SR-B05-500ML",
+          "options": {
+            "Volume": "500 ml"
+          },
+          "price": 3800,
+          "stock": 8
+        }
+      ]
+    },
+    {
+      "id": "everyday-ritual-set",
+      "slug": "everyday-ritual-set",
+      "name": "The Everyday Ritual",
+      "brand": "Serein",
+      "model": "SR-R06",
+      "categoryId": "rituals",
+      "categoryName": "The ritual sets",
+      "collectionIds": ["featured", "new"],
+      "description": "A thoughtful pairing of our fictional cleanser and serum. A small invitation to make time for yourself.",
+      "details": [
+        "Two illustrative products",
+        "Choose daily or travel edition",
+        "Demo gift collection"
+      ],
+      "images": ["images/beauty/ritual-set.svg"],
+      "variants": [
+        {
+          "id": "daily",
+          "sku": "SR-R06-DAILY",
+          "options": {
+            "Edition": "Daily ritual"
+          },
+          "price": 6800,
+          "stock": 8
+        },
+        {
+          "id": "travel",
+          "sku": "SR-R06-TRAVEL",
+          "options": {
+            "Edition": "Travel ritual"
+          },
+          "price": 5000,
+          "stock": 5
+        }
+      ],
+      "badge": "THE PAIRING"
+    }
+  ]
+}

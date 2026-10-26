@@ -5,6 +5,8 @@ for (const preset of [
   { id: 'electronics', menu: 'Shop departments', category: 'Audio', categoryId: 'audio' },
   { id: 'fashion', menu: 'Collections', category: 'Clothing', categoryId: 'clothing' },
   { id: 'home', menu: 'Find your room', category: 'Furniture', categoryId: 'furniture' },
+  { id: 'beauty', menu: 'Shop the rituals', category: 'For your face', categoryId: 'face' },
+  { id: 'outdoor', menu: 'Shop by activity', category: 'On the trail', categoryId: 'trail' },
 ]) {
   test(`${preset.id}: configured navigation dropdown, category filtering and footer links`, async ({
     page,

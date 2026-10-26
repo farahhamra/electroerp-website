@@ -1,0 +1,203 @@
+{
+  "$schema": "../../store-config.schema.json",
+  "version": 1,
+  "storeId": "northline-demo",
+  "template": "outdoor",
+  "locale": "en-US",
+  "currency": "USD",
+  "currencyDecimals": 2,
+  "brand": {
+    "name": "NORTHLINE",
+    "tagline": "Outside is a state of mind.",
+    "description": "Equipment for the long way round. A fictional collection shaped by open spaces and everyday curiosity."
+  },
+  "theme": {
+    "background": "#F4F3EB",
+    "foreground": "#20382F",
+    "accent": "#9F4A2D",
+    "accentText": "#FFFFFF",
+    "surface": "#E4E6DB",
+    "muted": "#5E6B61",
+    "headingFont": "DM Sans",
+    "bodyFont": "DM Sans",
+    "radius": 0,
+    "contentWidth": 1200,
+    "buttonShape": "square",
+    "buttonStyle": "outline"
+  },
+  "announcement": "TAKE THE LONG WAY. Complimentary delivery on orders $150+.",
+  "navigation": [
+    {
+      "label": "Shop by activity",
+      "href": "/catalog",
+      "children": [
+        {
+          "label": "On the trail",
+          "href": "/catalog?category=trail"
+        },
+        {
+          "label": "At camp",
+          "href": "/catalog?category=camp"
+        },
+        {
+          "label": "Everyday carry",
+          "href": "/catalog?category=everyday"
+        }
+      ]
+    },
+    {
+      "label": "New equipment",
+      "href": "/catalog?collection=new"
+    },
+    {
+      "label": "Our field notes",
+      "href": "/story"
+    }
+  ],
+  "footer": {
+    "text": "See you\nout there.",
+    "eyebrow": "KEEP YOUR CURIOSITY CLOSE",
+    "links": [
+      {
+        "label": "Our story",
+        "href": "/story"
+      },
+      {
+        "label": "Shipping & returns",
+        "href": "/shipping"
+      },
+      {
+        "label": "Get in touch",
+        "href": "/contact"
+      }
+    ],
+    "cta": {
+      "label": "Find your next essential",
+      "href": "/catalog"
+    }
+  },
+  "benefits": [
+    {
+      "title": "Useful by design",
+      "description": "A purpose for every pocket and detail."
+    },
+    {
+      "title": "Delivered with care",
+      "description": "Complimentary demo delivery on orders $150+."
+    },
+    {
+      "title": "A good place to start",
+      "description": "Explore sizes and details before adding to your bag."
+    }
+  ],
+  "checkout": {
+    "countries": ["United States", "Lebanon", "United Arab Emirates", "United Kingdom"],
+    "shippingFee": 1000,
+    "freeShippingThreshold": 15000,
+    "notice": "Demo shipping rates and destinations. No payment or real order will be processed."
+  },
+  "presentation": {
+    "catalog": {
+      "eyebrow": "THE EQUIPMENT ROOM",
+      "title": "Ready for the outside.",
+      "description": "A few well-chosen essentials for whatever comes next.",
+      "layout": "toolbar",
+      "columns": 3,
+      "mobileColumns": 1,
+      "filters": {
+        "brand": false
+      }
+    },
+    "productCard": {},
+    "header": {
+      "sticky": true,
+      "density": "compact",
+      "showAnnouncement": false
+    },
+    "footer": {
+      "showLocale": false
+    },
+    "benefitsPosition": "hidden"
+  },
+  "sections": [
+    {
+      "id": "hero",
+      "type": "hero",
+      "eyebrow": "FIELD COLLECTION / NO. 01",
+      "title": "Go a little\nfurther.",
+      "description": "Leave a little room for the unexpected. Thoughtful equipment for open spaces, winding trails, and everything in between.",
+      "image": "images/outdoor/landscape.svg",
+      "imageAlt": "Layered green mountain landscape with a winding trail, pine trees and a pale sun",
+      "cta": {
+        "label": "Explore the field collection",
+        "href": "/catalog"
+      },
+      "imageLabel": "OPEN SPACES / OPEN POSSIBILITIES",
+      "edition": "FIELD NOTES 001",
+      "footnote": "DESIGNED FOR THE JOURNEY",
+      "caption": "THE LONG WAY IS THE GOOD WAY",
+      "layout": "centered",
+      "imageSide": "left",
+      "secondaryCta": {
+        "label": "Our story",
+        "href": "/story"
+      },
+      "style": {
+        "spacing": "comfortable",
+        "tone": "surface"
+      }
+    },
+    {
+      "id": "categories",
+      "type": "categories",
+      "eyebrow": "CHOOSE YOUR DIRECTION",
+      "title": "Where to next?",
+      "layout": "grid",
+      "categoryIds": ["trail", "camp"]
+    },
+    {
+      "id": "featured",
+      "type": "products",
+      "eyebrow": "YOUR NEXT FIELD KIT",
+      "title": "Carry less.\nDiscover more.",
+      "description": "Considered pieces, ready to go wherever your curiosity leads.",
+      "collectionId": "featured",
+      "limit": 6,
+      "cta": {
+        "label": "Shop all equipment",
+        "href": "/catalog"
+      },
+      "layout": "grid",
+      "columns": 3,
+      "mobileColumns": 1,
+      "card": {
+        "imageRatio": "square",
+        "quickAdd": false
+      }
+    },
+    {
+      "id": "banner",
+      "type": "banner",
+      "eyebrow": "THE BASECAMP DISPATCH",
+      "title": "The best rooms\nhave no walls.",
+      "description": "A place to pause, a little light, and a new view in the morning. Make room for the moments between the miles.",
+      "image": "images/outdoor/tent.svg",
+      "imageAlt": "Illustrated terracotta dome tent",
+      "cta": {
+        "label": "Make yourself at camp",
+        "href": "/catalog?category=camp"
+      }
+    },
+    {
+      "id": "questions",
+      "type": "faq",
+      "title": "A few useful details.",
+      "items": [
+        {
+          "question": "Is this a real store?",
+          "answer": "This is a fictional demonstration. No payment is collected and no order is sent."
+        }
+      ]
+    }
+  ]
+}

@@ -20,7 +20,9 @@
 }
 .storefront[data-header-density='compact'] .tech-header-main,
 .storefront[data-header-density='compact'] .home-header-main,
-.storefront[data-header-density='compact'] .fashion-masthead {
+.storefront[data-header-density='compact'] .fashion-masthead,
+.storefront[data-header-density='compact'] .beauty-header-main,
+.storefront[data-header-density='compact'] .outdoor-header-main {
   min-height: 76px;
   padding-block: 12px;
 }
@@ -493,7 +495,9 @@ html[data-motion='reduced'] *::after {
   .storefront .catalog-page[data-catalog-layout] .catalog-grid {
     grid-template-columns: repeat(var(--catalog-mobile-columns), minmax(0, 1fr));
   }
-  .storefront[data-header-density='compact'] .fashion-masthead {
+  .storefront[data-header-density='compact'] .fashion-masthead,
+  .storefront[data-header-density='compact'] .beauty-header-main,
+  .storefront[data-header-density='compact'] .outdoor-header-main {
     min-height: 72px;
   }
 }
@@ -527,4 +531,11 @@ html[data-motion='reduced'] *::after {
   .fashion-masthead > .header-actions {
     grid-column: 2;
   }
+}
+
+.section-frame[data-media-fit]:not([data-media-fit='template']) [data-section-image] {
+  object-fit: var(--section-image-fit);
+}
+.section-frame[data-media-position='true'] [data-section-image] {
+  object-position: var(--section-image-position);
 }

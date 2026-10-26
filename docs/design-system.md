@@ -17,3 +17,9 @@ Images reserve space to prevent layout shifts. Below-fold images are lazy-loaded
 Template identity is the default. Explicit JSON settings can switch header/footer slots, native section templates, or use reusable split/centered media, grids, rails and category lists. Width, spacing and section tones use constrained values and paired semantic tokens. Product-card cropping and visible metadata can vary by store or section; sold-out information remains available.
 
 New content blocks use plain text and native keyboard-accessible FAQ disclosures. Product rails keep native touch, keyboard and scrollbar interaction. A configured reduced-motion mode supplements OS preferences. Custom controls retain 44px touch targets and the existing focus behavior. The new options follow the UI/UX skill's built-in accessibility/layout priorities; no new database search result is claimed.
+
+## Beauty and outdoor template directions
+
+SEREIN (`beauty`) pairs Cormorant Garamond with DM Sans, warm plaster surfaces, restrained plum accents, a capsule header, sculptural amber-glass illustration, a ritual shelf and a framed farewell. NORTHLINE (`outdoor`) uses bold DM Sans, sharp rules, equipment indexes, a panoramic mountain illustration and a large expedition imprint. Each owns its header, footer and homepage composition as well as native card/catalog styles. Their layouts remain distinct under the same theme palette.
+
+The artwork is original local SVG, with no external image dependencies. Product claims and inventory are explicitly fictional. Both use existing accessible navigation/dropdown primitives, responsive grids and reduced-motion behavior. The UI/UX skill's built-in priorities guide the designs; no database-derived palette or style match is claimed because its search resources are unavailable in this environment.

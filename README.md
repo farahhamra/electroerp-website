@@ -2,7 +2,7 @@
 
 One engine. Multiple templates. Unlimited storefront identities.
 
-A frontend-only React + Vite + TypeScript storefront for ElectroERP. Includes three complete template compositions with independent headers, footers, and homepage sections, demonstrated by three fictional premium brands: **ORBIT** (electronics), **STUDIO FORM** (fashion), and **FORM & FIELD** (home/living). Styling uses Tailwind CSS v4 with shared semantic CSS tokens. Fuse.js powers local product search.
+A frontend-only React + Vite + TypeScript storefront for ElectroERP. Includes five complete template compositions with independent headers, footers, and homepage sections, demonstrated by five fictional premium brands: **ORBIT** (electronics), **STUDIO FORM** (fashion), **FORM & FIELD** (home/living), **SEREIN** (beauty/skincare), and **NORTHLINE** (outdoor/adventure). Styling uses Tailwind CSS v4 with shared semantic CSS tokens. Fuse.js powers local product search.
 
 ## Develop
 
@@ -40,9 +40,9 @@ Edit **`public/storefront.json`**:
 }
 ```
 
-Use matching `electronics`, `fashion`, or `home` files. Reload the page after changing the JSON. The deployed `dist/storefront.json`, `dist/stores/*.json`, and `dist/catalogs/*.json` can also be replaced at runtime without rebuilding JavaScript. There is no store editor, ERP administration screen, or template selector exposed to customers.
+Use matching `electronics`, `fashion`, `home`, `beauty`, or `outdoor` files. Reload the page after changing the JSON. The deployed `dist/storefront.json`, `dist/stores/*.json`, and `dist/catalogs/*.json` can also be replaced at runtime without rebuilding JavaScript. There is no store editor, ERP administration screen, or template selector exposed to customers.
 
-Brand, colors, typefaces, radius, navigation, footer, optional announcement, homepage section order, promotional artwork, collections, currency, and sample delivery rules come from JSON. Section types are `hero`, `products`, `categories`, and `banner`; each template renders them differently. Remove or reorder entries as needed. Navigation entries support optional `children` for themed dropdown menus. Fonts must be available to the browser; the bundled choices are DM Sans and Cormorant Garamond. See [configuration and architecture](docs/architecture.md).
+Brand, colors, typefaces, radius, navigation, footer, optional announcement, homepage section order, promotional artwork, collections, currency, and sample delivery rules come from JSON. Native section types are `hero`, `products`, `categories`, and `banner`; each template renders them differently. Shared `text`, `faq`, and `benefits` sections are also available. Remove or reorder entries as needed. Navigation entries support optional `children` for themed dropdown menus. Fonts must be available to the browser; the bundled choices are DM Sans and Cormorant Garamond. See [configuration and architecture](docs/architecture.md).
 
 ## Build and serve
 
@@ -79,6 +79,20 @@ Sorting, brand filters, and checkout countries use the reusable accessible `Drop
 
 ## Customization
 
-See [the customization guide](docs/customization.md) for independent header/footer templates, section layouts, spacing, curated products/categories, product-card controls, catalog filters and new text/FAQ/benefits sections. Existing JSON remains supported. Three complete examples live in `public/stores/examples/`; their matching bootstrap files are in `public/examples/`.
+See [the customization guide](docs/customization.md) for independent header/footer templates, section layouts, spacing, curated products/categories, product-card controls, catalog filters and new text/FAQ/benefits sections. Existing JSON remains supported. Five complete customization examples live in `public/stores/examples/`; their matching bootstrap files are in `public/examples/`.
 
 JSON editor autocomplete comes from `public/store-config.schema.json`, generated from the runtime contract with `npm run schema:export`.
+
+### New storefront presets
+
+The `beauty` template uses a rounded apothecary navigation, sculptural product hero, ritual categories and a framed split footer. The `outdoor` template uses expedition navigation, a panoramic landscape hero, a numbered equipment grid and a bold field-manual footer. Both have their own catalog/card styling and honor the shared JSON controls. Their local artwork and product data are original fictional demonstrations.
+
+Run either native preset without changing the default storefront:
+
+```sh
+VITE_BOOTSTRAP_URL=presets/beauty.json npm run dev
+# or
+VITE_BOOTSTRAP_URL=presets/outdoor.json npm run dev
+```
+
+Use `examples/beauty.json` or `examples/outdoor.json` instead to preview the alternate layouts. Their header, footer and native section slots can also be mixed with the other templates.

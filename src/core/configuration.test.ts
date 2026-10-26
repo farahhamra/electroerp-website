@@ -21,7 +21,7 @@ const productsSection = (overrides = {}) => {
 
 describe('configuration contract', () => {
   it('loads every original and customized store with a complete configuration', () => {
-    for (const name of ['electronics', 'fashion', 'home']) {
+    for (const name of ['electronics', 'fashion', 'home', 'beauty', 'outdoor']) {
       for (const folder of ['', 'examples/']) {
         const config = configSchema.parse(read(`public/stores/${folder}${name}.json`))
         expect(config.template).toBe(name)

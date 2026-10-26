@@ -82,6 +82,8 @@ test('unknown products and empty search are handled', async ({ page }) => {
 for (const [template, heading] of [
   ['fashion', 'A quieter kind of statement.'],
   ['home', 'Come home to considered.'],
+  ['beauty', 'A softer kind of daily.'],
+  ['outdoor', 'Go a little further.'],
 ]) {
   test(`${template} template renders from JSON with working products`, async ({ page }) => {
     await page.route('**/storefront.json', (route) =>

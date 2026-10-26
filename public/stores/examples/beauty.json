@@ -1,0 +1,205 @@
+{
+  "$schema": "../../store-config.schema.json",
+  "version": 1,
+  "storeId": "serein-demo",
+  "template": "beauty",
+  "locale": "en-US",
+  "currency": "USD",
+  "currencyDecimals": 2,
+  "brand": {
+    "name": "SEREIN",
+    "tagline": "A moment, just for you.",
+    "description": "An unhurried approach to everyday care. A fictional collection of small rituals and considered essentials."
+  },
+  "theme": {
+    "background": "#FCF9F4",
+    "foreground": "#332B29",
+    "accent": "#70534D",
+    "accentText": "#FFFFFF",
+    "surface": "#F1EAE1",
+    "muted": "#71625E",
+    "headingFont": "Cormorant Garamond",
+    "bodyFont": "DM Sans",
+    "radius": 8,
+    "contentWidth": 1200,
+    "buttonShape": "pill",
+    "buttonStyle": "outline"
+  },
+  "announcement": "Small rituals. Complimentary delivery on orders $150+.",
+  "navigation": [
+    {
+      "label": "Shop the rituals",
+      "href": "/catalog",
+      "children": [
+        {
+          "label": "For your face",
+          "href": "/catalog?category=face"
+        },
+        {
+          "label": "For your body",
+          "href": "/catalog?category=body"
+        },
+        {
+          "label": "The ritual sets",
+          "href": "/catalog?category=rituals"
+        }
+      ]
+    },
+    {
+      "label": "The daily edit",
+      "href": "/catalog?collection=new"
+    },
+    {
+      "label": "Our philosophy",
+      "href": "/story"
+    }
+  ],
+  "footer": {
+    "text": "A little time.\nA little care.",
+    "eyebrow": "THE ART OF EVERYDAY CARE",
+    "links": [
+      {
+        "label": "Our story",
+        "href": "/story"
+      },
+      {
+        "label": "Shipping & returns",
+        "href": "/shipping"
+      },
+      {
+        "label": "Get in touch",
+        "href": "/contact"
+      }
+    ],
+    "cta": {
+      "label": "Discover your ritual",
+      "href": "/catalog"
+    }
+  },
+  "benefits": [
+    {
+      "title": "Considered essentials",
+      "description": "A small, thoughtfully imagined collection."
+    },
+    {
+      "title": "Delivered with care",
+      "description": "Complimentary demo delivery on orders $150+."
+    },
+    {
+      "title": "A little guidance",
+      "description": "Explore the details to find your daily ritual."
+    }
+  ],
+  "checkout": {
+    "countries": ["United States", "Lebanon", "United Arab Emirates", "United Kingdom"],
+    "shippingFee": 1000,
+    "freeShippingThreshold": 15000,
+    "notice": "Demo shipping rates and destinations. No payment or real order will be processed."
+  },
+  "presentation": {
+    "catalog": {
+      "eyebrow": "THE APOTHECARY",
+      "title": "Find your daily ritual.",
+      "description": "A thoughtful collection for face, body and the moments in between.",
+      "layout": "sidebar",
+      "columns": 3,
+      "mobileColumns": 1,
+      "filters": {
+        "brand": false
+      }
+    },
+    "productCard": {
+      "showOptions": false
+    },
+    "header": {
+      "sticky": true,
+      "density": "compact",
+      "showAnnouncement": false
+    },
+    "footer": {
+      "showLocale": false
+    },
+    "benefitsPosition": "hidden"
+  },
+  "sections": [
+    {
+      "id": "hero",
+      "type": "hero",
+      "eyebrow": "EVERYDAY CARE, AT YOUR PACE",
+      "title": "A softer\nkind of daily.",
+      "description": "Small rituals, beautiful textures, and a moment to come back to yourself. Welcome to a more considered everyday.",
+      "image": "images/beauty/hero.svg",
+      "imageAlt": "Illustrated amber serum bottle and cream jar on a sculpted stone plinth",
+      "cta": {
+        "label": "Find your ritual",
+        "href": "/catalog"
+      },
+      "imageLabel": "THE SEREIN DAILY RITUAL",
+      "edition": "VOL. 01",
+      "footnote": "Care begins with a little time.",
+      "caption": "",
+      "layout": "split",
+      "imageSide": "left",
+      "secondaryCta": {
+        "label": "Our story",
+        "href": "/story"
+      },
+      "style": {
+        "spacing": "comfortable",
+        "tone": "surface"
+      }
+    },
+    {
+      "id": "featured",
+      "type": "products",
+      "eyebrow": "THE DAILY SHELF",
+      "title": "Good things,\nin small rituals.",
+      "description": "A few favorites to make the everyday feel a little more yours.",
+      "collectionId": "featured",
+      "limit": 6,
+      "cta": {
+        "label": "Explore all essentials",
+        "href": "/catalog"
+      },
+      "layout": "rail",
+      "columns": 3,
+      "mobileColumns": 1,
+      "card": {
+        "imageRatio": "square",
+        "quickAdd": false
+      }
+    },
+    {
+      "id": "categories",
+      "type": "categories",
+      "eyebrow": "YOUR MOMENT, YOUR WAY",
+      "title": "Find your kind of care.",
+      "layout": "list",
+      "categoryIds": ["face", "body"]
+    },
+    {
+      "id": "banner",
+      "type": "banner",
+      "eyebrow": "A LITTLE MORE TOGETHER",
+      "title": "Better,\ntogether.",
+      "description": "Meet the Everyday Ritual. Two considered essentials, one quiet invitation to slow down.",
+      "image": "images/beauty/ritual-set.svg",
+      "imageAlt": "Illustrated cleanser and serum pairing",
+      "cta": {
+        "label": "Discover the pairing",
+        "href": "/products/everyday-ritual-set"
+      }
+    },
+    {
+      "id": "questions",
+      "type": "faq",
+      "title": "A few useful details.",
+      "items": [
+        {
+          "question": "Is this a real store?",
+          "answer": "This is a fictional demonstration. No payment is collected and no order is sent."
+        }
+      ]
+    }
+  ]
+}

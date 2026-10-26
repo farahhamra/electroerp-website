@@ -1,0 +1,5 @@
+{
+  "mode": "mock",
+  "configUrl": "../stores/examples/outdoor.json",
+  "catalogUrl": "../catalogs/outdoor.json"
+}

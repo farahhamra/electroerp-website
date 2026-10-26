@@ -1,0 +1,588 @@
+/* Beauty: an apothecary counter, quiet rituals and a framed farewell. */
+.beauty-header {
+  border: 0;
+  padding-block: 12px 18px;
+}
+.beauty-announcement {
+  text-align: center;
+  padding: 0 20px 12px;
+  font-size: 11px;
+  color: var(--muted);
+}
+.beauty-header-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  padding: 20px 28px;
+  min-height: 84px;
+}
+.beauty-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.beauty-brand .brand {
+  font-family: var(--heading-font);
+  font-size: 33px;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+}
+.beauty-header .template-nav {
+  gap: 24px;
+}
+.beauty-header .header-search span,
+.beauty-header .bag-text {
+  display: none;
+}
+.beauty-header .header-search {
+  min-width: 44px;
+  justify-content: center;
+}
+.beauty-header .bag-count {
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+.beauty-header .mobile-nav {
+  margin-top: 16px;
+}
+.beauty-introduction {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: clamp(40px, 6vw, 96px);
+  align-items: center;
+  padding-block: 24px 64px;
+}
+.beauty-hero-art {
+  position: relative;
+  min-width: 0;
+}
+.beauty-hero-art > img {
+  width: 100%;
+  aspect-ratio: 0.9;
+  object-fit: cover;
+  border-radius: 180px 180px 8px 8px;
+  background: var(--surface);
+}
+.beauty-image-note {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  padding-top: 16px;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.beauty-hero-copy {
+  padding-block: 35px;
+}
+.beauty-hero-copy > .eyebrow {
+  color: var(--accent);
+}
+.beauty-hero-copy h1 {
+  font-size: clamp(54px, 6.3vw, 89px);
+  font-weight: 400;
+  letter-spacing: -0.05em;
+  line-height: 0.97;
+  margin-block: 28px;
+  white-space: pre-line;
+}
+.beauty-hero-copy > p {
+  max-width: 35ch;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.8;
+}
+.beauty-hero-copy .button {
+  border-radius: 99px;
+  background: var(--accent);
+  color: var(--accent-text);
+  min-height: 54px;
+  padding-inline: 30px;
+}
+.beauty-hero-copy .button:hover {
+  background: var(--foreground);
+  color: var(--background);
+}
+.beauty-hero-signoff {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 60px;
+  padding-top: 22px;
+  border-top: 1px solid var(--border);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+.beauty-hero-copy .beauty-hero-caption {
+  font-size: 11px;
+  margin-top: 16px;
+}
+.beauty-section-title {
+  text-align: center;
+  max-width: 650px;
+  margin: 0 auto 40px;
+}
+.beauty-section-title h2 {
+  font-weight: 400;
+  font-size: clamp(38px, 4.5vw, 60px);
+  margin-block: 14px;
+}
+.beauty-section-title p {
+  color: var(--muted);
+  line-height: 1.8;
+  font-size: 14px;
+}
+.beauty-shelf {
+  padding-block: 75px;
+}
+.beauty-product-shelf {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 26px;
+}
+.beauty-shelf-link {
+  text-align: center;
+  margin-top: 36px;
+}
+.template-beauty .product-image-wrap {
+  border-radius: 100px 100px 8px 8px;
+  background: var(--surface);
+}
+.template-beauty .product-image-wrap img {
+  aspect-ratio: 4/5;
+  object-fit: contain;
+}
+.template-beauty .product-info {
+  display: block;
+  text-align: center;
+  padding-top: 20px;
+}
+.template-beauty .product-name {
+  font-family: var(--heading-font);
+  font-size: 25px;
+  font-weight: 500;
+}
+.template-beauty .product-category {
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 9px;
+}
+.template-beauty .product-options {
+  font-size: 11px;
+}
+.template-beauty .product-price {
+  display: block;
+  margin-top: 12px;
+  font-size: 13px;
+}
+.template-beauty .product-badge {
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  background: var(--background);
+  border-radius: 99px;
+}
+.template-beauty .quick-add {
+  bottom: 12px;
+  right: 12px;
+  border: 1px solid var(--border);
+}
+.beauty-rituals {
+  padding-block: 64px;
+  border-block: 1px solid var(--border);
+}
+.beauty-ritual-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+  gap: 44px;
+}
+.beauty-ritual {
+  display: block;
+}
+.beauty-ritual-image {
+  position: relative;
+  padding: 16px 25%;
+  border-bottom: 1px solid var(--border);
+}
+.beauty-ritual-image img {
+  aspect-ratio: 1;
+  width: 100%;
+  object-fit: contain;
+  transition: transform 0.3s;
+}
+.beauty-ritual:hover img {
+  transform: translateY(-5px);
+}
+.beauty-ritual-image > span {
+  position: absolute;
+  bottom: 16px;
+  left: 0;
+  font-family: var(--heading-font);
+  font-size: 42px;
+  color: var(--muted);
+}
+.beauty-ritual > div:nth-child(2) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-block: 18px 8px;
+}
+.beauty-ritual h3 {
+  font-family: var(--heading-font);
+  font-size: 31px;
+  font-weight: 400;
+}
+.beauty-ritual > p {
+  font-size: 13px;
+  color: var(--muted);
+  max-width: 32ch;
+}
+.beauty-note {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 64px;
+  margin-block: 40px;
+  gap: 64px;
+  background: var(--surface);
+  border-radius: 8px 120px 8px 8px;
+}
+.beauty-note h2 {
+  font-size: clamp(40px, 4.8vw, 66px);
+  font-weight: 400;
+  margin-block: 22px;
+  white-space: pre-line;
+}
+.beauty-note-copy > p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+.beauty-note-image img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+  border-radius: 50%;
+}
+.beauty-note[data-has-image='false'] {
+  grid-template-columns: minmax(0, 1fr);
+}
+.beauty-values {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+  gap: 50px;
+  text-align: center;
+  padding-block: 50px 80px;
+}
+.beauty-value-number {
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  font-family: var(--heading-font);
+  font-size: 20px;
+}
+.beauty-values h3 {
+  font-family: var(--heading-font);
+  font-size: 25px;
+  margin-block: 16px 8px;
+}
+.beauty-values p {
+  font-size: 12px;
+  color: var(--muted);
+}
+.beauty-footer {
+  background: var(--background);
+  border: 0;
+  padding-top: 0;
+}
+.beauty-footer-panel {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.beauty-farewell {
+  background: var(--surface);
+  padding: 50px;
+}
+.beauty-farewell h2 {
+  font-size: clamp(38px, 4vw, 56px);
+  margin: 20px 0;
+  font-weight: 400;
+}
+.beauty-farewell > p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+  margin-bottom: 26px;
+}
+.beauty-footer-details {
+  padding: 45px 50px;
+}
+.beauty-footer-brand {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 28px;
+  margin-bottom: 28px;
+}
+.beauty-footer-brand .brand {
+  font-family: var(--heading-font);
+  font-size: 42px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+.beauty-footer-directory {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr));
+  gap: 30px;
+}
+.beauty-footer-directory .eyebrow {
+  margin-bottom: 14px;
+  color: var(--muted);
+}
+.beauty-footer .footer-legal {
+  border: 0;
+}
+.template-beauty .catalog-page .page-intro {
+  text-align: center;
+  padding-block: 65px 40px;
+}
+.template-beauty .page-intro h1 {
+  font-size: clamp(45px, 5vw, 72px);
+  font-weight: 400;
+}
+.template-beauty .category-tabs {
+  justify-content: center;
+}
+.template-beauty .category-tabs button {
+  border-radius: 99px;
+}
+.template-beauty .catalog-layout {
+  grid-template-columns: minmax(0, 1fr);
+}
+.template-beauty .filter-panel {
+  border-block: 1px solid var(--border);
+  padding-block: 18px;
+}
+.template-beauty .filter-fields {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: end;
+  gap: 24px;
+}
+.template-beauty .catalog-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 45px 24px;
+}
+.template-beauty .detail-image {
+  border-radius: 180px 180px 8px 8px;
+}
+.template-beauty .detail-copy h1 {
+  font-weight: 400;
+  font-size: clamp(43px, 4.3vw, 65px);
+}
+@media (max-width: 1100px) {
+  .beauty-header-main {
+    gap: 14px;
+    padding-inline: 22px;
+  }
+  .beauty-header .template-nav {
+    gap: 12px;
+  }
+  .beauty-introduction {
+    gap: 36px;
+  }
+  .beauty-note {
+    padding: 40px;
+    gap: 32px;
+  }
+  .beauty-farewell,
+  .beauty-footer-details {
+    padding: 35px;
+  }
+  .beauty-product-shelf,
+  .template-beauty .catalog-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 900px) {
+  .beauty-header .template-nav {
+    display: none;
+  }
+  .beauty-header-main {
+    min-height: 74px;
+    padding-block: 12px;
+  }
+  .beauty-ritual-grid {
+    gap: 28px;
+  }
+  .template-beauty .filter-fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 760px) {
+  .beauty-header {
+    padding-block: 10px;
+  }
+  .beauty-header-main {
+    gap: 8px;
+    padding: 12px 14px;
+  }
+  .beauty-brand {
+    gap: 6px;
+    min-width: 0;
+  }
+  .beauty-brand > svg {
+    width: 20px;
+  }
+  .beauty-brand .brand {
+    font-size: 26px;
+  }
+  .beauty-header .header-actions {
+    gap: 4px;
+  }
+  .beauty-announcement {
+    font-size: 10px;
+  }
+  .beauty-introduction {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+    padding-block: 12px 40px;
+  }
+  .beauty-hero-art > img {
+    aspect-ratio: 1.2;
+    border-radius: 120px 120px 6px 6px;
+  }
+  .beauty-hero-copy {
+    padding: 0;
+  }
+  .beauty-hero-copy h1 {
+    font-size: 62px;
+    margin-block: 18px;
+  }
+  .beauty-hero-copy > p {
+    font-size: 14px;
+    max-width: none;
+  }
+  .beauty-hero-signoff {
+    margin-top: 30px;
+  }
+  .beauty-shelf,
+  .beauty-rituals {
+    padding-block: 45px;
+  }
+  .beauty-product-shelf {
+    gap: 30px 14px;
+  }
+  .beauty-section-title {
+    margin-bottom: 28px;
+  }
+  .template-beauty .product-name {
+    font-size: 21px;
+  }
+  .template-beauty .product-badge {
+    top: 16px;
+    font-size: 8px;
+  }
+  .beauty-ritual-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+  .beauty-ritual {
+    display: grid;
+    grid-template-columns: 100px minmax(0, 1fr);
+    column-gap: 20px;
+    align-items: center;
+  }
+  .beauty-ritual-image {
+    grid-row: span 2;
+    border: 0;
+    padding: 12px;
+    background: var(--surface);
+    border-radius: 50%;
+  }
+  .beauty-ritual-image > span {
+    font-size: 20px;
+    bottom: 0;
+  }
+  .beauty-ritual > div:nth-child(2) {
+    margin-block: 0;
+  }
+  .beauty-ritual h3 {
+    font-size: 28px;
+  }
+  .beauty-ritual > p {
+    grid-column: 2;
+    font-size: 12px;
+  }
+  .beauty-note {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 30px 24px;
+    border-radius: 8px 70px 8px 8px;
+    margin-block: 20px;
+  }
+  .beauty-note-image {
+    order: -1;
+    max-width: 280px;
+    margin-inline: auto;
+  }
+  .beauty-values {
+    gap: 28px;
+    padding-block: 35px 45px;
+  }
+  .beauty-footer-panel {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .beauty-farewell,
+  .beauty-footer-details {
+    padding: 28px;
+  }
+  .beauty-footer-directory {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+  .beauty-footer-brand .brand {
+    font-size: 35px;
+  }
+  .template-beauty .catalog-grid {
+    gap: 30px 14px;
+  }
+  .template-beauty .catalog-page .page-intro {
+    padding-block: 35px;
+  }
+}
+@media (max-width: 370px) {
+  .beauty-brand > svg {
+    display: none;
+  }
+  .beauty-header-main {
+    padding-inline: 10px;
+  }
+  .beauty-brand .brand {
+    font-size: 25px;
+  }
+  .beauty-hero-copy h1 {
+    font-size: 54px;
+  }
+  .beauty-footer-directory {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .beauty-ritual-image img {
+    transition: none;
+  }
+}
