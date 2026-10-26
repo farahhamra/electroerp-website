@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "templates": [
+    {
+      "id": "beauty",
+      "name": "Beauty & skincare",
+      "demoBrand": "SEREIN",
+      "image": {
+        "src": "template-previews/beauty.jpg",
+        "alt": "SEREIN — Beauty & skincare storefront homepage preview",
+        "width": 1440,
+        "height": 1080
+      },
+      "configUrl": "stores/beauty.json",
+      "catalogUrl": "catalogs/beauty.json"
+    },
+    {
+      "id": "electronics",
+      "name": "Electronics",
+      "demoBrand": "ORBIT",
+      "image": {
+        "src": "template-previews/electronics.jpg",
+        "alt": "ORBIT — Electronics storefront homepage preview",
+        "width": 1440,
+        "height": 1080
+      },
+      "configUrl": "stores/electronics.json",
+      "catalogUrl": "catalogs/electronics.json"
+    },
+    {
+      "id": "fashion",
+      "name": "Fashion",
+      "demoBrand": "STUDIO FORM",
+      "image": {
+        "src": "template-previews/fashion.jpg",
+        "alt": "STUDIO FORM — Fashion storefront homepage preview",
+        "width": 1440,
+        "height": 1080
+      },
+      "configUrl": "stores/fashion.json",
+      "catalogUrl": "catalogs/fashion.json"
+    },
+    {
+      "id": "home",
+      "name": "Home & living",
+      "demoBrand": "FORM & FIELD",
+      "image": {
+        "src": "template-previews/home.jpg",
+        "alt": "FORM & FIELD — Home & living storefront homepage preview",
+        "width": 1440,
+        "height": 1080
+      },
+      "configUrl": "stores/home.json",
+      "catalogUrl": "catalogs/home.json"
+    },
+    {
+      "id": "outdoor",
+      "name": "Outdoor & adventure",
+      "demoBrand": "NORTHLINE",
+      "image": {
+        "src": "template-previews/outdoor.jpg",
+        "alt": "NORTHLINE — Outdoor & adventure storefront homepage preview",
+        "width": 1440,
+        "height": 1080
+      },
+      "configUrl": "stores/outdoor.json",
+      "catalogUrl": "catalogs/outdoor.json"
+    }
+  ]
+}

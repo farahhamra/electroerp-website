@@ -96,3 +96,27 @@ VITE_BOOTSTRAP_URL=presets/outdoor.json npm run dev
 ```
 
 Use `examples/beauty.json` or `examples/outdoor.json` instead to preview the alternate layouts. Their header, footer and native section slots can also be mixed with the other templates.
+
+## Template preview card screenshots
+
+Each template has a **1440 × 1080 JPEG (4:3)** of its actual desktop homepage, ready to use in a preview card:
+
+| Template              | Screenshot                                                  |
+| --------------------- | ----------------------------------------------------------- |
+| Electronics / ORBIT   | [electronics.jpg](public/template-previews/electronics.jpg) |
+| Fashion / STUDIO FORM | [fashion.jpg](public/template-previews/fashion.jpg)         |
+| Home / FORM & FIELD   | [home.jpg](public/template-previews/home.jpg)               |
+| Beauty / SEREIN       | [beauty.jpg](public/template-previews/beauty.jpg)           |
+| Outdoor / NORTHLINE   | [outdoor.jpg](public/template-previews/outdoor.jpg)         |
+
+[`public/template-previews.json`](public/template-previews.json) maps template IDs to display names, demo brands, image paths, dimensions, alt text, and matching configuration/catalog paths. Paths are relative to the manifest URL, so they also work under a deployment subdirectory. The files are copied into `dist/` during the normal build.
+
+For an external preview card, resolve `image.src` against the URL from which you fetched the manifest. Render the image at `width: 100%; height: auto` to preserve its 4:3 composition, and use its supplied dimensions and alt text. These are viewport screenshots showing the navigation and hero, sized to remain readable when scaled into a card.
+
+Regenerate after changing the templates, branding, or demo artwork:
+
+```sh
+npm run templates:previews
+```
+
+The command uses Playwright and the same Chromium executable selection as the browser tests. It creates an isolated production build, captures each native store with a fresh browser context, waits for fonts and images, and writes the five optimized JPEGs plus the manifest. It leaves the active `storefront.json` and normal `dist/` untouched. Run `npm run build` afterward to include the refreshed images in a deployment.
