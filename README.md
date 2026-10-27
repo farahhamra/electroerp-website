@@ -4,6 +4,10 @@ One engine. Multiple templates. Unlimited storefront identities.
 
 A frontend-only React + Vite + TypeScript storefront for ElectroERP. Includes five complete template compositions with independent headers, footers, and homepage sections, demonstrated by five fictional premium brands: **ORBIT** (electronics), **STUDIO FORM** (fashion), **FORM & FIELD** (home/living), **SEREIN** (beauty/skincare), and **NORTHLINE** (outdoor/adventure). Styling uses Tailwind CSS v4 with shared semantic CSS tokens. Fuse.js powers local product search.
 
+## Implementation roadmap
+
+The [implementation plan](implementation-plan.md) describes 14 proposed engine capabilities, including configurable pages, richer sections, responsive design controls, localized storefronts, and static SEO output. The [step-by-step task list](tasks.md) organizes that future work into 102 tasks with dependencies and acceptance checks. These documents do not indicate that the proposed capabilities are already implemented; builder editing and publishing workflows remain outside the engine's scope.
+
 ## Develop
 
 Use Node.js 24 (Node >=22.12 and <25 is supported), then:
