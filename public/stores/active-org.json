@@ -1,0 +1,255 @@
+{
+  "version": 1,
+  "storeId": "Ehome",
+  "template": "electronics",
+  "brand": {
+    "name": "ElectroHome",
+    "tagline": "The art of everyday technology.",
+    "description": "Considered technology. Exceptional design. Everyday living.",
+    "logo": "http://localhost:5000/files/storefront/storefront-1793087796431-68d1d78d2984.webp",
+    "logoWidth": 180,
+    "showSymbol": false
+  },
+  "locale": "en-US",
+  "currency": "LBP",
+  "currencyDecimals": 2,
+  "theme": {
+    "background": "#161614",
+    "foreground": "#F4F0E8",
+    "accent": "#C7AC78",
+    "accentText": "#171714",
+    "surface": "#22221E",
+    "muted": "#B7B0A3",
+    "headingFont": "Cormorant Garamond",
+    "bodyFont": "DM Sans",
+    "radius": 0,
+    "contentWidth": 1280,
+    "headingWeight": 400,
+    "buttonShape": "square",
+    "buttonStyle": "outline",
+    "motion": "full"
+  },
+  "presentation": {
+    "header": {
+      "sticky": true,
+      "density": "comfortable",
+      "showAnnouncement": true,
+      "showSearch": true,
+      "showTagline": false
+    },
+    "footer": {
+      "showCategories": false,
+      "showDescription": true,
+      "showWordmark": true,
+      "showLocale": true
+    },
+    "catalog": {
+      "layout": "template",
+      "columns": 3,
+      "mobileColumns": 2,
+      "defaultSort": "featured",
+      "showCategoryTabs": true,
+      "filters": {
+        "search": true,
+        "brand": true,
+        "price": true,
+        "availability": true
+      },
+      "eyebrow": "THE ELECTROHOME COLLECTION",
+      "title": "Considered essentials.",
+      "description": "Explore technology chosen to bring beauty, purpose, and possibility to everyday living."
+    },
+    "productCard": {
+      "imageRatio": "square",
+      "imageFit": "contain",
+      "showCategory": false,
+      "showBrand": true,
+      "showOptions": false,
+      "showBadge": false,
+      "quickAdd": true
+    }
+  },
+  "announcement": "ELECTROHOME — TECHNOLOGY, BEAUTIFULLY CONSIDERED",
+  "navigation": [
+    {
+      "label": "The collection",
+      "href": "/catalog",
+      "children": [
+        {
+          "label": "Audio",
+          "href": "/catalog?category=audio"
+        },
+        {
+          "label": "Wearables",
+          "href": "/catalog?category=wearables"
+        },
+        {
+          "label": "Workspace",
+          "href": "/catalog?category=workspace"
+        },
+        {
+          "label": "Cameras",
+          "href": "/catalog?category=cameras"
+        }
+      ]
+    },
+    {
+      "label": "New arrivals",
+      "href": "/catalog?collection=new"
+    },
+    {
+      "label": "Our story",
+      "href": "/story"
+    }
+  ],
+  "footer": {
+    "text": "Technology, beautifully considered. A collection for the way you live.\nCall us: +961 81 377 010",
+    "links": [
+      {
+        "label": "Our story",
+        "href": "/story"
+      },
+      {
+        "label": "Shipping & returns",
+        "href": "/shipping"
+      },
+      {
+        "label": "Get in touch",
+        "href": "/contact"
+      },
+      {
+        "label": "Find our store",
+        "href": "https://maps.app.goo.gl/1NmrjcQt71NsQgeg7"
+      }
+    ],
+    "eyebrow": "A MORE CONSIDERED EVERYDAY",
+    "categoriesTitle": "Explore",
+    "linksTitle": "Client care",
+    "cta": {
+      "label": "Get directions",
+      "href": "https://maps.app.goo.gl/1NmrjcQt71NsQgeg7"
+    }
+  },
+  "benefits": [
+    {
+      "title": "Considered design",
+      "description": "Technology chosen for form, function, and everyday living."
+    },
+    {
+      "title": "Thoughtful details",
+      "description": "Purposeful products. A more refined everyday."
+    },
+    {
+      "title": "A personal experience",
+      "description": "Discover your next essential with ElectroHome."
+    }
+  ],
+  "sections": [
+    {
+      "id": "hero",
+      "enabled": true,
+      "style": {
+        "tone": "template",
+        "spacing": "airy",
+        "width": "template"
+      },
+      "imageFit": "contain",
+      "type": "hero",
+      "layout": "split",
+      "eyebrow": "THE ELECTROHOME EDIT",
+      "title": "Extraordinary design.\nEveryday living.",
+      "description": "Discover a considered collection of technology, where beautiful form meets effortless function.",
+      "image": "http://localhost:5000/files/storefront/storefront-1793087869324-febffbb075af.webp",
+      "imageAlt": "Sculpted graphite over-ear headphones",
+      "cta": {
+        "label": "Explore the collection",
+        "href": "/catalog"
+      }
+    },
+    {
+      "id": "featured",
+      "enabled": true,
+      "style": {
+        "tone": "template",
+        "spacing": "airy",
+        "width": "template"
+      },
+      "type": "products",
+      "layout": "grid",
+      "eyebrow": "SELECTED WITH INTENTION",
+      "title": "The curated collection.",
+      "collectionId": "featured",
+      "sort": "featured",
+      "limit": 4,
+      "mobileColumns": 2,
+      "showCta": true
+    },
+    {
+      "id": "categories",
+      "enabled": true,
+      "style": {
+        "tone": "template",
+        "spacing": "airy",
+        "width": "template"
+      },
+      "type": "categories",
+      "layout": "template",
+      "eyebrow": "FIND YOUR INSPIRATION",
+      "title": "Designed around you."
+    },
+    {
+      "id": "banner",
+      "enabled": true,
+      "style": {
+        "tone": "template",
+        "spacing": "airy",
+        "width": "template"
+      },
+      "imageFit": "contain",
+      "type": "banner",
+      "layout": "template",
+      "eyebrow": "SOUND & STILLNESS",
+      "title": "A richer sound.\nA quieter moment.",
+      "description": "Make room for the music. Explore audio designed to bring presence, warmth, and detail to your everyday.",
+      "image": "images/speaker.svg",
+      "imageAlt": "A sculptural portable speaker",
+      "cta": {
+        "label": "Explore audio",
+        "href": "/catalog?category=audio"
+      }
+    },
+    {
+      "id": "contact",
+      "enabled": true,
+      "style": {
+        "tone": "template",
+        "spacing": "airy",
+        "width": "template"
+      },
+      "type": "text",
+      "layout": "centered",
+      "eyebrow": "A MORE PERSONAL EXPERIENCE",
+      "title": "Visit ElectroHome.",
+      "paragraphs": [
+        "Discover your next essential in store, or call us for a little guidance.",
+        "Phone: +961 81 377 010",
+        "Find our store using the directions below."
+      ],
+      "cta": {
+        "label": "Get directions",
+        "href": "https://maps.app.goo.gl/1NmrjcQt71NsQgeg7"
+      }
+    }
+  ],
+  "checkout": {
+    "countries": [
+      "United States",
+      "Lebanon",
+      "United Arab Emirates",
+      "United Kingdom"
+    ],
+    "shippingFee": 1000,
+    "freeShippingThreshold": 15000,
+    "notice": "Demo shipping rates and destinations. No payment or real order will be processed."
+  }
+}

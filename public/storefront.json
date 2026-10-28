@@ -1,5 +1,8 @@
 {
-  "mode": "mock",
-  "configUrl": "stores/electronics.json",
-  "catalogUrl": "catalogs/electronics.json"
+  "mode": "api",
+  "configUrl": "http://localhost:5000/api/v2/plugins/e-commerce/storefront/public/ele-store/config?orgId=1",
+  "catalogUrl": "http://localhost:5000/api/v2/plugins/e-commerce/storefront/public/ele-store/catalog?orgId=1",
+  "productUrl": "http://localhost:5000/api/v2/plugins/e-commerce/storefront/public/ele-store/product?orgId=1",
+  "searchUrl": "http://localhost:5000/api/v2/plugins/e-commerce/storefront/public/ele-store/search?orgId=1",
+  "ordersUrl": "http://localhost:5000/api/v2/plugins/e-commerce/storefront/public/ele-store/orders?orgId=1"
 }
