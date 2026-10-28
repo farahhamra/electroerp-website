@@ -1,6 +1,6 @@
 import * as Menu from '@radix-ui/react-dropdown-menu'
 import { ArrowUpRight, ChevronDown } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { Link } from './StoreRouterLink'
 
 export interface MenuLink {
   label: string
@@ -22,8 +22,8 @@ export function NavigationDropdown({ label, items }: { label: string; items: Men
           align="start"
         >
           {items.map((item) => (
-            <Menu.Item key={item.href} asChild>
-              {item.href.startsWith('https://') ? (
+            <Menu.Item key={item.href} asChild disabled={!item.href}>
+              {/^(https:\/\/|tel:|mailto:)/.test(item.href) ? (
                 <a className="dropdown-option" href={item.href}>
                   {item.label}
                   <ArrowUpRight size={15} />

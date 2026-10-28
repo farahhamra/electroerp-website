@@ -1,15 +1,25 @@
+import { useText } from '../core/i18n/useText'
 import { useEffect, useRef, useState } from 'react'
-import { Link, Outlet, useLocation } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom'
+import { Link } from './StoreRouterLink'
 import { ArrowRight, ShoppingBag } from 'lucide-react'
 import { useStore } from '../context/StoreContext'
 import { SearchDialog } from './SearchDialog'
+import { pagePath } from '../core/routing/links'
 import { templates } from '../templates/registry'
 
 export function Layout() {
+  const t = useText()
+
   const { config, notice } = useStore()
   const [searchOpen, setSearchOpen] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const location = useLocation()
+  const page = config.engine?.pages.find(
+    (p) =>
+      pagePath(p, config.engine!, config.locale).replace(/\/$/, '') ===
+      location.pathname.replace(/\/$/, ''),
+  )
   const previousPath = useRef(location.pathname)
   const header =
     templates[config.presentation.header.template ?? config.template] || templates.electronics
@@ -47,20 +57,22 @@ export function Layout() {
       data-button-style={config.theme.buttonStyle}
     >
       <a className="skip-link" href="#main">
-        Skip to content
+        {t('Skip to content')}
       </a>
-      <header.Header
-        onSearch={() => {
-          setMenuOpen(false)
-          setSearchOpen(true)
-        }}
-        menuOpen={menuOpen}
-        onMenuToggle={() => setMenuOpen((value) => !value)}
-      />
+      {page?.header !== false && (
+        <header.Header
+          onSearch={() => {
+            setMenuOpen(false)
+            setSearchOpen(true)
+          }}
+          menuOpen={menuOpen}
+          onMenuToggle={() => setMenuOpen((value) => !value)}
+        />
+      )}
       <main id="main" tabIndex={-1}>
         <Outlet />
       </main>
-      <footer.Footer />
+      {page?.footer !== false && <footer.Footer />}
       <SearchDialog open={searchOpen} onClose={() => setSearchOpen(false)} />
       <div className={`toast ${notice ? 'visible' : ''}`} role="status">
         {notice && (
@@ -68,7 +80,7 @@ export function Layout() {
             <ShoppingBag size={18} />
             {notice}
             <Link to="/cart">
-              View bag
+              {t('View bag')}
               <ArrowRight size={15} />
             </Link>
           </>

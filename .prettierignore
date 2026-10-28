@@ -4,3 +4,6 @@ package-lock.json
 public/images
 test-results
 playwright-report
+
+dist-static
+dist-contracts

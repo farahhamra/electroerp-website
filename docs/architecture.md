@@ -8,7 +8,7 @@
 4. React context owns catalog state, memoized search, cart state, and totals. Feature routes are lazy-loaded.
 5. Checkout submits product IDs, variant IDs, quantities, customer details, and an idempotency key through the provider interface.
 
-`src/core/schema.ts` and `src/core/presentation.ts` are the authoritative runtime contract. Unsupported configuration produces a retry state instead of a partially broken page. Unregistered template IDs, including header/footer/section overrides, produce the recoverable load error.
+`src/core/schema.ts` and `src/core/presentation.ts` retain the v1 runtime contract. V2 contracts, normalization, localization and diagnostics live in `src/core/config/`; see [engine-v2.md](engine-v2.md). Unsupported configuration produces a retry state instead of a partially broken page. Unregistered template IDs, including header/footer/section overrides, produce the recoverable load error.
 
 ## Templates
 
@@ -22,7 +22,7 @@ The template is a complete composition, separate from the configurable color pal
 | `beauty`      | Inset capsule navigation, floral mark and quiet announcement     | Sculptural apothecary hero, centered product shelf, numbered ritual categories, horizontal catalog filters              | Framed split farewell with brand and directory panel                    |
 | `outdoor`     | Expedition utility bar, mountain wordmark and field-note tagline | Typographic panorama, activity cards, numbered equipment grid, square product treatment                                 | Expedition statement, resource directory and oversized wordmark         |
 
-Implement the `StorefrontTemplate` interface in `src/templates/types.ts` to add a template. Register a lazy module loader in `src/templates/registry.tsx`, add its styles, and reference its ID in store JSON. Each module owns all seven presentation slots. Shared primitives handle links, bags, search, and product interactions without forcing a common header/footer composition. The active template is downloaded on demand. Additional section types should be added to the discriminated schema and renderer together.
+Implement the `StorefrontTemplate` interface in `src/templates/types.ts` to add a template. Register a lazy module loader in `src/templates/registry.tsx`, add its styles, and reference its ID in store JSON. Each module owns all seven presentation slots. Shared primitives handle links, bags, search, and product interactions without forcing a common header/footer composition. The active template is downloaded on demand. New v2 section families register a schema and lazy renderer at `src/engine/installed.ts`; see [extensions.md](extensions.md). Native template slots retain their compatibility adapters.
 
 `src/templates/templates.css` defines template-specific catalog, card, and product-detail layouts using the same semantic theme tokens. Checkout and cart behavior remain shared. The demo JSON files have different section orders, and merchants can still reorder or omit sections.
 
@@ -55,7 +55,7 @@ Each product has stable `id` and `slug` fields, a category ID, optional collecti
 
 Prices use integer minor units. `24900` with USD and `currencyDecimals: 2` displays as `$249.00`. The cart clamps quantities to known available stock and discards unavailable/invalid entries when restoring. Production inventory can change after loading; the order API must make the final stock and price decision.
 
-The initial UI copy is English. Locale/currency formatting is configurable, but translated interfaces and RTL layouts are not implemented. Default countries and delivery prices are illustrative demo settings, not real selling commitments. Taxes and payment processing are intentionally not simulated as real commerce.
+V1 keeps its default English presentation. V2 includes English and Arabic engine UI, merchant/catalog translations, locale-aware routes, RTL layout and registered Arabic typography. Other languages can supply message dictionaries and merchant content. Default countries and delivery prices are illustrative demo settings, not real selling commitments. Taxes and payment processing are intentionally not simulated as real commerce.
 
 ## Search
 
@@ -63,7 +63,7 @@ The initial UI copy is English. Locale/currency formatting is configurable, but 
 
 The React hook waits 180 ms after input changes. API requests receive an AbortSignal, and stale results are discarded. The native dialog supplies modal focus handling; the combobox supports Arrow Up/Down, Enter, and Escape. Search errors and empty states are visible to customers.
 
-API mode can serve a small initial catalog and use server search for the larger inventory. Search returns full products, cached by the provider for detail navigation. Direct product links and cart restoration use product lookup. Category browsing currently filters the loaded catalog; add catalog pagination to the provider and catalog page if full-inventory category browsing is needed at scale.
+API mode can serve a small initial catalog and use server search for the larger inventory. Search returns full products, cached by the provider for detail navigation. Direct product links and cart restoration use product lookup. V1 category browsing filters the loaded catalog. V2 uses complete-catalog evaluation or the paginated collection query capability for partial catalogs; unsupported query capability produces an explicit unavailable state.
 
 ## State and privacy
 
@@ -80,3 +80,11 @@ The [customization guide](customization.md) describes the full JSON interface an
 `scripts/export-config-schema.mjs` exports the input JSON Schema from Zod for editor autocomplete. Schema and selection unit tests plus desktop/mobile browser scenarios cover configuration inheritance, layout composition, keyboard disclosure controls and hidden-filter recovery.
 
 The `beauty` and `outdoor` modules register the same seven slots and support independent selection in `presentation.header.template`, `presentation.footer.template`, and native section `template`. Their CSS loads before merchant overrides. Media elements use `data-section-image` to inherit image fit and focal-point settings. Demo native bootstraps are in `public/presets/`; complete alternative configurations are in `public/stores/examples/`.
+
+## V2 module boundaries
+
+`src/core/index.ts` exports the framework-independent validation/normalization/query/link/registry surface. `src/app/App.tsx` keeps v1 lightweight and loads `EngineApp.tsx` only for v2. The latter resolves locale content, routes, global/page tokens and store context. `src/engine` renders pages/sections; `src/sections` contains additional families and collections. `src/core/seo` computes metadata and public snapshot contracts. `src/entry-server.tsx` is used only at build time by `scripts/prerender-store.mjs`.
+
+Version dispatch intentionally preserves native v1 rendering. Explicit migration produces v2 pages. The pure validator and composition root share section schemas; the registry's schemas generate versioned JSON Schema and the capability manifest. IntlMessageFormat and the Arabic dictionary load with v2 rather than the v1 startup path. Product/catalog/cart/checkout remain lazy routes. No builder UI or storage model is introduced.
+
+Theme values and routes are derived per store/locale. Config source JSON remains distinct from the normalized renderer model; do not persist the normalized model back into a builder. A snapshot stores only public configuration/catalog, uses immutable revision references for hydration, then connects the real provider. Browser effects own localStorage and document theme/head mutations.

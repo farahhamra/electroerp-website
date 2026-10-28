@@ -1,3 +1,4 @@
+import { useText } from '../core/i18n/useText'
 import { useStore } from '../context/StoreContext'
 import { lazy, type CSSProperties, type ReactNode } from 'react'
 import type { Section } from '../core/schema'
@@ -39,7 +40,7 @@ const ContentSection = lazy(() =>
   import('./ConfigurableSections').then((m) => ({ default: m.ContentSection })),
 )
 
-function SectionFrame({ section, children }: { section: Section; children: ReactNode }) {
+export function SectionFrame({ section, children }: { section: Section; children: ReactNode }) {
   const { config } = useStore()
   const { theme } = config
   const tone = section.style.tone
@@ -85,7 +86,13 @@ function SectionFrame({ section, children }: { section: Section; children: React
     </div>
   )
 }
-function SectionContent({ section, template }: { section: Section; template: StorefrontTemplate }) {
+export function SectionContent({
+  section,
+  template,
+}: {
+  section: Section
+  template: StorefrontTemplate
+}) {
   switch (section.type) {
     case 'hero':
       return section.layout === 'template' ? (
@@ -116,13 +123,15 @@ function SectionContent({ section, template }: { section: Section; template: Sto
   }
 }
 export function HomePage() {
+  const t = useText()
+
   const { config } = useStore()
   const template = templates[config.template]
   if (!template)
     return (
       <div className="empty-state">
-        <h1>Template unavailable</h1>
-        <p>This storefront configuration references an unregistered template.</p>
+        <h1>{t('Template unavailable')}</h1>
+        <p>{t('This storefront configuration references an unregistered template.')}</p>
       </div>
     )
   const sections = config.sections.filter((section) => section.enabled)

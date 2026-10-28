@@ -1,27 +1,31 @@
-import { Link } from 'react-router-dom'
+import { variantLabel } from '../core/i18n/content'
+import { useText } from '../core/i18n/useText'
+import { Link } from '../components/StoreRouterLink'
 import { ArrowLeft, ArrowRight, Minus, Plus, X } from 'lucide-react'
 import { useStore } from '../context/StoreContext'
 import { EmptyState, Money } from '../components/Shared'
 
 export function OrderSummary({ checkout = false }: { checkout?: boolean }) {
+  const t = useText()
+
   const { totals, config, provider } = useStore()
   return (
     <aside className="order-summary">
-      <span className="eyebrow">THE DETAILS</span>
-      <h2>Order summary</h2>
+      <span className="eyebrow">{t('THE DETAILS')}</span>
+      <h2>{t('Order summary')}</h2>
       <dl>
         <div>
-          <dt>Subtotal</dt>
+          <dt>{t('Subtotal')}</dt>
           <dd>
             <Money amount={totals.subtotal} />
           </dd>
         </div>
         <div>
-          <dt>Delivery</dt>
-          <dd>{totals.shipping === 0 ? 'Complimentary' : <Money amount={totals.shipping} />}</dd>
+          <dt>{t('Delivery')}</dt>
+          <dd>{totals.shipping === 0 ? t('Complimentary') : <Money amount={totals.shipping} />}</dd>
         </div>
         <div className="summary-total">
-          <dt>Total</dt>
+          <dt>{t('Total')}</dt>
           <dd>
             <Money amount={totals.total} />
           </dd>
@@ -30,24 +34,26 @@ export function OrderSummary({ checkout = false }: { checkout?: boolean }) {
       <p>{config.checkout.notice}</p>
       {!checkout && (
         <Link to="/checkout" className="button primary">
-          Continue to checkout
+          {t('Continue to checkout')}
           <ArrowRight size={18} />
         </Link>
       )}
       <div className="summary-note">
         {provider.mode === 'mock'
-          ? 'Demo checkout · No payment required'
-          : 'Final availability and totals are confirmed when your order is received.'}
+          ? t('Demo checkout · No payment required')
+          : t('Final availability and totals are confirmed when your order is received.')}
       </div>
     </aside>
   )
 }
 export default function Cart() {
+  const t = useText()
+
   const { cart, products, count, updateQuantity, config, totals } = useStore()
   if (!cart.length)
     return (
       <EmptyState
-        title="Room for something good."
+        title={t('Room for something good.')}
         text="Your bag is empty. Let’s find your next everyday favorite."
       />
     )
@@ -55,9 +61,10 @@ export default function Cart() {
   return (
     <div className="page-width cart-page">
       <div className="page-intro">
-        <span className="eyebrow">GOOD CHOICES</span>
+        <span className="eyebrow">{t('GOOD CHOICES')}</span>
         <h1>
-          Your bag<span className="heading-count">{count}</span>
+          {t('Your bag')}
+          <span className="heading-count">{count}</span>
         </h1>
       </div>
       <div className="checkout-layout">
@@ -67,16 +74,17 @@ export default function Cart() {
               <p>
                 {remaining ? (
                   <>
-                    <Money amount={remaining} /> away from complimentary delivery.
+                    <Money amount={remaining} />
+                    {t('away from complimentary delivery.')}
                   </>
                 ) : (
-                  'A little extra, on us. Your delivery is complimentary.'
+                  t('A little extra, on us. Your delivery is complimentary.')
                 )}
               </p>
               <progress
                 value={Math.min(totals.subtotal, config.checkout.freeShippingThreshold)}
                 max={config.checkout.freeShippingThreshold || 1}
-                aria-label="Progress toward complimentary delivery"
+                aria-label={t('Progress toward complimentary delivery')}
               />
             </div>
           )}
@@ -99,17 +107,17 @@ export default function Cart() {
                     <Link className="product-name" to={`/products/${product.slug}`}>
                       {product.name}
                     </Link>
-                    <p>{Object.values(variant.options).join(' / ')}</p>
+                    <p>{variantLabel(variant, config.locale)}</p>
                     <div className="quantity-control">
                       <button
-                        aria-label={`Decrease ${product.name} quantity`}
+                        aria-label={t('Decrease {value0} quantity', { value0: product.name })}
                         onClick={() => updateQuantity(product.id, variant.id, line.quantity - 1)}
                       >
                         <Minus size={14} />
                       </button>
                       <output>{line.quantity}</output>
                       <button
-                        aria-label={`Increase ${product.name} quantity`}
+                        aria-label={t('Increase {value0} quantity', { value0: product.name })}
                         disabled={line.quantity >= variant.stock}
                         onClick={() => updateQuantity(product.id, variant.id, line.quantity + 1)}
                       >
@@ -120,7 +128,7 @@ export default function Cart() {
                   <div className="cart-line-end">
                     <button
                       className="icon-button"
-                      aria-label={`Remove ${product.name}`}
+                      aria-label={t('Remove {value0}', { value0: product.name })}
                       onClick={() => updateQuantity(product.id, variant.id, 0)}
                     >
                       <X size={18} />
@@ -135,7 +143,7 @@ export default function Cart() {
           </div>
           <Link className="back-link" to="/catalog">
             <ArrowLeft size={16} />
-            Keep exploring
+            {t('Keep exploring')}
           </Link>
         </div>
         <OrderSummary />

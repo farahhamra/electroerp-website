@@ -1,3 +1,5 @@
+import { useText } from '../core/i18n/useText'
+import EngineCatalog from './EngineCatalog'
 import { useMemo, type CSSProperties } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { SlidersHorizontal, X } from 'lucide-react'
@@ -6,7 +8,9 @@ import { useProductSearch } from '../hooks/useProductSearch'
 import { ProductCard } from '../components/Shared'
 import { Dropdown } from '../components/Dropdown'
 
-export default function Catalog() {
+function LegacyCatalog() {
+  const t = useText()
+
   const { products, categories, config } = useStore()
   const [params, setParams] = useSearchParams()
   const query = params.get('q') || ''
@@ -67,7 +71,7 @@ export default function Catalog() {
   const title = query
     ? `Results for “${query}”`
     : categories.find((c) => c.id === category)?.name ||
-      (collection === 'new' ? 'New perspectives.' : catalog.title)
+      (collection === 'new' ? t('New perspectives.') : catalog.title)
   return (
     <div
       className="page-width catalog-page"
@@ -88,9 +92,9 @@ export default function Catalog() {
         <p>{catalog.description}</p>
       </div>
       {catalog.showCategoryTabs && (
-        <div className="category-tabs" aria-label="Product categories">
+        <div className="category-tabs" aria-label={t('Product categories')}>
           <button className={!category ? 'selected' : ''} onClick={() => update('category', '')}>
-            All products
+            {t('All products')}
           </button>
           {categories.map((c) => (
             <button
@@ -109,21 +113,21 @@ export default function Catalog() {
         </span>
         {!showFilters && params.size > 0 && (
           <button className="text-link" onClick={() => setParams({})}>
-            Clear filters <X size={15} />
+            {t('Clear filters')} <X size={15} />
           </button>
         )}
         <div className="catalog-sort">
-          <label htmlFor="catalog-sort">Sort by</label>
+          <label htmlFor="catalog-sort">{t('Sort by')}</label>
           <Dropdown
             id="catalog-sort"
-            label="Sort products"
+            label={t('Sort products')}
             value={sort}
             onValueChange={(value) => update('sort', value)}
             options={[
-              { value: 'featured', label: 'Featured' },
-              { value: 'price-low', label: 'Price: low to high' },
-              { value: 'price-high', label: 'Price: high to low' },
-              { value: 'name', label: 'Name: A–Z' },
+              { value: 'featured', label: t('Featured') },
+              { value: 'price-low', label: t('Price: low to high') },
+              { value: 'price-high', label: t('Price: high to low') },
+              { value: 'name', label: t('Name: A–Z') },
             ]}
           />
         </div>
@@ -134,29 +138,29 @@ export default function Catalog() {
             <details className="filter-panel" open>
               <summary>
                 <SlidersHorizontal size={17} />
-                Refine your selection
+                {t('Refine your selection')}
               </summary>
               <div className="filter-fields">
                 {catalog.filters.search && (
                   <label>
-                    Search collection
+                    {t('Search collection')}
                     <input
                       type="search"
                       value={query}
                       onChange={(e) => update('q', e.target.value)}
-                      placeholder="Name, brand, model…"
+                      placeholder={t('Name, brand, model…')}
                     />
                   </label>
                 )}
                 {catalog.filters.brand && (
                   <div className="filter-dropdown">
-                    <label htmlFor="catalog-brand">Brand</label>
+                    <label htmlFor="catalog-brand">{t('Brand')}</label>
                     <Dropdown
                       id="catalog-brand"
                       value={brand}
                       onValueChange={(value) => update('brand', value)}
                       options={[
-                        { value: '', label: 'All brands' },
+                        { value: '', label: t('All brands') },
                         ...[...new Set(products.map((p) => p.brand))].map((value) => ({
                           value,
                           label: value,
@@ -167,14 +171,15 @@ export default function Catalog() {
                 )}
                 {catalog.filters.price && (
                   <label>
-                    Maximum price ({config.currency})
+                    {t('Maximum price (')}
+                    {config.currency})
                     <input
                       type="number"
                       min="0"
                       step="1"
                       value={maxPrice}
                       onChange={(e) => update('price', e.target.value)}
-                      placeholder="Any price"
+                      placeholder={t('Any price')}
                     />
                   </label>
                 )}
@@ -185,12 +190,12 @@ export default function Catalog() {
                       checked={inStock}
                       onChange={(e) => update('stock', e.target.checked ? 'true' : '')}
                     />
-                    In stock only
+                    {t('In stock only')}
                   </label>
                 )}
                 {params.size > 0 && (
                   <button className="text-link" onClick={() => setParams({})}>
-                    Clear filters <X size={15} />
+                    {t('Clear filters')} <X size={15} />
                   </button>
                 )}
               </div>
@@ -203,7 +208,7 @@ export default function Catalog() {
               {search.error}
             </div>
           ) : query && search.loading ? (
-            <div className="loading-products" aria-label="Loading products" />
+            <div className="loading-products" aria-label={t('Loading products')} />
           ) : filtered.length ? (
             <div className="product-grid catalog-grid">
               {filtered.map((p) => (
@@ -212,10 +217,10 @@ export default function Catalog() {
             </div>
           ) : (
             <div className="no-results">
-              <h2>Nothing here just yet.</h2>
-              <p>Try another search or give your filters a little more room.</p>
+              <h2>{t('Nothing here just yet.')}</h2>
+              <p>{t('Try another search or give your filters a little more room.')}</p>
               <button className="button primary" onClick={() => setParams({})}>
-                View all products
+                {t('View all products')}
               </button>
             </div>
           )}
@@ -223,4 +228,9 @@ export default function Catalog() {
       </div>
     </div>
   )
+}
+
+export default function Catalog() {
+  const { config } = useStore()
+  return config.engine ? <EngineCatalog /> : <LegacyCatalog />
 }

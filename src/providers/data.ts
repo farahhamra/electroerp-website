@@ -1,4 +1,7 @@
+import type { StorefrontEngine } from '../engine/registry'
 import { z } from 'zod'
+import { resolveMedia } from '../core/config/media'
+import type { NormalizeOptions } from '../core/config/normalize'
 import {
   categorySchema,
   configSchema,
@@ -13,14 +16,25 @@ const catalogSchema = z.object({
   categories: z.array(categorySchema),
 })
 const bootstrapSchema = z.discriminatedUnion('mode', [
-  z.object({ mode: z.literal('mock'), configUrl: z.string(), catalogUrl: z.string() }),
+  z.object({
+    mode: z.literal('mock'),
+    configUrl: z.string(),
+    catalogUrl: z.string(),
+    revision: z.string().optional(),
+  }),
   z.object({
     mode: z.literal('api'),
+    revision: z.string().optional(),
     configUrl: z.string(),
     catalogUrl: z.string(),
     productUrl: z.string(),
+    categoryUrl: z.string().optional(),
     searchUrl: z.string().optional(),
     ordersUrl: z.string(),
+    queryUrl: z.string().optional(),
+    resolveUrl: z.string().optional(),
+    routesUrl: z.string().optional(),
+    catalogCoverage: z.enum(['complete', 'partial']).default('partial'),
   }),
 ])
 
@@ -38,8 +52,21 @@ export async function readJson(
   return response.json()
 }
 
-function validateStore(config: unknown, catalog: unknown): StoreData {
-  const data = { config: configSchema.parse(config), ...catalogSchema.parse(catalog) }
+async function validateStore(
+  config: unknown,
+  catalog: unknown,
+  options: NormalizeOptions = {},
+): Promise<StoreData> {
+  const parsedCatalog = catalogSchema.parse(catalog)
+  const legacy = (config as { version?: number }).version === 1
+  const normalized = legacy
+    ? configSchema.parse(config)
+    : (await import('../core/config/normalize')).normalizeStoreConfig(config, {
+        ...options,
+        ...parsedCatalog,
+        registry: options.registry ?? (await import('../engine/installed')).installedEngine,
+      })
+  const data = { config: normalized, ...parsedCatalog }
   for (const field of ['id', 'slug'] as const) {
     if (new Set(data.products.map((p) => p[field])).size !== data.products.length)
       throw new Error(`Duplicate product ${field} in catalog.`)
@@ -58,22 +85,111 @@ function validateStore(config: unknown, catalog: unknown): StoreData {
   return data
 }
 
-export async function createProvider(signal?: AbortSignal): Promise<DataProvider> {
+export async function createProvider(
+  signal?: AbortSignal,
+  engine?: StorefrontEngine,
+): Promise<DataProvider> {
   const bootstrapUrl =
     import.meta.env.VITE_BOOTSTRAP_URL || `${import.meta.env.BASE_URL}storefront.json`
-  const bootstrap = bootstrapSchema.parse(await readJson(bootstrapUrl, signal))
+  const rawBootstrap = await readJson(bootstrapUrl, signal)
+  const mode = String((rawBootstrap as { mode?: string }).mode)
+  const extension = !['mock', 'api'].includes(mode)
+    ? (engine ?? (await import('../engine/installed')).installedEngine).provider(mode)
+    : undefined
+  if (extension) return extension.create(extension.schema.parse(rawBootstrap))
+  const bootstrap = bootstrapSchema.parse(rawBootstrap)
   const resolve = (url: string) => new URL(url, new URL(bootstrapUrl, document.baseURI)).href
   let currentStore: StoreData | undefined
+  let mediaBase: string | undefined
+  const normalizeMedia = (raw: unknown) =>
+    currentStore?.config.engine && mediaBase ? resolveMedia(raw, mediaBase) : raw
+  const cacheKey = (slug: string, locale = currentStore?.config.locale ?? 'en-US') =>
+    locale + '|' + slug
   const cache = new Map<string, z.infer<typeof productSchema>>()
   const orders = new Map<string, { id: string; status: 'demo'; message: string }>()
   const provider: DataProvider = {
     mode: bootstrap.mode,
+    capabilities: {
+      catalog: bootstrap.mode === 'mock' ? 'complete' : bootstrap.catalogCoverage,
+      queries: bootstrap.mode === 'mock' || !!bootstrap.queryUrl,
+      routeEnumeration: bootstrap.mode === 'mock' || !!bootstrap.routesUrl,
+    },
     async loadStore(signal) {
-      const [config, catalog] = await Promise.all([
+      const [config, originalCatalog] = await Promise.all([
         readJson(resolve(bootstrap.configUrl), signal),
         readJson(resolve(bootstrap.catalogUrl), signal),
       ])
-      currentStore = validateStore(config, catalog)
+      let catalog = originalCatalog
+      const rawConfig = config as { version?: number; routing?: { basePath?: string } }
+      mediaBase = new URL(
+        rawConfig.version === 2 ? (rawConfig.routing?.basePath ?? '/') : import.meta.env.BASE_URL,
+        document.baseURI,
+      ).href
+      if (bootstrap.mode === 'api' && rawConfig.version === 2) {
+        const parsed = catalogSchema.parse(catalog)
+        const references = (await import('../core/config/references'))
+          .entityReferences(config)
+          .filter((ref) =>
+            ref.kind === 'product'
+              ? !parsed.products.some((p) => p.id === ref.id)
+              : !parsed.categories.some((c) => c.id === ref.id),
+          )
+        const context = {
+          storeId: String((config as { storeId: string }).storeId),
+          locale: (config as { i18n: { defaultLocale: string } }).i18n.defaultLocale,
+          currency: String((config as { currency: string }).currency),
+        }
+        for (let i = 0; i < references.length; i += 25) {
+          const batch = references.slice(i, i + 25)
+          if (provider.resolveEntities) {
+            const resolved = await provider.resolveEntities(batch, context, signal)
+            for (const p of resolved.products)
+              if (!parsed.products.some((existing) => existing.id === p.id)) parsed.products.push(p)
+            for (const c of resolved.categories)
+              if (!parsed.categories.some((existing) => existing.id === c.id))
+                parsed.categories.push(c)
+          } else {
+            for (const ref of batch) {
+              const endpoint = ref.kind === 'product' ? bootstrap.productUrl : bootstrap.categoryUrl
+              if (!endpoint) continue
+              const url = new URL(resolve(endpoint))
+              url.searchParams.set('id', ref.id)
+              const response = await readJson(url.href, signal)
+              if (response === null) continue
+              if (ref.kind === 'product') {
+                const item = productSchema.parse(response)
+                if (item.id !== ref.id) throw new Error('Unexpected product reference')
+                parsed.products.push(item)
+              } else {
+                const item = categorySchema.parse(response)
+                if (item.id !== ref.id) throw new Error('Unexpected category reference')
+                parsed.categories.push(item)
+              }
+            }
+          }
+        }
+        catalog = parsed
+      }
+      currentStore = await validateStore(
+        config,
+        rawConfig.version === 2 ? resolveMedia(catalog, mediaBase) : catalog,
+        {
+          mode: bootstrap.mode,
+          configUrl: resolve(bootstrap.configUrl),
+          registry: engine,
+          catalogCoverage: bootstrap.mode === 'mock' ? 'complete' : bootstrap.catalogCoverage,
+        },
+      )
+      if (bootstrap.revision) {
+        const bytes = await crypto.subtle.digest(
+          'SHA-256',
+          new TextEncoder().encode(JSON.stringify({ config, catalog: originalCatalog })),
+        )
+        currentStore.revision = [...new Uint8Array(bytes)]
+          .map((n) => n.toString(16).padStart(2, '0'))
+          .join('')
+          .slice(0, 16)
+      }
       if (bootstrap.mode === 'api') {
         // Restore products outside the featured catalog when reopening a saved bag.
         let ids: string[] = []
@@ -100,7 +216,7 @@ export async function createProvider(signal?: AbortSignal): Promise<DataProvider
               url.searchParams.set('id', id)
               const raw = await readJson(url.href, signal)
               if (raw === null) return null
-              const product = productSchema.parse(raw)
+              const product = productSchema.parse(normalizeMedia(raw))
               if (product.id !== id)
                 throw new Error('Product lookup returned an unexpected product.')
               return product
@@ -108,7 +224,7 @@ export async function createProvider(signal?: AbortSignal): Promise<DataProvider
         )
         currentStore.products.push(...restored.filter((p) => p !== null))
       }
-      currentStore.products.forEach((p) => cache.set(p.slug, p))
+      currentStore.products.forEach((p) => cache.set(cacheKey(p.slug), p))
       return currentStore
     },
     async placeOrder(input: OrderInput, signal) {
@@ -148,28 +264,86 @@ export async function createProvider(signal?: AbortSignal): Promise<DataProvider
       return result
     },
   }
+  if (bootstrap.mode === 'api' && bootstrap.queryUrl) {
+    provider.queryProducts = async (query, context, signal) => {
+      const response = await readJson(resolve(bootstrap.queryUrl!), signal, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query, context }),
+      })
+      const parsed = z
+        .object({
+          items: z.array(productSchema).max(100),
+          variants: z.record(z.string(), z.string()),
+          nextCursor: z.string().optional(),
+          total: z.number().int().nonnegative().optional(),
+          revision: z.string().optional(),
+        })
+        .parse(normalizeMedia(response))
+      for (const product of parsed.items) {
+        if (!product.variants.some((v) => v.id === parsed.variants[product.id]))
+          throw new Error('Collection response contains an invalid qualifying variant')
+        cache.set(cacheKey(product.slug, context.locale), product)
+      }
+      return parsed
+    }
+  }
+  if (bootstrap.mode === 'api' && bootstrap.resolveUrl)
+    provider.resolveEntities = async (references, context, signal) =>
+      catalogSchema.parse(
+        await readJson(resolve(bootstrap.resolveUrl!), signal, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ references, context }),
+        }),
+      )
+  if (bootstrap.mode === 'api' && bootstrap.routesUrl)
+    provider.listIndexableRoutes = async (context, cursor, signal) => {
+      const url = new URL(resolve(bootstrap.routesUrl!))
+      url.searchParams.set('locale', context.locale)
+      if (cursor) url.searchParams.set('cursor', cursor)
+      return catalogSchema
+        .extend({ nextCursor: z.string().optional(), revision: z.string().optional() })
+        .parse(await readJson(url.href, signal))
+    }
   if (bootstrap.mode === 'api') {
-    provider.getProduct = async (slug, signal) => {
-      if (cache.has(slug)) return cache.get(slug)
+    provider.getProduct = async (slug, signal, context) => {
+      const key = cacheKey(slug, context?.locale)
+      if (cache.has(key) && !currentStore?.config.engine) return cache.get(key)
       const url = new URL(resolve(bootstrap.productUrl))
       url.searchParams.set('slug', slug)
+      if (context) url.searchParams.set('locale', context.locale)
       const raw = await readJson(url.href, signal)
       if (raw === null) return undefined
-      const product = productSchema.parse(raw)
+      const product = productSchema.parse(normalizeMedia(raw))
       if (product.slug !== slug) throw new Error('Product lookup returned an unexpected product.')
-      cache.set(slug, product)
+      cache.set(key, product)
       return product
     }
   }
   if (bootstrap.mode === 'api' && bootstrap.searchUrl) {
-    provider.searchProducts = async (query, signal) => {
+    provider.searchProducts = async (query, signal, context) => {
       const url = new URL(resolve(bootstrap.searchUrl!))
       url.searchParams.set('q', query)
+      if (context) url.searchParams.set('locale', context.locale)
       url.searchParams.set('limit', '24')
-      const products = z.array(productSchema).parse(await readJson(url.href, signal))
-      products.forEach((p) => cache.set(p.slug, p))
+      const products = z
+        .array(productSchema)
+        .parse(normalizeMedia(await readJson(url.href, signal)))
+      products.forEach((p) => cache.set(cacheKey(p.slug, context?.locale), p))
       return products
     }
   }
+  if (bootstrap.mode === 'api' && bootstrap.categoryUrl)
+    provider.getCategory = async (slug, signal, context) => {
+      const url = new URL(resolve(bootstrap.categoryUrl!))
+      url.searchParams.set('slug', slug)
+      if (context) url.searchParams.set('locale', context.locale)
+      const raw = await readJson(url.href, signal)
+      if (raw === null) return undefined
+      const category = categorySchema.parse(normalizeMedia(raw))
+      if ((category.slug ?? category.id) !== slug) throw new Error('Unexpected category lookup')
+      return category
+    }
   return provider
 }

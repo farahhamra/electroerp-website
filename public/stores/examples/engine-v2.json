@@ -1,0 +1,1237 @@
+{
+  "$schema": "../../store-config.v2.schema.json",
+  "version": 2,
+  "storeId": "orbit-demo",
+  "template": "electronics",
+  "brand": {
+    "name": {
+      "values": {
+        "en-US": "ORBIT",
+        "ar": "أوربت"
+      }
+    },
+    "tagline": {
+      "values": {
+        "en-US": "Technology, thoughtfully.",
+        "ar": "تقنية صُمّمت بعناية."
+      }
+    },
+    "description": {
+      "values": {
+        "en-US": "Considered technology. Extraordinary everyday.",
+        "ar": "تقنية مدروسة تجعل كل يوم استثنائياً."
+      }
+    },
+    "logoWidth": 160,
+    "showSymbol": true
+  },
+  "currency": "USD",
+  "currencyDecimals": 2,
+  "theme": {
+    "background": "#FAFAF7",
+    "foreground": "#202321",
+    "accent": "#263FEC",
+    "accentText": "#FFFFFF",
+    "surface": "#F0F0EB",
+    "muted": "#656963",
+    "headingFont": "DM Sans",
+    "bodyFont": "DM Sans",
+    "radius": 4,
+    "contentWidth": 1280,
+    "bodySize": 15,
+    "buttonShape": "template",
+    "buttonStyle": "solid",
+    "motion": "full",
+    "tokens": {
+      "typography": {
+        "h2": {
+          "base": {
+            "size": 2.5,
+            "lineHeight": 1.1
+          },
+          "mobile": {
+            "size": 1.8
+          }
+        },
+        "navigation": {
+          "base": {
+            "size": 0.875,
+            "letterSpacing": 0.03
+          }
+        }
+      },
+      "components": {
+        "button": {
+          "radius": 8
+        },
+        "card": {
+          "radius": 12
+        }
+      }
+    }
+  },
+  "presentation": {
+    "header": {
+      "sticky": false,
+      "density": "comfortable",
+      "showAnnouncement": true,
+      "showSearch": true,
+      "showTagline": true,
+      "searchLabel": {
+        "values": {
+          "en-US": "Find your next upgrade",
+          "ar": "اكتشف اختيارك القادم"
+        }
+      }
+    },
+    "footer": {
+      "showCategories": true,
+      "showDescription": true,
+      "showWordmark": true,
+      "showLocale": true
+    },
+    "catalog": {
+      "layout": "template",
+      "mobileColumns": 2,
+      "defaultSort": "featured",
+      "showCategoryTabs": true,
+      "filters": {
+        "search": true,
+        "brand": true,
+        "price": true,
+        "availability": true
+      },
+      "eyebrow": {
+        "values": {
+          "en-US": "THE COLLECTION",
+          "ar": "المجموعة"
+        }
+      },
+      "title": {
+        "values": {
+          "en-US": "Find your everyday.",
+          "ar": "اكتشف ما يناسب يومك."
+        }
+      },
+      "description": {
+        "values": {
+          "en-US": "A considered selection. A better kind of everyday.",
+          "ar": "اختيارات بعناية لتجربة يومية أفضل."
+        }
+      }
+    },
+    "productCard": {
+      "imageRatio": "template",
+      "imageFit": "template",
+      "showCategory": true,
+      "showBrand": false,
+      "showOptions": true,
+      "showBadge": true,
+      "quickAdd": true
+    },
+    "benefitsPosition": "end"
+  },
+  "announcement": {
+    "values": {
+      "en-US": "A little something extra. Complimentary delivery on orders $150+",
+      "ar": "إضافة جميلة. توصيل تجريبي مجاني للطلبات التي تبلغ ١٥٠ دولاراً أو أكثر"
+    }
+  },
+  "navigation": [
+    {
+      "label": {
+        "values": {
+          "en-US": "Shop",
+          "ar": "تسوّق"
+        }
+      },
+      "destination": {
+        "kind": "system",
+        "route": "catalog"
+      }
+    },
+    {
+      "label": {
+        "values": {
+          "en-US": "Experience",
+          "ar": "التجربة"
+        }
+      },
+      "destination": {
+        "kind": "page",
+        "pageId": "experience"
+      }
+    },
+    {
+      "label": {
+        "values": {
+          "en-US": "Our story",
+          "ar": "قصتنا"
+        }
+      },
+      "destination": {
+        "kind": "page",
+        "pageId": "story"
+      }
+    },
+    {
+      "label": {
+        "values": {
+          "en-US": "Contact",
+          "ar": "تواصل معنا"
+        }
+      },
+      "destination": {
+        "kind": "page",
+        "pageId": "contact"
+      }
+    }
+  ],
+  "footer": {
+    "text": {
+      "values": {
+        "en-US": "Thoughtful design. Everyday possibility.",
+        "ar": "تصميم مدروس. إمكانات لكل يوم."
+      }
+    },
+    "links": [
+      {
+        "label": {
+          "values": {
+            "en-US": "Our story",
+            "ar": "قصتنا"
+          }
+        },
+        "href": "/story"
+      },
+      {
+        "label": {
+          "values": {
+            "en-US": "Shipping & returns",
+            "ar": "الشحن والإرجاع"
+          }
+        },
+        "href": "/shipping"
+      },
+      {
+        "label": {
+          "values": {
+            "en-US": "Get in touch",
+            "ar": "تواصل معنا"
+          }
+        },
+        "href": "/contact"
+      }
+    ],
+    "columns": [],
+    "socialLinks": []
+  },
+  "benefits": [
+    {
+      "title": {
+        "values": {
+          "en-US": "Considered by design",
+          "ar": "تصميم بعناية"
+        }
+      },
+      "description": {
+        "values": {
+          "en-US": "Every detail has a reason.",
+          "ar": "لكل تفصيل غاية."
+        }
+      }
+    },
+    {
+      "title": {
+        "values": {
+          "en-US": "Delivered with care",
+          "ar": "توصيل بعناية"
+        }
+      },
+      "description": {
+        "values": {
+          "en-US": "Complimentary delivery on orders $150+.",
+          "ar": "توصيل تجريبي مجاني للطلبات التي تبلغ ١٥٠ دولاراً أو أكثر."
+        }
+      }
+    },
+    {
+      "title": {
+        "values": {
+          "en-US": "Here to help",
+          "ar": "نحن هنا للمساعدة"
+        }
+      },
+      "description": {
+        "values": {
+          "en-US": "A more personal shopping experience.",
+          "ar": "تجربة تسوّق أقرب إليك."
+        }
+      }
+    }
+  ],
+  "checkout": {
+    "countries": ["United States", "Lebanon", "United Arab Emirates", "United Kingdom"],
+    "shippingFee": 1000,
+    "freeShippingThreshold": 15000,
+    "notice": {
+      "values": {
+        "en-US": "Demo shipping rates and destinations. No payment or real order will be processed.",
+        "ar": "أسعار ووجهات شحن تجريبية. لن تُحصّل دفعة ولن يُنفّذ طلب حقيقي."
+      }
+    }
+  },
+  "i18n": {
+    "defaultLocale": "en-US",
+    "locales": [
+      {
+        "code": "en-US",
+        "label": "English",
+        "direction": "ltr"
+      },
+      {
+        "code": "ar",
+        "label": "العربية",
+        "direction": "rtl"
+      }
+    ]
+  },
+  "pages": [
+    {
+      "id": "home",
+      "title": {
+        "values": {
+          "en-US": "ORBIT",
+          "ar": "أوربت"
+        }
+      },
+      "paths": {
+        "en-US": "/",
+        "ar": "/"
+      },
+      "heading": "hero",
+      "sections": [
+        {
+          "id": "hero",
+          "enabled": true,
+          "style": {
+            "tone": "template",
+            "spacing": "template",
+            "width": "template"
+          },
+          "imageFit": "template",
+          "imageSide": "right",
+          "type": "hero",
+          "layout": "template",
+          "eyebrow": {
+            "values": {
+              "en-US": "SOUND, REIMAGINED",
+              "ar": "الصوت برؤية جديدة"
+            }
+          },
+          "title": {
+            "values": {
+              "en-US": "Less noise.\nMore feeling.",
+              "ar": "ضجيج أقل.\nإحساس أعمق."
+            }
+          },
+          "description": {
+            "values": {
+              "en-US": "Meet Orbit One. Immersive sound, considered design, and a little more space for you.",
+              "ar": "اكتشف أوربت ون. صوت غامر وتصميم مدروس ومساحة أكبر لك."
+            }
+          },
+          "image": "../../images/headphones-hero.svg",
+          "imageAlt": {
+            "values": {
+              "en-US": "Sculpted graphite over-ear headphones",
+              "ar": "سماعات رأس باللون الجرافيتي"
+            }
+          },
+          "cta": {
+            "label": {
+              "values": {
+                "en-US": "Meet Orbit One",
+                "ar": "اكتشف أوربت ون"
+              }
+            },
+            "href": "/products/orbit-one"
+          }
+        },
+        {
+          "id": "featured",
+          "enabled": true,
+          "style": {
+            "tone": "template",
+            "spacing": "template",
+            "width": "template"
+          },
+          "type": "products",
+          "layout": "template",
+          "eyebrow": {
+            "values": {
+              "en-US": "THE GOOD STUFF",
+              "ar": "اختيارات مميزة"
+            }
+          },
+          "title": {
+            "values": {
+              "en-US": "Everyday, upgraded.",
+              "ar": "ارتقِ بتفاصيل يومك."
+            }
+          },
+          "collectionId": "featured",
+          "inStockOnly": false,
+          "sort": "featured",
+          "limit": 4,
+          "columns": 4,
+          "mobileColumns": 2,
+          "showCta": true
+        },
+        {
+          "id": "categories",
+          "enabled": true,
+          "style": {
+            "tone": "template",
+            "spacing": "template",
+            "width": "template"
+          },
+          "type": "categories",
+          "layout": "template",
+          "eyebrow": {
+            "values": {
+              "en-US": "FIND YOUR EVERYDAY",
+              "ar": "اختر ما يناسب يومك"
+            }
+          },
+          "title": {
+            "values": {
+              "en-US": "A world of possibilities.",
+              "ar": "عالم من الإمكانات."
+            }
+          },
+          "columns": 3
+        },
+        {
+          "id": "banner",
+          "enabled": true,
+          "style": {
+            "tone": "template",
+            "spacing": "template",
+            "width": "template"
+          },
+          "imageFit": "template",
+          "imageSide": "right",
+          "type": "banner",
+          "layout": "template",
+          "eyebrow": {
+            "values": {
+              "en-US": "SMALL SIZE. BIG ENERGY.",
+              "ar": "حجم صغير. طاقة كبيرة."
+            }
+          },
+          "title": {
+            "values": {
+              "en-US": "Good sound.\nAnywhere you go.",
+              "ar": "صوت مميز.\nأينما ذهبت."
+            }
+          },
+          "description": {
+            "values": {
+              "en-US": "Your favorite moments deserve their own soundtrack. Take them with you.",
+              "ar": "لحظاتك المفضلة تستحق موسيقاها الخاصة. اصطحبها معك."
+            }
+          },
+          "image": "../../images/speaker.svg",
+          "imageAlt": "",
+          "cta": {
+            "label": {
+              "values": {
+                "en-US": "Discover portable audio",
+                "ar": "اكتشف الصوت المحمول"
+              }
+            },
+            "href": "/catalog?category=audio"
+          }
+        },
+        {
+          "id": "migrated-benefits",
+          "type": "benefits",
+          "enabled": true,
+          "items": [
+            {
+              "title": {
+                "values": {
+                  "en-US": "Considered by design",
+                  "ar": "تصميم بعناية"
+                }
+              },
+              "description": {
+                "values": {
+                  "en-US": "Every detail has a reason.",
+                  "ar": "لكل تفصيل غاية."
+                }
+              }
+            },
+            {
+              "title": {
+                "values": {
+                  "en-US": "Delivered with care",
+                  "ar": "توصيل بعناية"
+                }
+              },
+              "description": {
+                "values": {
+                  "en-US": "Complimentary delivery on orders $150+.",
+                  "ar": "توصيل تجريبي مجاني للطلبات التي تبلغ ١٥٠ دولاراً أو أكثر."
+                }
+              }
+            },
+            {
+              "title": {
+                "values": {
+                  "en-US": "Here to help",
+                  "ar": "نحن هنا للمساعدة"
+                }
+              },
+              "description": {
+                "values": {
+                  "en-US": "A more personal shopping experience.",
+                  "ar": "تجربة تسوّق أقرب إليك."
+                }
+              }
+            }
+          ],
+          "style": {
+            "tone": "template",
+            "spacing": "template",
+            "width": "template"
+          }
+        },
+        {
+          "id": "audio-selection",
+          "type": "collection",
+          "title": {
+            "values": {
+              "en-US": "Sound, selected.",
+              "ar": "صوت يستحق الاختيار."
+            }
+          },
+          "collectionId": "audio"
+        }
+      ]
+    },
+    {
+      "id": "story",
+      "title": {
+        "values": {
+          "en-US": "Technology, thoughtfully.",
+          "ar": "تقنية صُمّمت بعناية."
+        }
+      },
+      "paths": {
+        "en-US": "/story",
+        "ar": "/story"
+      },
+      "sections": [
+        {
+          "id": "story-copy",
+          "type": "text",
+          "title": {
+            "values": {
+              "en-US": "Technology, thoughtfully.",
+              "ar": "تقنية صُمّمت بعناية."
+            }
+          },
+          "paragraphs": [
+            {
+              "values": {
+                "en-US": "Considered technology. Extraordinary everyday.",
+                "ar": "تقنية مدروسة تجعل كل يوم استثنائياً."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shipping",
+      "title": {
+        "values": {
+          "en-US": "Good things, on their way.",
+          "ar": "اختيارات جميلة في طريقها إليك."
+        }
+      },
+      "paths": {
+        "en-US": "/shipping",
+        "ar": "/shipping"
+      },
+      "sections": [
+        {
+          "id": "shipping-copy",
+          "type": "text",
+          "title": {
+            "values": {
+              "en-US": "Delivery information",
+              "ar": "معلومات التوصيل"
+            }
+          },
+          "paragraphs": [
+            {
+              "values": {
+                "en-US": "Demo shipping rates and destinations. No payment or real order will be processed.",
+                "ar": "أسعار ووجهات شحن تجريبية. لن تُحصّل دفعة ولن يُنفّذ طلب حقيقي."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "contact",
+      "title": {
+        "values": {
+          "en-US": "Always room for a conversation.",
+          "ar": "يسعدنا دائماً التواصل معك."
+        }
+      },
+      "paths": {
+        "en-US": "/contact",
+        "ar": "/contact"
+      },
+      "sections": [
+        {
+          "id": "contact-details",
+          "type": "contact-details",
+          "title": {
+            "values": {
+              "en-US": "A direct connection.",
+              "ar": "تواصل مباشر."
+            }
+          },
+          "locationId": "studio"
+        },
+        {
+          "id": "studio-map",
+          "type": "map",
+          "title": {
+            "values": {
+              "en-US": "Find our demo studio",
+              "ar": "موقع الاستوديو التجريبي"
+            }
+          },
+          "locationId": "studio",
+          "embed": true
+        }
+      ]
+    },
+    {
+      "id": "experience",
+      "title": {
+        "values": {
+          "en-US": "Made for everyday.",
+          "ar": "مصمّم لكل يوم."
+        }
+      },
+      "paths": {
+        "en-US": "/experience",
+        "ar": "/التجربة"
+      },
+      "sections": [
+        {
+          "id": "intro-columns",
+          "type": "columns",
+          "design": {
+            "layout": {
+              "base": {
+                "proportions": [1, 1.4],
+                "gap": 3
+              },
+              "mobile": {
+                "proportions": [1],
+                "gap": 1
+              }
+            }
+          },
+          "cells": [
+            {
+              "sections": [
+                {
+                  "id": "intro-text",
+                  "type": "text",
+                  "title": {
+                    "values": {
+                      "en-US": "Thoughtful by design.",
+                      "ar": "عناية في كل تصميم."
+                    }
+                  },
+                  "paragraphs": [
+                    {
+                      "values": {
+                        "en-US": "A fictional collection created to demonstrate a complete, configurable storefront engine.",
+                        "ar": "مجموعة خيالية لعرض إمكانات محرك متجر متكامل قابل للتخصيص."
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "sections": [
+                {
+                  "id": "intro-gallery",
+                  "type": "gallery",
+                  "title": {
+                    "values": {
+                      "en-US": "A closer look",
+                      "ar": "نظرة أقرب"
+                    }
+                  },
+                  "lightbox": true,
+                  "items": [
+                    {
+                      "src": "../../images/headphones.svg",
+                      "alt": {
+                        "values": {
+                          "en-US": "Orbit One Headphones",
+                          "ar": "سماعات أوربت ون"
+                        }
+                      },
+                      "caption": {
+                        "values": {
+                          "en-US": "Orbit One Headphones",
+                          "ar": "سماعات أوربت ون"
+                        }
+                      }
+                    },
+                    {
+                      "src": "../../images/earbuds.svg",
+                      "alt": {
+                        "values": {
+                          "en-US": "Orbit Air Earbuds",
+                          "ar": "سماعات أوربت إير"
+                        }
+                      },
+                      "caption": {
+                        "values": {
+                          "en-US": "Orbit Air Earbuds",
+                          "ar": "سماعات أوربت إير"
+                        }
+                      }
+                    },
+                    {
+                      "src": "../../images/speaker.svg",
+                      "alt": {
+                        "values": {
+                          "en-US": "Orbit Mini Speaker",
+                          "ar": "مكبر أوربت ميني"
+                        }
+                      },
+                      "caption": {
+                        "values": {
+                          "en-US": "Orbit Mini Speaker",
+                          "ar": "مكبر أوربت ميني"
+                        }
+                      }
+                    }
+                  ],
+                  "design": {
+                    "layout": {
+                      "base": {
+                        "columns": 3
+                      },
+                      "mobile": {
+                        "columns": 1
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "quotes",
+          "type": "testimonials",
+          "title": {
+            "values": {
+              "en-US": "Demo perspectives",
+              "ar": "آراء توضيحية"
+            }
+          },
+          "items": [
+            {
+              "quote": {
+                "values": {
+                  "en-US": "Thoughtful details make an everyday difference.",
+                  "ar": "التفاصيل المدروسة تصنع فرقاً في كل يوم."
+                }
+              },
+              "name": {
+                "values": {
+                  "en-US": "Fictional demo customer",
+                  "ar": "عميل خيالي للتوضيح"
+                }
+              },
+              "role": {
+                "values": {
+                  "en-US": "Illustrative testimonial",
+                  "ar": "شهادة توضيحية"
+                }
+              }
+            },
+            {
+              "quote": {
+                "values": {
+                  "en-US": "A simple, considered way to explore.",
+                  "ar": "طريقة بسيطة ومدروسة للاكتشاف."
+                }
+              },
+              "name": {
+                "values": {
+                  "en-US": "Fictional demo reviewer",
+                  "ar": "مراجع خيالي للتوضيح"
+                }
+              },
+              "role": {
+                "values": {
+                  "en-US": "Illustrative testimonial",
+                  "ar": "شهادة توضيحية"
+                }
+              }
+            }
+          ],
+          "design": {
+            "layout": {
+              "base": {
+                "columns": 2
+              },
+              "mobile": {
+                "columns": 1
+              }
+            }
+          }
+        },
+        {
+          "id": "brands",
+          "type": "brand-logos",
+          "title": {
+            "values": {
+              "en-US": "The ORBIT collection",
+              "ar": "مجموعة أوربت"
+            }
+          },
+          "items": [
+            {
+              "name": {
+                "values": {
+                  "en-US": "Audio",
+                  "ar": "الصوتيات"
+                }
+              },
+              "image": "../../images/headphones.svg"
+            },
+            {
+              "name": {
+                "values": {
+                  "en-US": "Wearables",
+                  "ar": "الأجهزة القابلة للارتداء"
+                }
+              },
+              "image": "../../images/watch.svg"
+            },
+            {
+              "name": {
+                "values": {
+                  "en-US": "Workspace",
+                  "ar": "مساحة العمل"
+                }
+              },
+              "image": "../../images/keyboard.svg"
+            }
+          ]
+        },
+        {
+          "id": "comparison",
+          "type": "comparison-table",
+          "title": {
+            "values": {
+              "en-US": "Find your fit",
+              "ar": "اختر ما يناسبك"
+            }
+          },
+          "columns": [
+            {
+              "values": {
+                "en-US": "Everyday",
+                "ar": "للاستخدام اليومي"
+              }
+            },
+            {
+              "values": {
+                "en-US": "Studio",
+                "ar": "للاستوديو"
+              }
+            }
+          ],
+          "rows": [
+            {
+              "label": {
+                "values": {
+                  "en-US": "Compact design",
+                  "ar": "تصميم مدمج"
+                }
+              },
+              "values": [true, false]
+            },
+            {
+              "label": {
+                "values": {
+                  "en-US": "Focus",
+                  "ar": "الاستخدام"
+                }
+              },
+              "values": [
+                {
+                  "values": {
+                    "en-US": "On the move",
+                    "ar": "أثناء التنقل"
+                  }
+                },
+                {
+                  "values": {
+                    "en-US": "At your desk",
+                    "ar": "على مكتبك"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "film",
+          "type": "video",
+          "title": {
+            "values": {
+              "en-US": "A moment of focus",
+              "ar": "لحظة من التركيز"
+            }
+          },
+          "source": {
+            "provider": "youtube",
+            "id": "aqz-KE-bpKQ"
+          },
+          "poster": "../../images/headphones.svg",
+          "transcript": {
+            "values": {
+              "en-US": "This sample links to the open movie Big Buck Bunny to demonstrate video embedding. It does not depict an ORBIT product.",
+              "ar": "يرتبط هذا المثال بفيلم Big Buck Bunny المفتوح لعرض تضمين الفيديو. لا يعرض منتجاً من أوربت."
+            }
+          }
+        },
+        {
+          "id": "promotions",
+          "type": "promotional-collections",
+          "title": {
+            "values": {
+              "en-US": "Explore a new perspective",
+              "ar": "اكتشف منظوراً جديداً"
+            }
+          },
+          "items": [
+            {
+              "collectionId": "sale",
+              "title": {
+                "values": {
+                  "en-US": "A considered offer",
+                  "ar": "عرض مختار بعناية"
+                }
+              },
+              "image": "../../images/headphones.svg",
+              "imageAlt": {
+                "values": {
+                  "en-US": "Orbit One Headphones",
+                  "ar": "سماعات أوربت ون"
+                }
+              },
+              "link": {
+                "label": {
+                  "values": {
+                    "en-US": "Explore offers",
+                    "ar": "اكتشف العروض"
+                  }
+                },
+                "destination": {
+                  "kind": "system",
+                  "route": "catalog",
+                  "query": {
+                    "collection": "sale"
+                  }
+                }
+              },
+              "preview": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faq",
+      "title": {
+        "values": {
+          "en-US": "Good to know.",
+          "ar": "معلومات مفيدة."
+        }
+      },
+      "paths": {
+        "en-US": "/faq",
+        "ar": "/faq"
+      },
+      "sections": [
+        {
+          "id": "faq-list",
+          "type": "faq",
+          "title": {
+            "values": {
+              "en-US": "Questions, answered.",
+              "ar": "إجابات عن أسئلتك."
+            }
+          },
+          "items": [
+            {
+              "question": {
+                "values": {
+                  "en-US": "Is this a real store?",
+                  "ar": "هل هذا متجر حقيقي؟"
+                }
+              },
+              "answer": {
+                "values": {
+                  "en-US": "No. This is a fictional storefront. Mock checkout never sends an order or collects payment.",
+                  "ar": "لا. هذا متجر خيالي. لا يُرسل الطلب التجريبي ولا تُحصّل أي دفعة."
+                }
+              }
+            },
+            {
+              "question": {
+                "values": {
+                  "en-US": "Can these layouts change?",
+                  "ar": "هل يمكن تغيير هذه التخطيطات؟"
+                }
+              },
+              "answer": {
+                "values": {
+                  "en-US": "Every page, section and supported design setting is supplied through JSON configuration.",
+                  "ar": "تُضبط كل صفحة وقسم وإعداد تصميم مدعوم من خلال إعدادات JSON."
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "siteUrl": "https://store.example.com",
+    "description": {
+      "values": {
+        "en-US": "A fictional premium electronics storefront. Explore the complete engine demonstration.",
+        "ar": "متجر إلكترونيات خيالي بتصميم راقٍ. اكتشف العرض الكامل للمحرك."
+      }
+    }
+  },
+  "business": {
+    "name": {
+      "values": {
+        "en-US": "ORBIT Demo",
+        "ar": "أوربت التجريبي"
+      }
+    },
+    "contacts": [
+      {
+        "id": "support",
+        "kind": "email",
+        "label": {
+          "values": {
+            "en-US": "Email our demo team",
+            "ar": "راسل فريقنا التجريبي"
+          }
+        },
+        "value": "hello@example.com"
+      },
+      {
+        "id": "phone",
+        "kind": "phone",
+        "label": {
+          "values": {
+            "en-US": "Call us",
+            "ar": "اتصل بنا"
+          }
+        },
+        "value": "+12025550100"
+      },
+      {
+        "id": "whatsapp",
+        "kind": "whatsapp",
+        "label": {
+          "values": {
+            "en-US": "WhatsApp",
+            "ar": "واتساب"
+          }
+        },
+        "value": "+12025550100"
+      }
+    ],
+    "locations": [
+      {
+        "id": "studio",
+        "label": {
+          "values": {
+            "en-US": "Fictional ORBIT studio",
+            "ar": "استوديو أوربت الخيالي"
+          }
+        },
+        "address": {
+          "street": {
+            "values": {
+              "en-US": "100 Example Avenue",
+              "ar": "١٠٠ شارع المثال"
+            }
+          },
+          "city": {
+            "values": {
+              "en-US": "Example City",
+              "ar": "مدينة المثال"
+            }
+          },
+          "country": {
+            "values": {
+              "en-US": "United States",
+              "ar": "الولايات المتحدة"
+            }
+          }
+        },
+        "timeZone": "America/New_York",
+        "latitude": 40.7128,
+        "longitude": -74.006,
+        "hours": {
+          "mon": {
+            "intervals": [
+              {
+                "start": "09:00",
+                "end": "18:00"
+              }
+            ]
+          },
+          "tue": {
+            "intervals": [
+              {
+                "start": "09:00",
+                "end": "18:00"
+              }
+            ]
+          },
+          "wed": {
+            "intervals": [
+              {
+                "start": "09:00",
+                "end": "18:00"
+              }
+            ]
+          },
+          "thu": {
+            "intervals": [
+              {
+                "start": "09:00",
+                "end": "18:00"
+              }
+            ]
+          },
+          "fri": {
+            "intervals": [
+              {
+                "start": "09:00",
+                "end": "18:00"
+              }
+            ]
+          },
+          "sat": {
+            "closed": true
+          },
+          "sun": {
+            "closed": true
+          }
+        },
+        "exceptions": {
+          "2026-12-25": {
+            "closed": true
+          }
+        }
+      }
+    ]
+  },
+  "collections": {
+    "audio": {
+      "categoryIds": ["audio"],
+      "inStock": true,
+      "sort": "price-low",
+      "limit": 4
+    },
+    "sale": {
+      "discounted": true,
+      "inStock": true,
+      "sort": "discount",
+      "limit": 4
+    },
+    "newest": {
+      "sort": "newest",
+      "limit": 4
+    }
+  },
+  "commerce": {
+    "product": {
+      "gallery": "thumbnails",
+      "relatedBy": "category",
+      "related": {
+        "inStock": true,
+        "limit": 4
+      }
+    },
+    "products": {
+      "orbit-mini": {
+        "gallery": "rail",
+        "stickySummary": false
+      }
+    },
+    "category": {
+      "columns": 3,
+      "showImage": true
+    },
+    "categories": {
+      "audio": {
+        "columns": 4,
+        "showImage": true,
+        "before": [
+          {
+            "id": "audio-intro",
+            "type": "text",
+            "title": {
+              "values": {
+                "en-US": "A world of sound.",
+                "ar": "عالم من الصوت."
+              }
+            },
+            "paragraphs": [
+              {
+                "values": {
+                  "en-US": "Explore our fictional audio collection.",
+                  "ar": "اكتشف مجموعتنا الصوتية الخيالية."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
