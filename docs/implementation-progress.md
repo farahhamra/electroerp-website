@@ -1,6 +1,6 @@
 # Engine implementation and verification
 
-The 14 engine capability areas are implemented. This report records the final scope, architecture decisions and verification; it supersedes the provisional module names and rendering strategy in the original plan. Publishing the source to the repository is the final release step. No website deployment has been performed.
+The 14 engine capability areas are implemented. This report records the final scope, architecture decisions and verification; it supersedes the provisional module names and rendering strategy in the original plan. Implementation commit `619fad2bbc4af0c09f74266b9b977402416d7f1d` was pushed to `origin/main` and its remote SHA verified. No website deployment has been performed.
 
 ## Requirement traceability
 

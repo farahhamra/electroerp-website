@@ -1,6 +1,6 @@
 # Storefront engine implementation tasks
 
-Status: implementation and verification complete through T101 (2026-10-28); T102 is awaiting the final repository push. Baseline application: `8c80ae6`; implementation starts at documentation commit `8915ba9`. See [the evidence report](docs/implementation-progress.md) and [baseline measurements](docs/implementation-baseline.md). Completion is assessed against the final compatibility/registry/static decisions in that report, which supersede the provisional internal refactors below.
+Status: T001–T102 complete (2026-10-28). Implementation commit `619fad2bbc4af0c09f74266b9b977402416d7f1d` was pushed to `origin/main` and verified against the remote. Baseline application: `8c80ae6`; implementation starts at documentation commit `8915ba9`. See [the evidence report](docs/implementation-progress.md) and [baseline measurements](docs/implementation-baseline.md). Completion is assessed against the final compatibility/registry/static decisions in that report, which supersede the provisional internal refactors below.
 
 ## How to execute this checklist
 
@@ -1615,7 +1615,7 @@ Exit gate: every E01–E14 capability has evidence, old stores remain compatible
 
 ### T102 — Run final checks and publish the completed changes
 
-- [ ] Complete T102.
+- [x] Complete T102.
 - **Requirements:** all. **Depends on:** T101.
 - **Files:** final repository diff and release artifacts.
 
@@ -1649,7 +1649,7 @@ Exit gate: every E01–E14 capability has evidence, old stores remain compatible
 
 ## Phase evidence log
 
-Evidence applies to the implementation commit containing this log. T102 records the verified remote revision after publication. Original file/module proposals are superseded by the final module map and decisions in docs/implementation-progress.md.
+Evidence applies to the implementation commit containing this log. T102 records the verified remote implementation revision `619fad2bbc4af0c09f74266b9b977402416d7f1d`. Original file/module proposals are superseded by the final module map and decisions in docs/implementation-progress.md.
 
 | Phase | Status                                       | Implementation                                                 | Verification evidence                                                                    |
 | ----- | -------------------------------------------- | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
@@ -1668,4 +1668,4 @@ Evidence applies to the implementation commit containing this log. T102 records 
 | P12   | Complete                                     | SEO/server entry/static generator                              | 38 routes each at root/subpath; crawler tags, hydration, revisions, HTTP 404             |
 | P13   | Complete                                     | pure validation/schema/capability exports                      | Semantic/adversarial/drift tests; pure ESM Node consumer smoke                           |
 | P14   | Complete                                     | examples and integration guides                                | V2 demo, API/extension/migration/deployment guides, five refreshed previews              |
-| P15   | Checks complete; push pending                | release verification                                           | 49 unit + 88 browser tests; static root/subpath; type/build/format/contract checks       |
+| P15   | Complete; remote verified                    | release verification                                           | 49 unit + 88 browser tests; static root/subpath; type/build/format/contract checks       |

@@ -1,6 +1,6 @@
 # Storefront engine implementation plan
 
-Status: E01–E14 implemented and verified (2026-10-28); repository publication is the final release step. The original design below is retained for traceability. See [implementation evidence and final decisions](docs/implementation-progress.md) for the delivered architecture, compatibility decisions, limits and test results.
+Status: E01–E14 implemented, verified and pushed to `origin/main` (2026-10-28), implementation commit `619fad2bbc4af0c09f74266b9b977402416d7f1d`. The original design below is retained for traceability. See [implementation evidence and final decisions](docs/implementation-progress.md) for the delivered architecture, compatibility decisions, limits and test results.
 
 Baseline: commit `8c80ae6` (five templates and template preview screenshots). Scope: the 14 engine responsibilities remaining after removing builder responsibilities. The executable checklist is [tasks.md](tasks.md). Existing behavior is documented in [architecture](docs/architecture.md), [customization](docs/customization.md), and the [proposed API contract](docs/api-contract.md).
 
