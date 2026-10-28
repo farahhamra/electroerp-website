@@ -1,3 +1,4 @@
+import { useText } from '../core/i18n/useText'
 import { ArrowRight, ArrowUpRight, Flower2 } from 'lucide-react'
 import { useStore } from '../context/StoreContext'
 import { ProductCard, StoreLink } from '../components/Shared'
@@ -176,9 +177,11 @@ function Banner({ section }: { section: BannerSection }) {
   )
 }
 function Benefits() {
+  const t = useText()
+
   const { config } = useStore()
   return (
-    <section className="beauty-values page-width" aria-label="Shopping with us">
+    <section className="beauty-values page-width" aria-label={t('Shopping with us')}>
       {config.benefits.map((benefit, i) => (
         <div key={benefit.title}>
           <span className="beauty-value-number">{String(i + 1).padStart(2, '0')}</span>
@@ -190,6 +193,8 @@ function Benefits() {
   )
 }
 function Footer() {
+  const t = useText()
+
   const { config } = useStore()
   return (
     <footer className="site-footer beauty-footer">
@@ -199,7 +204,7 @@ function Footer() {
             <span className="eyebrow">{config.footer.eyebrow ?? config.brand.tagline}</span>
             <h2>{config.footer.text}</h2>
             {config.presentation.footer.showDescription && <p>{config.brand.description}</p>}
-            <FooterCta label="Find your ritual" href="/catalog" />
+            <FooterCta label={t('Find your ritual')} href="/catalog" />
           </div>
           <div className="beauty-footer-details">
             {config.presentation.footer.showWordmark && (

@@ -1,0 +1,96 @@
+{
+  "runtime": "v24.19.0",
+  "browser": "154.0.8037.57",
+  "cpu": "AMD EPYC 9V74 80-Core Processor",
+  "measurements": [
+    {
+      "label": "baseline-v1",
+      "jsBytes": 507868,
+      "jsGzip": 160362,
+      "cssGzip": 18399,
+      "fontBytes": 36932,
+      "loadedJavaScript": [
+        "/assets/index-DpzivAua.js",
+        "/assets/electronics-Dri257PK.js",
+        "/assets/shared-B0QtZmcc.js",
+        "/assets/Combination-IiYTL6C4.js"
+      ],
+      "overflow": false
+    },
+    {
+      "label": "current-v1",
+      "jsBytes": 532699,
+      "jsGzip": 169515,
+      "cssGzip": 21715,
+      "fontBytes": 36932,
+      "loadedJavaScript": [
+        "/assets/index-Dz4nbqrp.js",
+        "/assets/jsx-runtime-EIAPxkjE.js",
+        "/assets/links-XjJSd7jU.js",
+        "/assets/Shared-XUKOFm-J.js",
+        "/assets/electronics-DZRmG8Dh.js",
+        "/assets/shared-B4cHsuc0.js",
+        "/assets/Combination-Cwo_EMg0.js"
+      ],
+      "overflow": false
+    },
+    {
+      "label": "current-v2",
+      "jsBytes": 633355,
+      "jsGzip": 205676,
+      "cssGzip": 21715,
+      "fontBytes": 36932,
+      "loadedJavaScript": [
+        "/assets/index-Dz4nbqrp.js",
+        "/assets/jsx-runtime-EIAPxkjE.js",
+        "/assets/links-XjJSd7jU.js",
+        "/assets/Shared-XUKOFm-J.js",
+        "/assets/normalize-CvTMooZl.js",
+        "/assets/contracts-DQi469SZ.js",
+        "/assets/registry-D1Axe5zE.js",
+        "/assets/content-B6W38w_h.js",
+        "/assets/installed-C-UZIER0.js",
+        "/assets/EngineApp-CHzWjBuH.js",
+        "/assets/styles-LfQjyfi6.js",
+        "/assets/SectionRenderer-Cr4MOLol.js",
+        "/assets/electronics-DZRmG8Dh.js",
+        "/assets/shared-B4cHsuc0.js",
+        "/assets/Combination-Cwo_EMg0.js",
+        "/assets/ConfigurableSections-CNdMDnAz.js",
+        "/assets/CollectionSection-CP2xMSfl.js",
+        "/assets/useCollection-BpT7No0P.js"
+      ],
+      "overflow": false
+    }
+  ],
+  "collections": [
+    {
+      "sort": "price-low",
+      "products": 10000,
+      "samples": 30,
+      "p50ms": 4.14,
+      "p95ms": 8.36
+    },
+    {
+      "sort": "name",
+      "products": 10000,
+      "samples": 30,
+      "p50ms": 2.49,
+      "p95ms": 3.64
+    },
+    {
+      "sort": "newest",
+      "products": 10000,
+      "samples": 30,
+      "p50ms": 4.86,
+      "p95ms": 5.64
+    },
+    {
+      "sort": "discount",
+      "products": 10000,
+      "samples": 30,
+      "p50ms": 5.05,
+      "p95ms": 5.86
+    }
+  ]
+}

@@ -1,5 +1,6 @@
+import { useText } from '../core/i18n/useText'
 import { useEffect, useRef, useState, type FormEvent } from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from '../components/StoreRouterLink'
 import { ArrowLeft, ArrowRight, Check, ShieldCheck } from 'lucide-react'
 import { useStore } from '../context/StoreContext'
 import { EmptyState } from '../components/Shared'
@@ -8,6 +9,8 @@ import { Dropdown } from '../components/Dropdown'
 import type { Customer, OrderResult } from '../core/schema'
 
 export default function Checkout() {
+  const t = useText()
+
   const { cart, config, provider, clearCart } = useStore()
   const [customer, setCustomer] = useState<Customer>({
     name: '',
@@ -36,13 +39,13 @@ export default function Checkout() {
     ) as unknown as Customer
     const next: Partial<Record<keyof Customer, string>> = {}
     for (const key of Object.keys(clean) as (keyof Customer)[])
-      if (!clean[key]) next[key] = 'Please complete this field.'
+      if (!clean[key]) next[key] = t('Please complete this field.')
     if (clean.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(clean.email))
-      next.email = 'Enter a valid email address.'
+      next.email = t('Enter a valid email address.')
     if (clean.phone && !/^[+\d\s().-]{7,25}$/.test(clean.phone))
-      next.phone = 'Enter a valid phone number.'
+      next.phone = t('Enter a valid phone number.')
     if (!config.checkout.countries.includes(clean.country))
-      next.country = 'Choose a delivery destination.'
+      next.country = t('Choose a delivery destination.')
     setErrors(next)
     if (Object.keys(next).length) {
       document.getElementById(`customer-${Object.keys(next)[0]}`)?.focus()
@@ -69,7 +72,9 @@ export default function Checkout() {
       clearCart()
     } catch (e) {
       if (!request.current.signal.aborted)
-        setError(e instanceof Error ? e.message : 'We couldn’t send your order. Please try again.')
+        setError(
+          e instanceof Error ? t(e.message) : t('We couldn’t send your order. Please try again.'),
+        )
     } finally {
       submitting.current = false
       setBusy(false)
@@ -82,19 +87,19 @@ export default function Checkout() {
           <Check size={32} />
         </div>
         <span className="eyebrow">
-          {result.status === 'demo' ? 'DEMO COMPLETE' : 'ORDER RECEIVED'}
+          {result.status === 'demo' ? t('DEMO COMPLETE') : t('ORDER RECEIVED')}
         </span>
         <h1 id="confirmation-heading" tabIndex={-1}>
           {result.status === 'demo'
-            ? 'A good choice, beautifully made.'
-            : 'Thank you for your order.'}
+            ? t('A good choice, beautifully made.')
+            : t('Thank you for your order.')}
         </h1>
-        <p>{result.message}</p>
+        <p>{t(result.message)}</p>
         <div className="order-reference">
-          Reference: <strong>{result.id}</strong>
+          {t('Reference:')} <strong>{result.id}</strong>
         </div>
         <Link to="/catalog" className="button primary">
-          Keep exploring
+          {t('Keep exploring')}
           <ArrowRight size={18} />
         </Link>
       </div>
@@ -102,7 +107,7 @@ export default function Checkout() {
   if (!cart.length)
     return (
       <EmptyState
-        title="Your next favorite is waiting."
+        title={t('Your next favorite is waiting.')}
         text="Add something to your bag before checking out."
       />
     )
@@ -112,32 +117,32 @@ export default function Checkout() {
     autocomplete: string
     type?: string
   }[] = [
-    { key: 'name', label: 'Full name', autocomplete: 'name' },
-    { key: 'email', label: 'Email address', autocomplete: 'email', type: 'email' },
-    { key: 'phone', label: 'Phone number', autocomplete: 'tel', type: 'tel' },
-    { key: 'address', label: 'Street address', autocomplete: 'street-address' },
-    { key: 'city', label: 'City', autocomplete: 'address-level2' },
+    { key: 'name', label: t('Full name'), autocomplete: 'name' },
+    { key: 'email', label: t('Email address'), autocomplete: 'email', type: 'email' },
+    { key: 'phone', label: t('Phone number'), autocomplete: 'tel', type: 'tel' },
+    { key: 'address', label: t('Street address'), autocomplete: 'street-address' },
+    { key: 'city', label: t('City'), autocomplete: 'address-level2' },
   ]
   return (
     <div className="page-width checkout-page">
       <Link className="back-link" to="/cart">
         <ArrowLeft size={16} />
-        Back to your bag
+        {t('Back to your bag')}
       </Link>
       <div className="page-intro">
-        <span className="eyebrow">ALMOST YOURS</span>
-        <h1>A few final details.</h1>
+        <span className="eyebrow">{t('ALMOST YOURS')}</span>
+        <h1>{t('A few final details.')}</h1>
         <p>
           {provider.mode === 'mock'
-            ? 'Explore the checkout experience. No real purchase will be made.'
-            : 'Tell us where your order should go.'}
+            ? t('Explore the checkout experience. No real purchase will be made.')
+            : t('Tell us where your order should go.')}
         </p>
       </div>
       <div className="checkout-layout">
         <form onSubmit={submit} noValidate className="checkout-form">
-          <h2>Contact & delivery</h2>
+          <h2>{t('Contact & delivery')}</h2>
           <fieldset disabled={busy}>
-            <legend className="sr-only">Customer information</legend>
+            <legend className="sr-only">{t('Customer information')}</legend>
             <div className="form-grid">
               {fields.map((field) => (
                 <div className={field.key === 'address' ? 'full-width' : ''} key={field.key}>
@@ -164,7 +169,7 @@ export default function Checkout() {
                 </div>
               ))}
               <div>
-                <label htmlFor="customer-country">Country / region</label>
+                <label htmlFor="customer-country">{t('Country / region')}</label>
                 <Dropdown
                   id="customer-country"
                   name="country"
@@ -176,7 +181,7 @@ export default function Checkout() {
                   onValueChange={(value) =>
                     setCustomer((previous) => ({ ...previous, country: value }))
                   }
-                  placeholder="Select destination"
+                  placeholder={t('Select destination')}
                   options={config.checkout.countries.map((value) => ({ value, label: value }))}
                 />
                 {errors.country && (
@@ -192,13 +197,17 @@ export default function Checkout() {
             <div>
               <strong>
                 {provider.mode === 'mock'
-                  ? 'A demonstration, from start to finish.'
-                  : 'Order request'}
+                  ? t('A demonstration, from start to finish.')
+                  : t('Order request')}
               </strong>
               <p>
                 {provider.mode === 'mock'
-                  ? 'Use sample contact details. They stay in this browser session and are not sent to a server.'
-                  : 'Your order is sent to the store for confirmation. Payment is handled separately by the store.'}
+                  ? t(
+                      'Use sample contact details. They stay in this browser session and are not sent to a server.',
+                    )
+                  : t(
+                      'Your order is sent to the store for confirmation. Payment is handled separately by the store.',
+                    )}
               </p>
             </div>
           </div>
@@ -209,10 +218,10 @@ export default function Checkout() {
           )}
           <button className="button primary checkout-submit" disabled={busy} type="submit">
             {busy
-              ? 'Submitting…'
+              ? t('Submitting…')
               : provider.mode === 'mock'
-                ? 'Complete demo order'
-                : 'Submit order request'}
+                ? t('Complete demo order')
+                : t('Submit order request')}
             <ArrowRight size={18} />
           </button>
         </form>

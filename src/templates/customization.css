@@ -27,7 +27,7 @@
   padding-block: 12px;
 }
 .tech-header-main > .header-actions {
-  margin-left: auto;
+  margin-inline-start: auto;
 }
 .fashion-masthead > .brand {
   grid-column: 2;
@@ -126,7 +126,7 @@ html[data-motion='reduced'] *::after {
   object-position: var(--section-image-position, 50% 50%);
 }
 .secondary-cta {
-  margin-left: 20px;
+  margin-inline-start: 20px;
   vertical-align: middle;
 }
 .footer-social {

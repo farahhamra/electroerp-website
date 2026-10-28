@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom'
+import { useText } from '../core/i18n/useText'
+import { Link } from '../components/StoreRouterLink'
 import {
   ArrowRight,
   ArrowUpRight,
@@ -30,6 +31,8 @@ import type {
 } from './types'
 
 function Header(props: HeaderProps) {
+  const t = useText()
+
   const { config } = useStore()
   return (
     <header className="site-header tech-header">
@@ -46,10 +49,14 @@ function Header(props: HeaderProps) {
       <div className="tech-header-main page-width">
         <Brand symbol />
         {config.presentation.header.showSearch && (
-          <button className="tech-search-button" onClick={props.onSearch} aria-label="Open search">
+          <button
+            className="tech-search-button"
+            onClick={props.onSearch}
+            aria-label={t('Open search')}
+          >
             <Search size={19} />
             <span>{config.presentation.header.searchLabel}</span>
-            <span className="search-button-hint">Explore</span>
+            <span className="search-button-hint">{t('Explore')}</span>
           </button>
         )}
         <HeaderActions {...props} showSearch={false} />
@@ -68,6 +75,8 @@ function Header(props: HeaderProps) {
   )
 }
 function Hero({ section }: { section: HeroSection }) {
+  const t = useText()
+
   const { config } = useStore()
   return (
     <section className="hero hero-electronics page-width">
@@ -90,7 +99,7 @@ function Hero({ section }: { section: HeroSection }) {
         )}
         <div className="hero-footnote">
           <span className="line" />
-          {section.footnote ?? 'DESIGNED AROUND YOU. ALWAYS.'}
+          {section.footnote ?? t('DESIGNED AROUND YOU. ALWAYS.')}
         </div>
       </div>
       <div className="hero-art">
@@ -104,12 +113,12 @@ function Hero({ section }: { section: HeroSection }) {
         />
         <span className="hero-art-label">
           <span className="small-dot" />
-          {section.imageLabel ?? 'A NEW KIND OF EVERYDAY'}
+          {section.imageLabel ?? t('A NEW KIND OF EVERYDAY')}
         </span>
         <span className="hero-edition">
-          THE {config.brand.name} EDIT
+          {t('THE')} {config.brand.name} {t('EDIT')}
           <br />
-          <strong>{section.edition ?? 'VOL. 01'}</strong>
+          <strong>{section.edition ?? t('VOL. 01')}</strong>
         </span>
       </div>
     </section>
@@ -187,10 +196,12 @@ function Banner({ section }: { section: BannerSection }) {
   )
 }
 function Benefits() {
+  const t = useText()
+
   const { config } = useStore()
   const icons = [Sparkles, PackageCheck, HeartHandshake]
   return (
-    <section className="benefits page-width" aria-label="Shopping with us">
+    <section className="benefits page-width" aria-label={t('Shopping with us')}>
       {config.benefits.map((benefit, index) => {
         const Icon = icons[index % icons.length]
         return (
@@ -207,6 +218,8 @@ function Benefits() {
   )
 }
 function Footer() {
+  const t = useText()
+
   const { config } = useStore()
   return (
     <footer
@@ -220,7 +233,7 @@ function Footer() {
             <Brand symbol />
             <h2>{config.brand.tagline}</h2>
             {config.presentation.footer.showDescription && <p>{config.brand.description}</p>}
-            <FooterCta label="Find your next upgrade" href="/catalog" />
+            <FooterCta label={t('Find your next upgrade')} href="/catalog" />
           </div>
           <FooterDirectory categoriesTitle="EXPLORE" linksTitle="HERE FOR YOU" />
         </div>

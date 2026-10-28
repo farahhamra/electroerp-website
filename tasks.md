@@ -1,6 +1,6 @@
 # Storefront engine implementation tasks
 
-Status: not started. These checkboxes describe future implementation work; writing this checklist does not complete them. Baseline: `8c80ae6`. Read [implementation-plan.md](implementation-plan.md) before changing contracts.
+Status: implementation and verification complete through T101 (2026-10-28); T102 is awaiting the final repository push. Baseline application: `8c80ae6`; implementation starts at documentation commit `8915ba9`. See [the evidence report](docs/implementation-progress.md) and [baseline measurements](docs/implementation-baseline.md). Completion is assessed against the final compatibility/registry/static decisions in that report, which supersede the provisional internal refactors below.
 
 ## How to execute this checklist
 
@@ -40,7 +40,7 @@ Exit gate: the existing engine is reproducible, its supported behavior is invent
 
 ### T001 — Record repository and tooling baseline
 
-- [ ] Complete T001.
+- [x] Complete T001.
 - **Requirements:** all. **Depends on:** none.
 - **Files:** `package.json`, lockfile, Vite/Playwright configuration, new `docs/implementation-baseline.md`.
 
@@ -55,7 +55,7 @@ Exit gate: the existing engine is reproducible, its supported behavior is invent
 
 ### T002 — Inventory current configuration behavior
 
-- [ ] Complete T002.
+- [x] Complete T002.
 - **Requirements:** E01–E14 compatibility. **Depends on:** T001.
 - **Files:** `src/core/schema.ts`, `presentation.ts`, `public/stores/`, `public/stores/examples/`, `docs/implementation-baseline.md`.
 
@@ -70,7 +70,7 @@ Exit gate: the existing engine is reproducible, its supported behavior is invent
 
 ### T003 — Protect compatibility fixtures
 
-- [ ] Complete T003.
+- [x] Complete T003.
 - **Requirements:** E01, E05, E07, E08, E10, E13. **Depends on:** T002.
 - **Files:** new `src/core/config/__fixtures__/`, `src/core/configuration.test.ts`, existing browser tests.
 
@@ -85,7 +85,7 @@ Exit gate: the existing engine is reproducible, its supported behavior is invent
 
 ### T004 — Capture visual and performance measurements
 
-- [ ] Complete T004.
+- [x] Complete T004.
 - **Requirements:** E03–E05, E10, release quality. **Depends on:** T003.
 - **Files:** `scripts/capture-template-previews.mjs`, existing template tests, baseline document.
 
@@ -104,7 +104,7 @@ Exit gate: raw v1/v2 input becomes one normalized model with stable field diagno
 
 ### T005 — Define module ownership and public types
 
-- [ ] Complete T005.
+- [x] Complete T005.
 - **Requirements:** all. **Depends on:** T004.
 - **Files:** new `src/core/config/types.ts`, `src/engine/types.ts`, `docs/architecture.md`.
 
@@ -119,7 +119,7 @@ Exit gate: raw v1/v2 input becomes one normalized model with stable field diagno
 
 ### T006 — Preserve v1 and implement version dispatch
 
-- [ ] Complete T006.
+- [x] Complete T006.
 - **Requirements:** E13 and compatibility. **Depends on:** T005.
 - **Files:** new `src/core/config/v1.ts`, `version.ts`; `src/core/schema.ts` facade.
 
@@ -134,7 +134,7 @@ Exit gate: raw v1/v2 input becomes one normalized model with stable field diagno
 
 ### T007 — Implement the v2 document and shared value schemas
 
-- [ ] Complete T007.
+- [x] Complete T007.
 - **Requirements:** all contract foundations. **Depends on:** T006.
 - **Files:** new `src/core/config/v2.ts`, shared content/media/localization schemas, v2 fixtures.
 
@@ -149,7 +149,7 @@ Exit gate: raw v1/v2 input becomes one normalized model with stable field diagno
 
 ### T008 — Build structured diagnostics and path mapping
 
-- [ ] Complete T008.
+- [x] Complete T008.
 - **Requirements:** E13. **Depends on:** T007.
 - **Files:** new `src/core/config/diagnostics.ts`, validation tests.
 
@@ -164,7 +164,7 @@ Exit gate: raw v1/v2 input becomes one normalized model with stable field diagno
 
 ### T009 — Normalize v1 into the new model
 
-- [ ] Complete T009.
+- [x] Complete T009.
 - **Requirements:** E01, E05, E07, E08, E10, E13. **Depends on:** T008.
 - **Files:** new `src/core/config/normalize-v1.ts`, normalizer entry point, compatibility tests.
 
@@ -179,7 +179,7 @@ Exit gate: raw v1/v2 input becomes one normalized model with stable field diagno
 
 ### T010 — Add an explicit migration utility
 
-- [ ] Complete T010.
+- [x] Complete T010.
 - **Requirements:** E13 and integration. **Depends on:** T009.
 - **Files:** new `scripts/migrate-store-config.mjs`, migration examples and tests.
 
@@ -194,7 +194,7 @@ Exit gate: raw v1/v2 input becomes one normalized model with stable field diagno
 
 ### T011 — Stabilize config loading and contracts checkpoint
 
-- [ ] Complete T011.
+- [x] Complete T011.
 - **Requirements:** E13 and all foundation consumers. **Depends on:** T010.
 - **Files:** `src/providers/data.ts`, config loader, `src/main.tsx`, config tests.
 
@@ -213,7 +213,7 @@ Exit gate: built-in and trusted custom section/provider definitions share a regi
 
 ### T012 — Implement registry infrastructure
 
-- [ ] Complete T012.
+- [x] Complete T012.
 - **Requirements:** E14, E13. **Depends on:** T011.
 - **Files:** new `src/engine/registry.ts`, `create-engine.ts`, registry tests.
 
@@ -228,7 +228,7 @@ Exit gate: built-in and trusted custom section/provider definitions share a regi
 
 ### T013 — Register existing sections and template adapters
 
-- [ ] Complete T013.
+- [x] Complete T013.
 - **Requirements:** E14 and template compatibility. **Depends on:** T012.
 - **Files:** `src/templates/registry.tsx`, `types.ts`, new `src/sections/builtins.ts`.
 
@@ -243,7 +243,7 @@ Exit gate: built-in and trusted custom section/provider definitions share a regi
 
 ### T014 — Introduce a generic section renderer
 
-- [ ] Complete T014.
+- [x] Complete T014.
 - **Requirements:** E01, E14. **Depends on:** T013.
 - **Files:** new `src/engine/SectionRenderer.tsx`, extracted section frame, `src/templates/registry.tsx`.
 
@@ -258,7 +258,7 @@ Exit gate: built-in and trusted custom section/provider definitions share a regi
 
 ### T015 — Register provider adapters and export metadata
 
-- [ ] Complete T015.
+- [x] Complete T015.
 - **Requirements:** E14, E13. **Depends on:** T014.
 - **Files:** `src/providers/data.ts`, new provider registry, `scripts/export-config-schema.mjs`.
 
@@ -273,7 +273,7 @@ Exit gate: built-in and trusted custom section/provider definitions share a regi
 
 ### T016 — Prove external section and data-source integration
 
-- [ ] Complete T016.
+- [x] Complete T016.
 - **Requirements:** E14. **Depends on:** T015.
 - **Files:** new `src/extensions/examples/`, integration fixtures/tests.
 
@@ -288,7 +288,7 @@ Exit gate: built-in and trusted custom section/provider definitions share a regi
 
 ### T017 — Verify registry compatibility and isolation
 
-- [ ] Complete T017.
+- [x] Complete T017.
 - **Requirements:** E14, E13. **Depends on:** T016.
 - **Files:** registry/schema tests, existing template browser tests.
 
@@ -307,7 +307,7 @@ Exit gate: configurable pages and typed links work in both routing modes, with p
 
 ### T018 — Implement page and route-table validation
 
-- [ ] Complete T018.
+- [x] Complete T018.
 - **Requirements:** E01, E07, E13. **Depends on:** T017.
 - **Files:** new `src/core/routing/pages.ts`, `routes.ts`, route tests.
 
@@ -322,7 +322,7 @@ Exit gate: configurable pages and typed links work in both routing modes, with p
 
 ### T019 — Extract an environment-independent application root
 
-- [ ] Complete T019.
+- [x] Complete T019.
 - **Requirements:** E01, E12 foundation. **Depends on:** T018.
 - **Files:** new `src/app/App.tsx`, browser bootstrap; `src/main.tsx`, provider initialization, context.
 
@@ -337,7 +337,7 @@ Exit gate: configurable pages and typed links work in both routing modes, with p
 
 ### T020 — Render configured pages and legacy information routes
 
-- [ ] Complete T020.
+- [x] Complete T020.
 - **Requirements:** E01. **Depends on:** T019.
 - **Files:** new `src/engine/PageRenderer.tsx`, page schemas, `src/pages/Information.tsx`.
 
@@ -352,7 +352,7 @@ Exit gate: configurable pages and typed links work in both routing modes, with p
 
 ### T021 — Add hash/history router selection and base paths
 
-- [ ] Complete T021.
+- [x] Complete T021.
 - **Requirements:** E01, E07, E12 foundation. **Depends on:** T020.
 - **Files:** routing adapter, `src/main.tsx`, `vite.config.ts`, hosting fixtures.
 
@@ -367,7 +367,7 @@ Exit gate: configurable pages and typed links work in both routing modes, with p
 
 ### T022 — Implement typed destination resolution
 
-- [ ] Complete T022.
+- [x] Complete T022.
 - **Requirements:** E07. **Depends on:** T021.
 - **Files:** new `src/core/routing/links.ts`, link schemas, resolver tests.
 
@@ -382,7 +382,7 @@ Exit gate: configurable pages and typed links work in both routing modes, with p
 
 ### T023 — Migrate every internal link consumer
 
-- [ ] Complete T023.
+- [x] Complete T023.
 - **Requirements:** E07, E11 foundation. **Depends on:** T022.
 - **Files:** `src/components/Shared.tsx`, navigation/search components, template shared helpers, all five templates and commerce pages.
 
@@ -397,7 +397,7 @@ Exit gate: configurable pages and typed links work in both routing modes, with p
 
 ### T024 — Implement section-anchor navigation and focus
 
-- [ ] Complete T024.
+- [x] Complete T024.
 - **Requirements:** E07, E04. **Depends on:** T023.
 - **Files:** new anchor navigation service/hook, page/section renderers, layout styles.
 
@@ -412,7 +412,7 @@ Exit gate: configurable pages and typed links work in both routing modes, with p
 
 ### T025 — Complete multi-page navigation checkpoint
 
-- [ ] Complete T025.
+- [x] Complete T025.
 - **Requirements:** E01, E07. **Depends on:** T024.
 - **Files:** new `tests/pages.spec.ts`, routing unit tests, existing browser tests.
 
@@ -431,7 +431,7 @@ Exit gate: documented tokens and semantic type roles apply consistently without 
 
 ### T026 — Define semantic tokens and typography roles
 
-- [ ] Complete T026.
+- [x] Complete T026.
 - **Requirements:** E05, E10. **Depends on:** T025.
 - **Files:** new `src/core/theme/schema.ts`, token fixtures, legacy mapping.
 
@@ -446,7 +446,7 @@ Exit gate: documented tokens and semantic type roles apply consistently without 
 
 ### T027 — Implement layered theme resolution and lifecycle
 
-- [ ] Complete T027.
+- [x] Complete T027.
 - **Requirements:** E05, E10. **Depends on:** T026.
 - **Files:** new `src/core/theme/resolve.ts`, `apply.ts`, theme provider/hook.
 
@@ -461,7 +461,7 @@ Exit gate: documented tokens and semantic type roles apply consistently without 
 
 ### T028 — Apply tokens across templates and shared controls
 
-- [ ] Complete T028.
+- [x] Complete T028.
 - **Requirements:** E05, E10. **Depends on:** T027.
 - **Files:** all template CSS, `src/styles.css`, `customization.css`, dropdown/control/card components.
 
@@ -476,7 +476,7 @@ Exit gate: documented tokens and semantic type roles apply consistently without 
 
 ### T029 — Implement font registration and loading behavior
 
-- [ ] Complete T029.
+- [x] Complete T029.
 - **Requirements:** E05, E11 foundation. **Depends on:** T028.
 - **Files:** font registry, font imports/assets, theme documentation.
 
@@ -491,7 +491,7 @@ Exit gate: documented tokens and semantic type roles apply consistently without 
 
 ### T030 — Verify theme and typography integration
 
-- [ ] Complete T030.
+- [x] Complete T030.
 - **Requirements:** E05, E10. **Depends on:** T029.
 - **Files:** theme unit tests, new theme browser tests, visual fixtures.
 
@@ -510,7 +510,7 @@ Exit gate: every supported responsive property follows one documented inheritanc
 
 ### T031 — Implement responsive value resolution
 
-- [ ] Complete T031.
+- [x] Complete T031.
 - **Requirements:** E04. **Depends on:** T030.
 - **Files:** new `src/core/theme/responsive.ts`, responsive schemas/tests.
 
@@ -525,7 +525,7 @@ Exit gate: every supported responsive property follows one documented inheritanc
 
 ### T032 — Generate responsive styles without duplicate trees
 
-- [ ] Complete T032.
+- [x] Complete T032.
 - **Requirements:** E04, E10. **Depends on:** T031.
 - **Files:** style generation/scoping module, section/page wrappers, responsive CSS.
 
@@ -540,7 +540,7 @@ Exit gate: every supported responsive property follows one documented inheritanc
 
 ### T033 — Connect responsive controls to rendering
 
-- [ ] Complete T033.
+- [x] Complete T033.
 - **Requirements:** E04, E05. **Depends on:** T032.
 - **Files:** theme/section frames, typography consumers, card/grid/media primitives.
 
@@ -555,7 +555,7 @@ Exit gate: every supported responsive property follows one documented inheritanc
 
 ### T034 — Migrate direction-sensitive CSS and interactions
 
-- [ ] Complete T034.
+- [x] Complete T034.
 - **Requirements:** E04, E11 foundation. **Depends on:** T033.
 - **Files:** shared/template CSS, navigation/gallery arrows, form/card components.
 
@@ -570,7 +570,7 @@ Exit gate: every supported responsive property follows one documented inheritanc
 
 ### T035 — Verify responsive boundaries and accessibility
 
-- [ ] Complete T035.
+- [x] Complete T035.
 - **Requirements:** E04. **Depends on:** T034.
 - **Files:** responsive unit/browser tests, representative long-text fixtures.
 
@@ -589,7 +589,7 @@ Exit gate: bounded section trees support useful layout variety with stable readi
 
 ### T036 — Define the layout and container contracts
 
-- [ ] Complete T036.
+- [x] Complete T036.
 - **Requirements:** E03, E13. **Depends on:** T035.
 - **Files:** new layout schemas, `columns` section definition, registry context metadata.
 
@@ -604,7 +604,7 @@ Exit gate: bounded section trees support useful layout variety with stable readi
 
 ### T037 — Build reusable layout primitives
 
-- [ ] Complete T037.
+- [x] Complete T037.
 - **Requirements:** E03, E04. **Depends on:** T036.
 - **Files:** new `src/components/layout/`, extracted section frame/styles.
 
@@ -619,7 +619,7 @@ Exit gate: bounded section trees support useful layout variety with stable readi
 
 ### T038 — Implement columns rendering and legacy layout adapters
 
-- [ ] Complete T038.
+- [x] Complete T038.
 - **Requirements:** E03, E14. **Depends on:** T037.
 - **Files:** new columns renderer, existing configurable sections, legacy normalizer.
 
@@ -634,7 +634,7 @@ Exit gate: bounded section trees support useful layout variety with stable readi
 
 ### T039 — Add background and media treatments
 
-- [ ] Complete T039.
+- [x] Complete T039.
 - **Requirements:** E03, E04. **Depends on:** T038.
 - **Files:** media/background primitives, layout schema, image helpers.
 
@@ -649,7 +649,7 @@ Exit gate: bounded section trees support useful layout variety with stable readi
 
 ### T040 — Verify complex layout compositions
 
-- [ ] Complete T040.
+- [x] Complete T040.
 - **Requirements:** E03, E04. **Depends on:** T039.
 - **Files:** layout unit/browser tests, multi-page fixtures.
 
@@ -668,7 +668,7 @@ Exit gate: all contact surfaces reference one structured business model with cor
 
 ### T041 — Implement business/location/contact schemas
 
-- [ ] Complete T041.
+- [x] Complete T041.
 - **Requirements:** E06, E13. **Depends on:** T040.
 - **Files:** new `src/core/business/schema.ts`, config schema, fixtures.
 
@@ -683,7 +683,7 @@ Exit gate: all contact surfaces reference one structured business model with cor
 
 ### T042 — Implement hours validation and display rules
 
-- [ ] Complete T042.
+- [x] Complete T042.
 - **Requirements:** E06, E11. **Depends on:** T041.
 - **Files:** new business hours helpers/tests, opening-hours display component.
 
@@ -698,7 +698,7 @@ Exit gate: all contact surfaces reference one structured business model with cor
 
 ### T043 — Add phone, email, WhatsApp, and business references
 
-- [ ] Complete T043.
+- [x] Complete T043.
 - **Requirements:** E06, E07. **Depends on:** T042, T022.
 - **Files:** destination schemas/resolver, business reference resolution/tests.
 
@@ -713,7 +713,7 @@ Exit gate: all contact surfaces reference one structured business model with cor
 
 ### T044 — Build shared business display components
 
-- [ ] Complete T044.
+- [x] Complete T044.
 - **Requirements:** E06. **Depends on:** T043.
 - **Files:** new address/contact/hours/social components, template footer/header helpers.
 
@@ -728,7 +728,7 @@ Exit gate: all contact surfaces reference one structured business model with cor
 
 ### T045 — Replace hardcoded contact and shipping fallback claims
 
-- [ ] Complete T045.
+- [x] Complete T045.
 - **Requirements:** E01, E06. **Depends on:** T044, T020.
 - **Files:** normalized legacy pages, `src/pages/Information.tsx`, mock/API fixtures.
 
@@ -743,7 +743,7 @@ Exit gate: all contact surfaces reference one structured business model with cor
 
 ### T046 — Verify business integration
 
-- [ ] Complete T046.
+- [x] Complete T046.
 - **Requirements:** E06, E07. **Depends on:** T045.
 - **Files:** business unit tests, contact/footer browser tests.
 
@@ -762,7 +762,7 @@ Exit gate: every new family has a registered schema, renderer, example, and mean
 
 ### T047 — Implement contact-details sections
 
-- [ ] Complete T047.
+- [x] Complete T047.
 - **Requirements:** E02, E06. **Depends on:** T046.
 - **Files:** new `src/sections/contact-details/`, registry, examples.
 
@@ -777,7 +777,7 @@ Exit gate: every new family has a registered schema, renderer, example, and mean
 
 ### T048 — Implement map sections
 
-- [ ] Complete T048.
+- [x] Complete T048.
 - **Requirements:** E02, E06, E07. **Depends on:** T047.
 - **Files:** new `src/sections/map/`, approved embed helper, CSP documentation.
 
@@ -792,7 +792,7 @@ Exit gate: every new family has a registered schema, renderer, example, and mean
 
 ### T049 — Implement galleries and accessible lightboxes
 
-- [ ] Complete T049.
+- [x] Complete T049.
 - **Requirements:** E02, E03, E04. **Depends on:** T048.
 - **Files:** new `src/sections/gallery/`, shared lightbox/media components.
 
@@ -807,7 +807,7 @@ Exit gate: every new family has a registered schema, renderer, example, and mean
 
 ### T050 — Implement testimonials
 
-- [ ] Complete T050.
+- [x] Complete T050.
 - **Requirements:** E02. **Depends on:** T049.
 - **Files:** new `src/sections/testimonials/`, schema/fixtures/tests.
 
@@ -822,7 +822,7 @@ Exit gate: every new family has a registered schema, renderer, example, and mean
 
 ### T051 — Implement brand-logo sections
 
-- [ ] Complete T051.
+- [x] Complete T051.
 - **Requirements:** E02, E03. **Depends on:** T050.
 - **Files:** new `src/sections/brand-logos/`, media fixtures/tests.
 
@@ -837,7 +837,7 @@ Exit gate: every new family has a registered schema, renderer, example, and mean
 
 ### T052 — Implement video sections
 
-- [ ] Complete T052.
+- [x] Complete T052.
 - **Requirements:** E02, E04. **Depends on:** T051.
 - **Files:** new `src/sections/video/`, shared embed/media helpers.
 
@@ -852,7 +852,7 @@ Exit gate: every new family has a registered schema, renderer, example, and mean
 
 ### T053 — Implement comparison tables
 
-- [ ] Complete T053.
+- [x] Complete T053.
 - **Requirements:** E02, E09 foundation. **Depends on:** T052.
 - **Files:** new `src/sections/comparison-table/`, fixtures/tests.
 
@@ -867,7 +867,7 @@ Exit gate: every new family has a registered schema, renderer, example, and mean
 
 ### T054 — Implement promotional collection presentation
 
-- [ ] Complete T054.
+- [x] Complete T054.
 - **Requirements:** E02, E08 foundation. **Depends on:** T053.
 - **Files:** new `src/sections/promotional-collections/`, collection reference schema.
 
@@ -882,7 +882,7 @@ Exit gate: every new family has a registered schema, renderer, example, and mean
 
 ### T055 — Validate all new section families together
 
-- [ ] Complete T055.
+- [x] Complete T055.
 - **Requirements:** E02, E03, E04. **Depends on:** T054.
 - **Files:** new section gallery fixtures, `tests/sections.spec.ts`, schema tests.
 
@@ -901,7 +901,7 @@ Exit gate: complete local catalogs and paginated APIs produce equivalent declare
 
 ### T056 — Extend catalog metadata compatibly
 
-- [ ] Complete T056.
+- [x] Complete T056.
 - **Requirements:** E08, E09, E11. **Depends on:** T055.
 - **Files:** product/category schemas and adapters, mock catalogs, contract tests.
 
@@ -916,7 +916,7 @@ Exit gate: complete local catalogs and paginated APIs produce equivalent declare
 
 ### T057 — Define query and pagination contracts
 
-- [ ] Complete T057.
+- [x] Complete T057.
 - **Requirements:** E08, E13. **Depends on:** T056.
 - **Files:** new `src/core/collections/schema.ts`, provider types, named collection config.
 
@@ -931,7 +931,7 @@ Exit gate: complete local catalogs and paginated APIs produce equivalent declare
 
 ### T058 — Implement the complete-catalog evaluator
 
-- [ ] Complete T058.
+- [x] Complete T058.
 - **Requirements:** E08. **Depends on:** T057.
 - **Files:** new collection normalizer/evaluator, `src/core/sections.ts`, query unit tests.
 
@@ -946,7 +946,7 @@ Exit gate: complete local catalogs and paginated APIs produce equivalent declare
 
 ### T059 — Implement remote query and entity-resolution adapters
 
-- [ ] Complete T059.
+- [x] Complete T059.
 - **Requirements:** E08, E07, E14. **Depends on:** T058, T022.
 - **Files:** provider adapters/registry, `docs/api-contract.md`, intercepted HTTP fixtures.
 
@@ -961,7 +961,7 @@ Exit gate: complete local catalogs and paginated APIs produce equivalent declare
 
 ### T060 — Add query caching and request lifecycle
 
-- [ ] Complete T060.
+- [x] Complete T060.
 - **Requirements:** E08, E11. **Depends on:** T059.
 - **Files:** new query service/hook, store cache integration, request lifecycle tests.
 
@@ -976,7 +976,7 @@ Exit gate: complete local catalogs and paginated APIs produce equivalent declare
 
 ### T061 — Connect product sections and catalog filters
 
-- [ ] Complete T061.
+- [x] Complete T061.
 - **Requirements:** E08. **Depends on:** T060.
 - **Files:** product-section renderers, `src/pages/Catalog.tsx`, filter URL integration.
 
@@ -991,7 +991,7 @@ Exit gate: complete local catalogs and paginated APIs produce equivalent declare
 
 ### T062 — Finish promotional collection previews
 
-- [ ] Complete T062.
+- [x] Complete T062.
 - **Requirements:** E02, E08. **Depends on:** T061, T054.
 - **Files:** promotional collections renderer, data requirements, browser tests.
 
@@ -1006,7 +1006,7 @@ Exit gate: complete local catalogs and paginated APIs produce equivalent declare
 
 ### T063 — Verify provider parity and query performance
 
-- [ ] Complete T063.
+- [x] Complete T063.
 - **Requirements:** E08, E13. **Depends on:** T062.
 - **Files:** collection/provider contract tests, browser pagination tests, benchmark fixture.
 
@@ -1025,7 +1025,7 @@ Exit gate: layout flexibility includes entity pages while purchase state remains
 
 ### T064 — Define product blocks and category overrides
 
-- [ ] Complete T064.
+- [x] Complete T064.
 - **Requirements:** E09, E14, E13. **Depends on:** T063.
 - **Files:** new commerce composition schemas/registries, config overrides.
 
@@ -1040,7 +1040,7 @@ Exit gate: layout flexibility includes entity pages while purchase state remains
 
 ### T065 — Extract shared product state and render blocks
 
-- [ ] Complete T065.
+- [x] Complete T065.
 - **Requirements:** E09. **Depends on:** T064.
 - **Files:** `src/pages/Product.tsx`, new product context/blocks, cart integration.
 
@@ -1055,7 +1055,7 @@ Exit gate: layout flexibility includes entity pages while purchase state remains
 
 ### T066 — Add gallery modes and specification blocks
 
-- [ ] Complete T066.
+- [x] Complete T066.
 - **Requirements:** E09, E03, E04. **Depends on:** T065.
 - **Files:** product gallery/specification blocks, shared media/lightbox primitives.
 
@@ -1070,7 +1070,7 @@ Exit gate: layout flexibility includes entity pages while purchase state remains
 
 ### T067 — Add configurable related products and policy content
 
-- [ ] Complete T067.
+- [x] Complete T067.
 - **Requirements:** E09, E08. **Depends on:** T066.
 - **Files:** related/delivery blocks, collection query integration, page links.
 
@@ -1085,7 +1085,7 @@ Exit gate: layout flexibility includes entity pages while purchase state remains
 
 ### T068 — Implement category landing routes and composition
 
-- [ ] Complete T068.
+- [x] Complete T068.
 - **Requirements:** E09, E01, E07. **Depends on:** T067.
 - **Files:** new category page, route resolver, catalog grid/filter components.
 
@@ -1100,7 +1100,7 @@ Exit gate: layout flexibility includes entity pages while purchase state remains
 
 ### T069 — Define template defaults for entity pages
 
-- [ ] Complete T069.
+- [x] Complete T069.
 - **Requirements:** E09, E10. **Depends on:** T068.
 - **Files:** all five template definitions/styles, commerce presets.
 
@@ -1115,7 +1115,7 @@ Exit gate: layout flexibility includes entity pages while purchase state remains
 
 ### T070 — Verify customizable commerce journeys
 
-- [ ] Complete T070.
+- [x] Complete T070.
 - **Requirements:** E09. **Depends on:** T069.
 - **Files:** product/category browser tests, block schema tests, existing checkout tests.
 
@@ -1134,7 +1134,7 @@ Exit gate: English and Arabic fixtures provide coherent translated content, UI, 
 
 ### T071 — Implement locale resolution and dictionaries
 
-- [ ] Complete T071.
+- [x] Complete T071.
 - **Requirements:** E11. **Depends on:** T070, T005, T007.
 - **Files:** new `src/core/i18n/`, locale provider, UI dictionaries.
 
@@ -1149,7 +1149,7 @@ Exit gate: English and Arabic fixtures provide coherent translated content, UI, 
 
 ### T072 — Translate engine UI and accessible messages
 
-- [ ] Complete T072.
+- [x] Complete T072.
 - **Requirements:** E11. **Depends on:** T071.
 - **Files:** shared components, pages, hooks, English/Arabic UI dictionaries.
 
@@ -1164,7 +1164,7 @@ Exit gate: English and Arabic fixtures provide coherent translated content, UI, 
 
 ### T073 — Resolve merchant and catalog translations
 
-- [ ] Complete T073.
+- [x] Complete T073.
 - **Requirements:** E11, E08. **Depends on:** T072.
 - **Files:** resolved config/catalog adapters, search indexing, provider contexts.
 
@@ -1179,7 +1179,7 @@ Exit gate: English and Arabic fixtures provide coherent translated content, UI, 
 
 ### T074 — Implement localized routes and locale switching
 
-- [ ] Complete T074.
+- [x] Complete T074.
 - **Requirements:** E11, E07. **Depends on:** T073.
 - **Files:** routing/localization resolver, accessible locale selector, navigation helpers.
 
@@ -1194,7 +1194,7 @@ Exit gate: English and Arabic fixtures provide coherent translated content, UI, 
 
 ### T075 — Complete five-template RTL behavior
 
-- [ ] Complete T075.
+- [x] Complete T075.
 - **Requirements:** E11, E04. **Depends on:** T074, T034.
 - **Files:** template/shared CSS, dropdown/media controls, commerce forms.
 
@@ -1209,7 +1209,7 @@ Exit gate: English and Arabic fixtures provide coherent translated content, UI, 
 
 ### T076 — Create complete bilingual examples
 
-- [ ] Complete T076.
+- [x] Complete T076.
 - **Requirements:** E11 and all content families. **Depends on:** T075.
 - **Files:** new v2 bilingual store/catalog fixtures and bootstraps.
 
@@ -1224,7 +1224,7 @@ Exit gate: English and Arabic fixtures provide coherent translated content, UI, 
 
 ### T077 — Verify localized end-to-end behavior
 
-- [ ] Complete T077.
+- [x] Complete T077.
 - **Requirements:** E11. **Depends on:** T076.
 - **Files:** i18n unit tests, new locale browser suite, search/provider tests.
 
@@ -1243,7 +1243,7 @@ Exit gate: crawler-visible HTML, metadata, sitemaps, and hosting instructions ar
 
 ### T078 — Define SEO schema and inheritance
 
-- [ ] Complete T078.
+- [x] Complete T078.
 - **Requirements:** E12, E13. **Depends on:** T077.
 - **Files:** new `src/core/seo/schema.ts`, metadata resolver/tests.
 
@@ -1258,7 +1258,7 @@ Exit gate: crawler-visible HTML, metadata, sitemaps, and hosting instructions ar
 
 ### T079 — Implement route-aware head management
 
-- [ ] Complete T079.
+- [x] Complete T079.
 - **Requirements:** E12. **Depends on:** T078.
 - **Files:** head model/renderer, application route integration.
 
@@ -1273,7 +1273,7 @@ Exit gate: crawler-visible HTML, metadata, sitemaps, and hosting instructions ar
 
 ### T080 — Implement factual structured data
 
-- [ ] Complete T080.
+- [x] Complete T080.
 - **Requirements:** E12, E06, E09. **Depends on:** T079.
 - **Files:** JSON-LD builders/serializer, business/product metadata tests.
 
@@ -1288,7 +1288,7 @@ Exit gate: crawler-visible HTML, metadata, sitemaps, and hosting instructions ar
 
 ### T081 — Implement complete static route enumeration
 
-- [ ] Complete T081.
+- [x] Complete T081.
 - **Requirements:** E12, E08, E14. **Depends on:** T080.
 - **Files:** static route enumerator, provider capability/adapter, build fixtures.
 
@@ -1303,7 +1303,7 @@ Exit gate: crawler-visible HTML, metadata, sitemaps, and hosting instructions ar
 
 ### T082 — Add a server render entry used only at build time
 
-- [ ] Complete T082.
+- [x] Complete T082.
 - **Requirements:** E12. **Depends on:** T081, T019.
 - **Files:** new `src/entry-server.tsx`, static render loader, Vite build configuration.
 
@@ -1318,7 +1318,7 @@ Exit gate: crawler-visible HTML, metadata, sitemaps, and hosting instructions ar
 
 ### T083 — Implement the static-generation command
 
-- [ ] Complete T083.
+- [x] Complete T083.
 - **Requirements:** E12. **Depends on:** T082.
 - **Files:** new `scripts/prerender-store.mjs`, package script, build output tests.
 
@@ -1333,7 +1333,7 @@ Exit gate: crawler-visible HTML, metadata, sitemaps, and hosting instructions ar
 
 ### T084 — Hydrate snapshots and revalidate safely
 
-- [ ] Complete T084.
+- [x] Complete T084.
 - **Requirements:** E12, E11. **Depends on:** T083.
 - **Files:** browser bootstrap, store initialization, public snapshot schema.
 
@@ -1348,7 +1348,7 @@ Exit gate: crawler-visible HTML, metadata, sitemaps, and hosting instructions ar
 
 ### T085 — Document and exercise static hosting modes
 
-- [ ] Complete T085.
+- [x] Complete T085.
 - **Requirements:** E12, E01, E07. **Depends on:** T084.
 - **Files:** new `docs/deployment.md`, example host rules, deployment smoke tests.
 
@@ -1363,7 +1363,7 @@ Exit gate: crawler-visible HTML, metadata, sitemaps, and hosting instructions ar
 
 ### T086 — Verify crawler output and hydration
 
-- [ ] Complete T086.
+- [x] Complete T086.
 - **Requirements:** E12. **Depends on:** T085.
 - **Files:** static output tests, browser hydration suite, hosting fixtures.
 
@@ -1382,7 +1382,7 @@ Exit gate: consumers can validate config and understand supported capabilities w
 
 ### T087 — Complete cross-reference and capability validation
 
-- [ ] Complete T087.
+- [x] Complete T087.
 - **Requirements:** E13, E14. **Depends on:** T086.
 - **Files:** config semantic validators, source-path maps, negative fixtures.
 
@@ -1397,7 +1397,7 @@ Exit gate: consumers can validate config and understand supported capabilities w
 
 ### T088 — Add bounded content-quality diagnostics
 
-- [ ] Complete T088.
+- [x] Complete T088.
 - **Requirements:** E13. **Depends on:** T087.
 - **Files:** quality checks, diagnostics documentation, fixtures/tests.
 
@@ -1412,7 +1412,7 @@ Exit gate: consumers can validate config and understand supported capabilities w
 
 ### T089 — Expose pure validation and normalization APIs
 
-- [ ] Complete T089.
+- [x] Complete T089.
 - **Requirements:** E13, E14. **Depends on:** T088.
 - **Files:** new public core entry point, package export/build configuration if needed, consumer smoke fixture.
 
@@ -1427,7 +1427,7 @@ Exit gate: consumers can validate config and understand supported capabilities w
 
 ### T090 — Export versioned schemas and capabilities
 
-- [ ] Complete T090.
+- [x] Complete T090.
 - **Requirements:** E13, E14. **Depends on:** T089.
 - **Files:** `scripts/export-config-schema.mjs`, `public/store-config.schema.json`, new v2 schema/capability manifest.
 
@@ -1442,7 +1442,7 @@ Exit gate: consumers can validate config and understand supported capabilities w
 
 ### T091 — Verify diagnostics and failure presentation
 
-- [ ] Complete T091.
+- [x] Complete T091.
 - **Requirements:** E13. **Depends on:** T090.
 - **Files:** diagnostic unit/contract tests, startup/section error browser tests.
 
@@ -1461,7 +1461,7 @@ Exit gate: a developer can supply valid engine configuration from documentation,
 
 ### T092 — Create comprehensive v2 store examples
 
-- [ ] Complete T092.
+- [x] Complete T092.
 - **Requirements:** E01–E14 demonstration. **Depends on:** T091.
 - **Files:** `public/stores/examples/`, catalogs/bootstraps, example index documentation.
 
@@ -1476,7 +1476,7 @@ Exit gate: a developer can supply valid engine configuration from documentation,
 
 ### T093 — Update configuration and migration guides
 
-- [ ] Complete T093.
+- [x] Complete T093.
 - **Requirements:** all integration contracts. **Depends on:** T092.
 - **Files:** `docs/customization.md`, `docs/architecture.md`, new migration/config-reference docs.
 
@@ -1491,7 +1491,7 @@ Exit gate: a developer can supply valid engine configuration from documentation,
 
 ### T094 — Publish proposed provider and extension guides
 
-- [ ] Complete T094.
+- [x] Complete T094.
 - **Requirements:** E08, E12, E14. **Depends on:** T093.
 - **Files:** `docs/api-contract.md`, new extension/provider integration guides.
 
@@ -1506,7 +1506,7 @@ Exit gate: a developer can supply valid engine configuration from documentation,
 
 ### T095 — Provide builder-facing consumption examples
 
-- [ ] Complete T095.
+- [x] Complete T095.
 - **Requirements:** E13, E14; boundary enforcement. **Depends on:** T094.
 - **Files:** integration examples and capability manifest documentation.
 
@@ -1521,7 +1521,7 @@ Exit gate: a developer can supply valid engine configuration from documentation,
 
 ### T096 — Update previews and top-level discovery
 
-- [ ] Complete T096.
+- [x] Complete T096.
 - **Requirements:** template compatibility and handoff. **Depends on:** T095.
 - **Files:** README, preview capture script, `public/template-previews/`, preview manifest.
 
@@ -1540,7 +1540,7 @@ Exit gate: every E01–E14 capability has evidence, old stores remain compatible
 
 ### T097 — Run the full compatibility matrix
 
-- [ ] Complete T097.
+- [x] Complete T097.
 - **Requirements:** all; backward compatibility. **Depends on:** T096.
 - **Files:** existing/new unit and browser suites, verification report.
 
@@ -1555,7 +1555,7 @@ Exit gate: every E01–E14 capability has evidence, old stores remain compatible
 
 ### T098 — Perform accessibility and responsive review
 
-- [ ] Complete T098.
+- [x] Complete T098.
 - **Requirements:** E02–E05, E09, E11. **Depends on:** T097.
 - **Files:** accessibility/browser tests, visual review report.
 
@@ -1570,7 +1570,7 @@ Exit gate: every E01–E14 capability has evidence, old stores remain compatible
 
 ### T099 — Verify performance and dependency boundaries
 
-- [ ] Complete T099.
+- [x] Complete T099.
 - **Requirements:** E08, E10, E12, E14. **Depends on:** T098.
 - **Files:** benchmark/bundle reports, lazy loader/cache implementation as needed.
 
@@ -1585,7 +1585,7 @@ Exit gate: every E01–E14 capability has evidence, old stores remain compatible
 
 ### T100 — Verify safe configuration and static deployment
 
-- [ ] Complete T100.
+- [x] Complete T100.
 - **Requirements:** E07, E12–E14. **Depends on:** T099.
 - **Files:** adversarial config fixtures, generated-output/hosting tests, deployment guide.
 
@@ -1600,7 +1600,7 @@ Exit gate: every E01–E14 capability has evidence, old stores remain compatible
 
 ### T101 — Complete requirement traceability and release notes
 
-- [ ] Complete T101.
+- [x] Complete T101.
 - **Requirements:** all. **Depends on:** T100.
 - **Files:** verification report, migration/release notes, this checklist and implementation plan status.
 
@@ -1649,23 +1649,23 @@ Exit gate: every E01–E14 capability has evidence, old stores remain compatible
 
 ## Phase evidence log
 
-Populate this table during implementation. A phase is not complete while any of its task checkboxes or exit criteria remain unmet.
+Evidence applies to the implementation commit containing this log. T102 records the verified remote revision after publication. Original file/module proposals are superseded by the final module map and decisions in docs/implementation-progress.md.
 
-| Phase | Status      | Implementation commit(s) | Verification evidence / unresolved issues |
-| ----- | ----------- | ------------------------ | ----------------------------------------- |
-| P00   | Not started | —                        | —                                         |
-| P01   | Not started | —                        | —                                         |
-| P02   | Not started | —                        | —                                         |
-| P03   | Not started | —                        | —                                         |
-| P04   | Not started | —                        | —                                         |
-| P05   | Not started | —                        | —                                         |
-| P06   | Not started | —                        | —                                         |
-| P07   | Not started | —                        | —                                         |
-| P08   | Not started | —                        | —                                         |
-| P09   | Not started | —                        | —                                         |
-| P10   | Not started | —                        | —                                         |
-| P11   | Not started | —                        | —                                         |
-| P12   | Not started | —                        | —                                         |
-| P13   | Not started | —                        | —                                         |
-| P14   | Not started | —                        | —                                         |
-| P15   | Not started | —                        | —                                         |
+| Phase | Status                                       | Implementation                                                 | Verification evidence                                                                    |
+| ----- | -------------------------------------------- | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| P00   | Complete                                     | Baseline report, retained fixtures, measurement/review scripts | Original 20 unit tests, archived baseline build, 45 visual fixtures                      |
+| P01   | Complete with explicit v1 migration decision | core/config, migration script                                  | Ten v1 stores migrate; diagnostics/version/media contracts tested                        |
+| P02   | Complete with native adapter decision        | engine registry/installed, public exports                      | Independent registry tests, custom section/provider browser flow                         |
+| P03   | Complete                                     | app/routing/page renderer                                      | V2 pages, existing navigation, hash browser and root/subpath history tests               |
+| P04   | Complete                                     | theme/config/registry                                          | Sparse typography/tokens, portal-style browser check, Arabic fonts                       |
+| P05   | Complete                                     | responsive CSS generation                                      | Zero/false unit checks; 767/768/1023/1024px assertions                                   |
+| P06   | Complete                                     | columns/section frames                                         | Rich nested example, bounds tests and responsive visual fixtures                         |
+| P07   | Complete                                     | business records/contact/footer                                | Hours/contact diagnostics and actionable contact browser tests                           |
+| P08   | Complete                                     | extra section families                                         | Rich bilingual page, gallery/table/contact interactions, static HTML                     |
+| P09   | Complete                                     | collection evaluator/service/provider                          | Variant semantics, cursors, concurrency, cancellation, API browser tests; p95 under 50ms |
+| P10   | Complete                                     | product/category composition                                   | Required-block/override tests, five-template commerce regression suite                   |
+| P11   | Complete                                     | locale resolution/ICU/RTL                                      | Arabic cart/checkout, locale identity, five-template RTL, bilingual static hydration     |
+| P12   | Complete                                     | SEO/server entry/static generator                              | 38 routes each at root/subpath; crawler tags, hydration, revisions, HTTP 404             |
+| P13   | Complete                                     | pure validation/schema/capability exports                      | Semantic/adversarial/drift tests; pure ESM Node consumer smoke                           |
+| P14   | Complete                                     | examples and integration guides                                | V2 demo, API/extension/migration/deployment guides, five refreshed previews              |
+| P15   | Checks complete; push pending                | release verification                                           | 49 unit + 88 browser tests; static root/subpath; type/build/format/contract checks       |

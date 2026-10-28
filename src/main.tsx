@@ -1,6 +1,6 @@
-import React, { Suspense, lazy, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom/client'
-import { HashRouter, Route, Routes } from 'react-router-dom'
+
 import './styles.css'
 import './components/dropdown.css'
 import './templates/templates.css'
@@ -8,20 +8,18 @@ import './templates/beauty.css'
 import './templates/outdoor.css'
 import './templates/customization.css'
 import { createProvider } from './providers/data'
-import { StoreProvider } from './context/StoreContext'
+import { StorefrontApplication } from './app/App'
+import './engine/engine.css'
+import '@fontsource-variable/noto-sans-arabic'
 import type { DataProvider, StoreData } from './core/schema'
-import { Layout } from './components/Layout'
-import { HomePage, templates } from './templates/registry'
-import { EmptyState } from './components/Shared'
+import { templates } from './templates/registry'
 
-const Catalog = lazy(() => import('./pages/Catalog'))
-const Product = lazy(() => import('./pages/Product'))
-const Cart = lazy(() => import('./pages/Cart'))
-const Checkout = lazy(() => import('./pages/Checkout'))
-const Information = lazy(() => import('./pages/Information'))
-
+const initialSnapshot = document.getElementById('store-snapshot')
+let initialStore: { data: StoreData; provider: DataProvider } | null = null
 function App() {
-  const [store, setStore] = useState<{ data: StoreData; provider: DataProvider } | null>(null)
+  const [store, setStore] = useState<{ data: StoreData; provider: DataProvider } | null>(
+    initialStore,
+  )
   const [error, setError] = useState('')
   useEffect(() => {
     const controller = new AbortController()
@@ -38,34 +36,31 @@ function App() {
         ]
         if (selectedTemplates.some((id) => id && !Object.hasOwn(templates, id)))
           throw new Error('Unregistered template in storefront configuration.')
-        const theme = data.config.theme
-        const root = document.documentElement
-        for (const [key, value] of Object.entries({
-          background: theme.background,
-          foreground: theme.foreground,
-          accent: theme.accent,
-          'accent-text': theme.accentText,
-          surface: theme.surface,
-          muted: theme.muted,
-          'heading-font': `"${theme.headingFont}", serif`,
-          'body-font': `"${theme.bodyFont}", sans-serif`,
-          radius: `${theme.radius}px`,
-          'content-width': `${theme.contentWidth}px`,
-          'body-size': `${theme.bodySize}px`,
-          'logo-width': `${data.config.brand.logoWidth}px`,
-          ...(theme.headingWeight ? { 'heading-weight': String(theme.headingWeight) } : {}),
-        }))
-          root.style.setProperty(`--${key}`, value)
-        if (theme.headingWeight) root.dataset.headingWeight = String(theme.headingWeight)
-        else delete root.dataset.headingWeight
-        root.dataset.motion = theme.motion
-        root.lang = data.config.locale
-        document.title = `${data.config.brand.name} — ${data.config.brand.tagline}`
-        document
-          .querySelector('meta[name="description"]')
-          ?.setAttribute('content', data.config.brand.description)
+        if (
+          initialStore?.data.revision &&
+          data.revision &&
+          initialStore.data.revision !== data.revision
+        )
+          window.dispatchEvent(
+            new CustomEvent('storefront:diagnostics', {
+              detail: [
+                {
+                  code: 'deployment.snapshot_stale',
+                  severity: 'warning',
+                  path: [],
+                  pointer: '',
+                  message:
+                    'The runtime store changed. Regenerate static pages to update crawler-visible content.',
+                },
+              ],
+            }),
+          )
         setStore({ data, provider })
-      } catch {
+      } catch (error) {
+        if (error && typeof error === 'object' && 'diagnostics' in error)
+          window.dispatchEvent(
+            new CustomEvent('storefront:diagnostics', { detail: error.diagnostics }),
+          )
         if (!controller.signal.aborted)
           setError('We couldn’t load this storefront. Please check your connection and try again.')
       }
@@ -90,41 +85,7 @@ function App() {
         <p>Something good is on its way.</p>
       </div>
     )
-  return (
-    <StoreProvider data={store.data} provider={store.provider}>
-      <HashRouter>
-        <Suspense
-          fallback={
-            <div className="startup-state" role="status">
-              Loading…
-            </div>
-          }
-        >
-          <Routes>
-            <Route element={<Layout />}>
-              <Route index element={<HomePage />} />
-              <Route path="catalog" element={<Catalog />} />
-              <Route path="products/:slug" element={<Product />} />
-              <Route path="cart" element={<Cart />} />
-              <Route path="checkout" element={<Checkout />} />
-              <Route path="story" element={<Information />} />
-              <Route path="shipping" element={<Information />} />
-              <Route path="contact" element={<Information />} />
-              <Route
-                path="*"
-                element={
-                  <EmptyState
-                    title="A little off the beaten path."
-                    text="That page isn’t here. There’s more to discover in the collection."
-                  />
-                }
-              />
-            </Route>
-          </Routes>
-        </Suspense>
-      </HashRouter>
-    </StoreProvider>
-  )
+  return <StorefrontApplication data={store.data} provider={store.provider} />
 }
 class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { failed: boolean }> {
   state = { failed: false }
@@ -145,10 +106,57 @@ class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { fai
     )
   }
 }
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <ErrorBoundary>
-      <App />
-    </ErrorBoundary>
-  </React.StrictMode>,
-)
+async function mount() {
+  if (initialSnapshot) {
+    try {
+      const { snapshotData, snapshotReferenceSchema } = await import('./core/seo/snapshot')
+      const snapshot = JSON.parse(initialSnapshot.textContent ?? '')
+      if ('configUrl' in snapshot) {
+        const ref = snapshotReferenceSchema.parse(snapshot)
+        const [config, catalog] = await Promise.all([
+          fetch(ref.configUrl).then((r) => {
+            if (!r.ok) throw new Error('Snapshot unavailable')
+            return r.json()
+          }),
+          fetch(ref.catalogUrl).then((r) => {
+            if (!r.ok) throw new Error('Snapshot unavailable')
+            return r.json()
+          }),
+        ])
+        initialStore = snapshotData({
+          version: ref.version,
+          locale: ref.locale,
+          mode: ref.mode,
+          revision: ref.revision,
+          config,
+          ...catalog,
+        })
+      } else initialStore = snapshotData(snapshot)
+    } catch {
+      document.getElementById('root')!.replaceChildren()
+      window.dispatchEvent(
+        new CustomEvent('storefront:diagnostics', {
+          detail: [
+            {
+              code: 'deployment.snapshot_unavailable',
+              severity: 'warning',
+              path: [],
+              pointer: '',
+              message: 'Snapshot resources are unavailable; loading the current storefront.',
+            },
+          ],
+        }),
+      )
+    }
+  }
+  const app = (
+    <React.StrictMode>
+      <ErrorBoundary>
+        <App />
+      </ErrorBoundary>
+    </React.StrictMode>
+  )
+  if (initialStore) ReactDOM.hydrateRoot(document.getElementById('root')!, app)
+  else ReactDOM.createRoot(document.getElementById('root')!).render(app)
+}
+void mount()

@@ -1,3 +1,4 @@
+import { useText } from '../core/i18n/useText'
 import { ArrowRight, ArrowUpRight, Compass, Mountain } from 'lucide-react'
 import { useStore } from '../context/StoreContext'
 import { ProductCard, StoreLink } from '../components/Shared'
@@ -195,9 +196,11 @@ function Banner({ section }: { section: BannerSection }) {
   )
 }
 function Benefits() {
+  const t = useText()
+
   const { config } = useStore()
   return (
-    <section className="outdoor-standards page-width" aria-label="Shopping with us">
+    <section className="outdoor-standards page-width" aria-label={t('Shopping with us')}>
       {config.benefits.map((benefit, i) => (
         <div key={benefit.title}>
           <span className="eyebrow">{String(i + 1).padStart(2, '0')}</span>
@@ -209,6 +212,8 @@ function Benefits() {
   )
 }
 function Footer() {
+  const t = useText()
+
   const { config } = useStore()
   return (
     <footer className="site-footer outdoor-footer">
@@ -218,7 +223,7 @@ function Footer() {
             <span className="eyebrow">{config.footer.eyebrow ?? config.brand.tagline}</span>
             <h2>{config.footer.text}</h2>
           </div>
-          <FooterCta label="Pack for what's next" href="/catalog" />
+          <FooterCta label={t("Pack for what's next")} href="/catalog" />
         </div>
         <div className="outdoor-footer-directory">
           {config.presentation.footer.showDescription && (

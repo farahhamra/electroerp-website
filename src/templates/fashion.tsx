@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom'
+import { useText } from '../core/i18n/useText'
+import { Link } from '../components/StoreRouterLink'
 import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import { useStore } from '../context/StoreContext'
 import { ProductCard, StoreLink } from '../components/Shared'
@@ -45,6 +46,7 @@ function Header(props: HeaderProps) {
   )
 }
 function Hero({ section }: { section: HeroSection }) {
+  const t = useText()
   return (
     <section className="fashion-cover">
       <div className="fashion-cover-art">
@@ -74,7 +76,7 @@ function Hero({ section }: { section: HeroSection }) {
         )}
       </div>
       <div className="fashion-cover-caption">
-        <span>{section.caption ?? 'THE CONSIDERED COLLECTION'}</span>
+        <span>{section.caption ?? t('THE CONSIDERED COLLECTION')}</span>
         <p>{section.description}</p>
         <ArrowRight size={24} aria-hidden="true" />
       </div>
@@ -82,6 +84,8 @@ function Hero({ section }: { section: HeroSection }) {
   )
 }
 function Products({ section }: { section: ProductsSection }) {
+  const t = useText()
+
   const products = useSectionProducts(section)
   if (!products.length) return null
   return (
@@ -95,7 +99,9 @@ function Products({ section }: { section: ProductsSection }) {
       <div className="fashion-edit-products">
         {products.map((product, index) => (
           <div className="fashion-edit-item" key={product.id}>
-            <span className="fashion-look-number">LOOK / {String(index + 1).padStart(2, '0')}</span>
+            <span className="fashion-look-number">
+              {t('LOOK /')} {String(index + 1).padStart(2, '0')}
+            </span>
             <ProductCard product={product} options={section.card} />
           </div>
         ))}
@@ -104,6 +110,8 @@ function Products({ section }: { section: ProductsSection }) {
   )
 }
 function Categories({ section }: { section: CategoriesSection }) {
+  const t = useText()
+
   const categories = useSectionCategories(section)
   if (!categories.length) return null
   return (
@@ -124,7 +132,9 @@ function Categories({ section }: { section: CategoriesSection }) {
               <img src={category.image} alt="" loading="lazy" width="600" height="520" />
             </div>
             <span className="fashion-collection-caption">
-              <span className="eyebrow">0{i + 1} / COLLECTION</span>
+              <span className="eyebrow">
+                0{i + 1} {t('/ COLLECTION')}
+              </span>
               <h3>{category.name}</h3>
               <ArrowUpRight size={24} />
             </span>
@@ -163,9 +173,11 @@ function Banner({ section }: { section: BannerSection }) {
   )
 }
 function Benefits() {
+  const t = useText()
+
   const { config } = useStore()
   return (
-    <section className="fashion-values page-width" aria-label="Shopping with us">
+    <section className="fashion-values page-width" aria-label={t('Shopping with us')}>
       {config.benefits.map((benefit, i) => (
         <div key={benefit.title}>
           <span className="eyebrow">0{i + 1}</span>
@@ -177,6 +189,8 @@ function Benefits() {
   )
 }
 function Footer() {
+  const t = useText()
+
   const { config } = useStore()
   return (
     <footer
@@ -187,9 +201,9 @@ function Footer() {
       <div className="page-width">
         <div className="fashion-footer-top">
           <div>
-            <span className="eyebrow">{config.footer.eyebrow ?? 'THE STUDIO'}</span>
+            <span className="eyebrow">{config.footer.eyebrow ?? t('THE STUDIO')}</span>
             <h2>{config.footer.text}</h2>
-            <FooterCta label="Our point of view" href="/story" />
+            <FooterCta label={t('Our point of view')} href="/story" />
           </div>
           {config.footer.columns.length ? (
             <FooterDirectory categoriesTitle="COLLECTIONS" linksTitle="THE DETAILS" />

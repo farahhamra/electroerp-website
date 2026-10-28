@@ -1,6 +1,6 @@
 # Storefront engine implementation plan
 
-Status: proposed; the capabilities described here have not been implemented by this document.
+Status: E01–E14 implemented and verified (2026-10-28); repository publication is the final release step. The original design below is retained for traceability. See [implementation evidence and final decisions](docs/implementation-progress.md) for the delivered architecture, compatibility decisions, limits and test results.
 
 Baseline: commit `8c80ae6` (five templates and template preview screenshots). Scope: the 14 engine responsibilities remaining after removing builder responsibilities. The executable checklist is [tasks.md](tasks.md). Existing behavior is documented in [architecture](docs/architecture.md), [customization](docs/customization.md), and the [proposed API contract](docs/api-contract.md).
 
@@ -458,6 +458,6 @@ Review matching-palette screenshots so template differentiation comes from compo
 | Provider migration disrupts orders/cart                 | Adapter compatibility, stable entity IDs/storage keys, transaction regression tests.               |
 | User-configured layouts hide required purchase controls | Typed product regions and mandatory transaction invariants.                                        |
 
-Decisions established for this plan: v2 input plus v1 adapter; three fixed device ranges; trusted build-time registries; typed destinations; complete/partial catalog declarations; English plus an Arabic verification fixture; optional build-time static generation for clean routes. These are proposed implementation decisions, not claims that the current engine already supports them.
+Decisions established for this plan: v2 input plus v1 adapter; three fixed device ranges; trusted build-time registries; typed destinations; complete/partial catalog declarations; English plus an Arabic verification fixture; optional build-time static generation for clean routes. The original proposals are retained as planning history; the final implemented decisions and evidence are recorded in docs/implementation-progress.md.
 
 Implementation is complete only when all E01–E14 requirements have passing acceptance evidence, all existing stores still run, contract/export docs match runtime behavior, mock mode works without external APIs, the static deployment path is documented and tested, and every task in `tasks.md` is checked with truthful evidence. Any unsupported ElectroERP backend capability must remain explicitly documented rather than simulated as production support.

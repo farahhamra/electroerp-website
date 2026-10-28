@@ -1,5 +1,7 @@
 # Customizing a storefront
 
+This guide documents the preserved v1 presentation controls, also available as native-slot defaults in v2. For pages, responsive design, rich sections, collections, translations and SEO, use [the v2 guide](engine-v2.md).
+
 All customization lives in the store JSON loaded by `storefront.json`. The same configuration is accepted from ElectroERP's future config endpoint. There is no storefront editor, backend, or rebuild needed to change runtime JSON. Keep your catalog and product IDs stable when changing presentation so saved bags continue to work.
 
 The original three stores still work without the new fields. Settings are optional and inherit the template's defaults. `src/core/schema.ts` and `src/core/presentation.ts` validate configuration on load. Invalid settings produce the recoverable loading error instead of rendering an inconsistent store.

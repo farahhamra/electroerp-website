@@ -1,3 +1,4 @@
+import { useText } from '../core/i18n/useText'
 import { ArrowUpRight, ChevronDown } from 'lucide-react'
 import type { CSSProperties } from 'react'
 import { useStore } from '../context/StoreContext'
@@ -64,6 +65,8 @@ export function MediaSection({ section }: { section: HeroSection | BannerSection
   )
 }
 export function Products({ section }: { section: ProductsSection }) {
+  const t = useText()
+
   const products = useSectionProducts(section)
   if (!products.length) return null
   return (
@@ -130,10 +133,12 @@ export function ContentSection({
 }: {
   section: Extract<Section, { type: 'text' | 'faq' | 'benefits' }>
 }) {
+  const t = useText()
+
   const { config } = useStore()
   if (section.type === 'benefits')
     return (
-      <section className="config-benefits page-width" aria-label="Shopping with us">
+      <section className="config-benefits page-width" aria-label={t('Shopping with us')}>
         {(section.items ?? config.benefits).map((benefit, i) => (
           <div key={`${benefit.title}-${i}`}>
             <span className="eyebrow">{String(i + 1).padStart(2, '0')}</span>

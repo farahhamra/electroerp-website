@@ -14,14 +14,42 @@ export const variantSchema = z.object({
   id: z.string().min(1),
   sku: z.string().min(1),
   options: z.record(z.string(), z.string()),
+  translations: z
+    .record(
+      z.string(),
+      z.object({
+        label: z.string().optional(),
+        options: z.record(z.string(), z.string()).optional(),
+      }),
+    )
+    .optional(),
   price: amount,
   compareAtPrice: amount.optional(),
   stock: z.number().int().nonnegative(),
   image: z.string().optional(),
 })
+const entitySeoSchema = z.object({
+  title: z.string().optional(),
+  description: z.string().optional(),
+  image: z.string().optional(),
+  imageAlt: z.string().optional(),
+  index: z.boolean().optional(),
+  follow: z.boolean().optional(),
+  canonical: z
+    .url()
+    .refine((value) => value.startsWith('https://'))
+    .optional(),
+})
+const entitySlugSchema = z
+  .string()
+  .min(1)
+  .max(300)
+  .regex(/^[^/\\?#%\u0000-\u001f]+$/)
+  .refine((s) => s !== '.' && s !== '..')
 export const productSchema = z.object({
+  seo: entitySeoSchema.optional(),
   id: z.string().min(1),
-  slug: z.string().min(1),
+  slug: entitySlugSchema,
   name: z.string().min(1),
   brand: z.string(),
   model: z.string(),
@@ -33,8 +61,56 @@ export const productSchema = z.object({
   images: z.array(z.string()).min(1),
   variants: z.array(variantSchema).min(1),
   badge: z.string().optional(),
+  createdAt: z.iso.datetime().optional(),
+  updatedAt: z.iso.datetime().optional(),
+  specifications: z
+    .array(
+      z.object({
+        group: z.string(),
+        label: z.string(),
+        value: z.string(),
+        unit: z.string().optional(),
+      }),
+    )
+    .optional(),
+  translations: z
+    .record(
+      z.string(),
+      z.object({
+        name: z.string().optional(),
+        slug: entitySlugSchema.optional(),
+        description: z.string().optional(),
+        categoryName: z.string().optional(),
+        details: z.array(z.string()).optional(),
+        seo: entitySeoSchema.optional(),
+        specifications: z
+          .array(
+            z.object({
+              group: z.string(),
+              label: z.string(),
+              value: z.string(),
+              unit: z.string().optional(),
+            }),
+          )
+          .optional(),
+      }),
+    )
+    .optional(),
 })
 export const categorySchema = z.object({
+  seo: entitySeoSchema.optional(),
+  slug: entitySlugSchema.optional(),
+  translations: z
+    .record(
+      z.string(),
+      z.object({
+        name: z.string().optional(),
+        slug: entitySlugSchema.optional(),
+        description: z.string().optional(),
+        seo: entitySeoSchema.optional(),
+      }),
+    )
+    .optional(),
   id: z.string(),
   name: z.string(),
   description: z.string(),
@@ -184,7 +260,9 @@ export const configSchema = z.object({
     notice: z.string(),
   }),
 })
-export type StoreConfig = z.infer<typeof configSchema>
+export type StoreConfig = z.infer<typeof configSchema> & {
+  engine?: import('./config/contracts').EngineConfig
+}
 export type Product = z.infer<typeof productSchema>
 export type Variant = z.infer<typeof variantSchema>
 export type Category = z.infer<typeof categorySchema>
@@ -214,14 +292,55 @@ export interface OrderResult {
   message: string
 }
 export interface StoreData {
+  snapshot?: boolean
+  revision?: string
   config: StoreConfig
   products: Product[]
   categories: Category[]
 }
 export interface DataProvider {
+  capabilities?: {
+    catalog: 'complete' | 'partial'
+    queries?: boolean
+    locales?: string[]
+    routeEnumeration?: boolean
+  }
+  queryProducts?(
+    query: import('./config/contracts').CollectionQuery,
+    context: import('./collections/query').QueryContext,
+    signal?: AbortSignal,
+  ): Promise<import('./collections/query').QueryResult>
+  resolveEntities?(
+    references: { kind: 'product' | 'category'; id: string }[],
+    context: import('./collections/query').QueryContext,
+    signal?: AbortSignal,
+  ): Promise<{ products: Product[]; categories: Category[] }>
+  listIndexableRoutes?(
+    context: import('./collections/query').QueryContext,
+    cursor?: string,
+    signal?: AbortSignal,
+  ): Promise<{
+    products: Product[]
+    categories: Category[]
+    nextCursor?: string
+    revision?: string
+  }>
   mode: 'mock' | 'api'
   loadStore(signal?: AbortSignal): Promise<StoreData>
-  searchProducts?(query: string, signal?: AbortSignal): Promise<Product[]>
-  getProduct?(slug: string, signal?: AbortSignal): Promise<Product | undefined>
+  searchProducts?(
+    query: string,
+    signal?: AbortSignal,
+    context?: import('./collections/query').QueryContext,
+  ): Promise<Product[]>
+  getProduct?(
+    slug: string,
+    signal?: AbortSignal,
+    context?: import('./collections/query').QueryContext,
+  ): Promise<Product | undefined>
+  getCategory?(
+    slug: string,
+    signal?: AbortSignal,
+    context?: import('./collections/query').QueryContext,
+  ): Promise<Category | undefined>
   placeOrder(input: OrderInput, signal?: AbortSignal): Promise<OrderResult>
 }

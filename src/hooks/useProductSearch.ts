@@ -3,7 +3,7 @@ import { useStore } from '../context/StoreContext'
 import type { Product } from '../core/schema'
 
 export function useProductSearch(query: string) {
-  const { provider, search } = useStore()
+  const { provider, search, t, config } = useStore()
   const [state, setState] = useState<{
     query: string
     results: Product[]
@@ -20,7 +20,11 @@ export function useProductSearch(query: string) {
     const timer = setTimeout(async () => {
       try {
         const results = provider.searchProducts
-          ? await provider.searchProducts(query, controller.signal)
+          ? await provider.searchProducts(query, controller.signal, {
+              storeId: config.storeId,
+              locale: config.locale,
+              currency: config.currency,
+            })
           : search(query)
         if (!controller.signal.aborted) setState({ query, results, loading: false, error: '' })
       } catch {
@@ -29,7 +33,7 @@ export function useProductSearch(query: string) {
             query,
             results: [],
             loading: false,
-            error: 'Search is unavailable. Please try again.',
+            error: t('Search is unavailable. Please try again.'),
           })
       }
     }, 180)
@@ -37,7 +41,7 @@ export function useProductSearch(query: string) {
       clearTimeout(timer)
       controller.abort()
     }
-  }, [query, provider, search])
+  }, [query, provider, search, t])
   return state.query === query
     ? state
     : { query, results: [], loading: query.trim().length >= 2, error: '' }

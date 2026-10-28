@@ -263,14 +263,14 @@ main:focus {
 .brand-symbol {
   font-size: 32px;
   line-height: 1;
-  margin-right: 3px;
+  margin-inline-end: 3px;
   letter-spacing: 0;
 }
 .brand-period {
   font-size: 10px;
   align-self: flex-start;
   margin-top: 6px;
-  margin-left: 2px;
+  margin-inline-start: 2px;
   letter-spacing: 0;
 }
 .brand img {
@@ -366,7 +366,7 @@ main:focus {
 }
 .hero h1 {
   white-space: pre-line;
-  margin-left: -4px;
+  margin-inline-start: -4px;
 }
 .hero-copy > p {
   max-width: 340px;
@@ -595,7 +595,7 @@ main:focus {
   max-width: 95px;
 }
 .category-card > svg {
-  margin-left: auto;
+  margin-inline-start: auto;
   width: 15px;
 }
 .editorial-banner {
@@ -649,7 +649,7 @@ main:focus {
   gap: 17px;
 }
 .benefits > div + div {
-  border-left: 1px solid var(--border);
+  border-inline-start: 1px solid var(--border);
 }
 .benefits h3 {
   font-size: 12px;
@@ -879,7 +879,7 @@ main:focus {
   width: auto;
   margin: 0;
   font-size: 12px;
-  padding-right: 6px;
+  padding-inline-end: 6px;
 }
 .catalog-layout {
   display: grid;
@@ -980,7 +980,7 @@ main:focus {
 .detail-price del {
   color: var(--muted);
   font-size: 16px;
-  margin-left: 12px;
+  margin-inline-start: 12px;
 }
 .detail-description {
   color: var(--muted);
@@ -1064,7 +1064,7 @@ main:focus {
   min-height: 30px;
 }
 .product-accordions ul {
-  padding-left: 16px;
+  padding-inline-start: 16px;
   list-style: disc;
   color: var(--muted);
   line-height: 2;
@@ -1100,7 +1100,7 @@ main:focus {
   background: var(--surface);
   border-radius: 50%;
   vertical-align: middle;
-  margin-left: 18px;
+  margin-inline-start: 18px;
   letter-spacing: 0;
 }
 .cart-page,
@@ -1657,11 +1657,11 @@ main:focus {
   }
   .benefits > div {
     justify-content: flex-start;
-    padding-left: 14px;
+    padding-inline-start: 14px;
     gap: 20px;
   }
   .benefits > div + div {
-    border-left: 0;
+    border-inline-start: 0;
   }
   .benefits h3 {
     font-size: 12px;

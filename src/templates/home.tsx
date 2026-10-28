@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom'
+import { useText } from '../core/i18n/useText'
+import { Link } from '../components/StoreRouterLink'
 import { ArrowRight, ArrowUpRight, Leaf } from 'lucide-react'
 import { selectSectionCategories } from '../core/sections'
 import { useStore } from '../context/StoreContext'
@@ -44,6 +45,7 @@ function Header(props: HeaderProps) {
   )
 }
 function Hero({ section }: { section: HeroSection }) {
+  const t = useText()
   const { categories } = useStore()
   const companions = selectSectionCategories(categories, section.companionCategoryIds)
     .filter((c) => c.image !== section.image)
@@ -66,7 +68,7 @@ function Hero({ section }: { section: HeroSection }) {
         )}
       </div>
       <div className="home-scene">
-        <span className="home-scene-note">{section.imageLabel ?? 'ROOM TO BE YOURSELF'}</span>
+        <span className="home-scene-note">{section.imageLabel ?? t('ROOM TO BE YOURSELF')}</span>
         {companions[0] && (
           <Link
             className="home-scene-side home-scene-left"
@@ -101,7 +103,7 @@ function Hero({ section }: { section: HeroSection }) {
           </Link>
         )}
         <span className="home-scene-caption">
-          {section.caption ?? 'Good things take their time.'}
+          {section.caption ?? t('Good things take their time.')}
         </span>
       </div>
     </section>
@@ -129,6 +131,7 @@ function Products({ section }: { section: ProductsSection }) {
   )
 }
 function Categories({ section }: { section: CategoriesSection }) {
+  const t = useText()
   const categories = useSectionCategories(section)
   if (!categories.length) return null
   return (
@@ -136,7 +139,7 @@ function Categories({ section }: { section: CategoriesSection }) {
       <div className="home-rooms-intro">
         <span className="eyebrow">{section.eyebrow}</span>
         <h2>{section.title}</h2>
-        <p>{section.description ?? 'Small details. A place that feels like you.'}</p>
+        <p>{section.description ?? t('Small details. A place that feels like you.')}</p>
       </div>
       <div className="home-room-list">
         {categories.map((category, i) => (
@@ -183,9 +186,11 @@ function Banner({ section }: { section: BannerSection }) {
   )
 }
 function Benefits() {
+  const t = useText()
+
   const { config } = useStore()
   return (
-    <section className="home-promises page-width" aria-label="Shopping with us">
+    <section className="home-promises page-width" aria-label={t('Shopping with us')}>
       <Leaf size={36} strokeWidth={1} aria-hidden="true" />
       <div>
         {config.benefits.map((benefit) => (
@@ -199,6 +204,7 @@ function Benefits() {
   )
 }
 function Footer() {
+  const t = useText()
   const { config } = useStore()
   return (
     <footer
@@ -208,10 +214,12 @@ function Footer() {
     >
       <div className="page-width">
         <div className="home-footer-invitation">
-          <span className="eyebrow">{config.footer.eyebrow ?? 'MAKE YOURSELF AT HOME'}</span>
+          <span className="eyebrow">{config.footer.eyebrow ?? t('MAKE YOURSELF AT HOME')}</span>
           <h2>{config.footer.text}</h2>
           <StoreLink href={config.footer.cta?.href ?? '/catalog'} className="home-footer-cta">
-            <span className="sr-only">{config.footer.cta?.label ?? 'Explore the collection'}</span>
+            <span className="sr-only">
+              {config.footer.cta?.label ?? t('Explore the collection')}
+            </span>
             <ArrowUpRight size={38} strokeWidth={1} />
           </StoreLink>
         </div>

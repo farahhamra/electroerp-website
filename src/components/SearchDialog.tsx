@@ -1,3 +1,4 @@
+import { useText } from '../core/i18n/useText'
 import { useEffect, useId, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ArrowUpRight, Search, X } from 'lucide-react'
@@ -5,6 +6,8 @@ import { useProductSearch } from '../hooks/useProductSearch'
 import { Money } from './Shared'
 
 export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const t = useText()
+
   const dialog = useRef<HTMLDialogElement>(null)
   const input = useRef<HTMLInputElement>(null)
   const [query, setQuery] = useState('')
@@ -39,8 +42,8 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
     >
       <div className="search-content">
         <div className="flex items-center justify-between gap-4">
-          <h2 id="search-title">Find your next favorite.</h2>
-          <button className="icon-button" aria-label="Close search" onClick={onClose}>
+          <h2 id="search-title">{t('Find your next favorite.')}</h2>
+          <button className="icon-button" aria-label={t('Close search')} onClick={onClose}>
             <X size={22} />
           </button>
         </div>
@@ -56,10 +59,10 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
         >
           <label className="search-field">
             <Search size={21} />
-            <span className="sr-only">Search products</span>
+            <span className="sr-only">{t('Search products')}</span>
             <input
               ref={input}
-              placeholder="Search products, brands, or model numbers"
+              placeholder={t('Search products, brands, or model numbers')}
               value={query}
               role="combobox"
               aria-autocomplete="list"
@@ -88,15 +91,15 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
         </form>
         <p className="search-status" role="status">
           {loading
-            ? 'Searching…'
+            ? t('Searching…')
             : error ||
               (query.trim().length < 2
-                ? 'Start with a product, a brand, or a little inspiration.'
+                ? t('Start with a product, a brand, or a little inspiration.')
                 : results.length
-                  ? `${results.length} matching products`
-                  : 'No matches yet. Try a product name or check your model number.')}
+                  ? t('matching.count', { count: results.length })
+                  : t('No matches yet. Try a product name or check your model number.'))}
         </p>
-        <ul id={listId} role="listbox" aria-label="Product suggestions">
+        <ul id={listId} role="listbox" aria-label={t('Product suggestions')}>
           {visible.map((product, index) => (
             <li
               key={product.id}
@@ -129,7 +132,7 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
               navigate(`/catalog?q=${encodeURIComponent(query)}`)
             }}
           >
-            View all results <ArrowUpRight size={18} />
+            {t('View all results')} <ArrowUpRight size={18} />
           </button>
         )}
       </div>
